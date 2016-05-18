@@ -10,8 +10,9 @@
 		<meta name="author" content="">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<!-- 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
 	</head>
+
+
 
 <body ng-app="myApp"  class="ng-cloak" data-spy="scroll" data-target=".subnav" data-offset="50">
     <a style="float:right; margin: 0 20px 10px 10px; background-color: #2D3E50; color: white;" class="btn btn-default" href="../../../resources/public/login.html">Sign Out</a>
@@ -27,8 +28,15 @@
                   	<%@ include file="../admin/fragment/top-table-status-bar.jsp"%>
                   	
 						<div ng-controller="UserController as ctrl">
-						   <table id="members-list-0" width="100%" border="0" cellspacing="0"
-						      cellpadding="0"
+						
+						<div style="float: right"> 
+							<a  ng-click="ctrl.fetchAllUsers()" class="btn btn-default btn-info  btn-sm" id="refresh-member">
+					          <i class="glyphicon glyphicon-refresh icon-white"></i>&nbsp;Refresh&nbsp;                      
+					         </a>
+						</div> <br /> <br /> 
+
+
+						   <table id="member-table" data-toggle="table"  width="100%" border="0" cellspacing="0" cellpadding="0"
 						      class="table table-striped table-bordered table-condensed"
 						      data-items-per-page="40" data-current-page="1" data-total-items="6"
 						      data-sort-column="1" data-sort-order-asc="true"
@@ -45,6 +53,7 @@
 						            <th class="role-sort-column table-date-td-width">Created <span class="css_right ui-icon ui-icon-carat-2-n-s" /></th>
 						         </tr>
 						      </thead>
+
 						      <tbody>
 						         <tr>
 						         <tr ng-repeat="u in ctrl.users">
@@ -101,16 +110,7 @@
                         <%@ include file="../admin/fragment/bottom-table-status-bar.jsp"%> 
                     </div>
                     
-                    
-                    
-                    <!-- 
-                    <template id="div-members-importing" data-dialog-tittle="Importing Members                      
-                        <span class='glyphicon glyphicon-refresh glyphicon-refresh-animate importing-message-spinner'></span>">
-                        <div id="importing-notify-message"></div>
-                        <h3 class="importing-message-spinner">&nbsp;&nbsp;In progress, please wait ...</h3>
-                    </template>
-                    -->
-                    
+
                 </div>
                 <!--/.fluid-container-->
                 <div class="push">
@@ -118,17 +118,48 @@
                 </div>
             </div>
             
+            
+    
+    
+    
+    
+                
 		                                
 		<!-- Model Add Member -->
-		<%@ include file="../admin/fragment/members-model.jsp"%>
+		<%@ include file="../admin/fragment/members-model.jsp"%> 
 
 		<!--  Member Remove Member -->	
-        <%@ include file="../admin/fragment/member-list-dialog-box.jsp"%> 
+       <%@ include file="../admin/fragment/member-list-dialog-box.jsp" %>
+        
+        
+        
+        
+        
 
 
+        
+        
+        
+        
+        
+        
 
-	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+  
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script>
         <script src="<c:url value='/static/js/app.js' />"> </script>
         <script src="<c:url value='/static/js/service/user_service.js' />"></script>
-        <script src="<c:url value='/static/js/controller/user_controller.js' />"></script>   
+        <script src="<c:url value='/static/js/controller/user_controller.js' />"></script> 
+        
+<!--         <script type="text/javascript" data-main="./resources/public/js/run-create-user-app" -->
+<!--         src="./resources/bower_components/requirejs/require.js"></script> -->
+        
+ 
+      
+      
+ 
+ 
+ 
+ 
+     

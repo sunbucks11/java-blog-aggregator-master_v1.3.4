@@ -5,7 +5,7 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
 /*        self.user={id:'', username:'',roles:'',email:''};*/
           self.user={id:'',name:'' ,email:'' ,password:'' ,roles:[]};
           self.users=[];
-              
+       
           self.fetchAllUsers = function(){
               UserService.fetchAllUsers()
                   .then(
@@ -107,9 +107,15 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
           
           self.reset = function(){
             /*  self.user={id:null,username:'',address:'',email:''};*/
-        	  self.user={id:null ,name:'' ,email:''};
+        	  self.user={id:null ,name:'' ,email:'', password:'' , confirmPassword:''};
+//        	  angular.element( document.querySelector( '#member-table' ) ).bootstrapTable('load',self.user);
               $scope.myForm.$setPristine(); //reset Form
           };
+          
+         
+          
+          
+          
           
           
           

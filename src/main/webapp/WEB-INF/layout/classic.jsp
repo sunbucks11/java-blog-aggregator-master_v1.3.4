@@ -67,7 +67,7 @@
 	                    <li class="${current == 'FieldsManagement' ? 'active' : ''}"><a href="<spring:url value="/FieldsManagement.html" />"> <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span><spring:message code="btn.fields" text="Fields" /></a></li>
 	                    <li class="${current == 'DomainsManagement' ? 'active' : ''}"><a href="<spring:url value="/DomainsManagement.html" />"> <span class="glyphicon glyphicon-th" aria-hidden="true"></span> <spring:message code="btn.domains" text="Domains" /> </a></li>
 
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>More <span class="caret"></span></a>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span></span> <spring:message code="btn.more" text="More" /> <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="<spring:url value="/audit.html" />"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="margin-right: 10px;"></span><spring:message code="btn.audit" text="Audit" /></a></li>
 								<li class="divider"></li>
@@ -76,11 +76,10 @@
 								<li class="divider"></li>
 								<li><a href="<spring:url value="/api.html" />"><span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="margin-right: 10px;"></span><spring:message code="btn.api" text="API" /></a></li>
 								<li><a href="<spring:url value="/help.html" />"><span class="glyphicon glyphicon-book" aria-hidden="true" style="margin-right: 10px;"></span> </span><spring:message code="btn.help" text="Help" /></a></li>
-								<li><a href="<spring:url value="/faq.html" />"><span class="glyphicon glyphicon-question-sign" aria-hidden="true" style="margin-right: 10px;"></span></span><spring:message code="btn.api" text="FAQ" /></a></li>
+								<li><a href="<spring:url value="/faq.html" />"><span class="glyphicon glyphicon-question-sign" aria-hidden="true" style="margin-right: 10px;"></span></span><spring:message code="btn.faq" text="FAQ" /></a></li>
 							</ul>
 						</li>
 						</security:authorize>
-						
 					</ul>
 					
 					 <span style="float: right!important;; margin-top: 15px; margin-left:20px; color: white">Language : <a href="?language=en">English</a> <span style="color: white;">&#124;</span><a href="?language=zh_CN"> Chinese</a> </span>
@@ -91,7 +90,7 @@
 							<img src="/Avatar/ozj15c6vx0smonb6n6mlgeve.jpg" style="width: 30px; height: 30px" class="img-circle" /> Admin <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="<spring:url value="/profile" />">Profile</a></li>
+								<li><a href="<spring:url value="/profile" />"><spring:message code="btn.profile" text="Profile" /></a></li>
 								<li class="divider"></li>
 								<security:authorize access="isAuthenticated()">
 								<li><a href="<spring:url value="/logout" />"><spring:message code="btn.logout" text="Logout" /></a></li>
