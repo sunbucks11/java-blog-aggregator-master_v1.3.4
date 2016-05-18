@@ -1,0 +1,41 @@
+<ul class="dropdown-menu dropdown-menu-scroll" role="menu">
+	<li><a href="#" data-role-id="1" class="member-reset-role">Admins</a>
+	</li>
+	<li><a href="#" data-role-id="7" class="member-reset-role">API
+			Members</a></li>
+	<li><a href="#" data-role-id="9" class="member-reset-role">A-SocialSignIn</a>
+	</li>
+	<li><a href="#" data-role-id="4" class="member-reset-role">Blocked</a>
+	</li>
+	<li><a href="#" data-role-id="15" class="member-reset-role">Blogger</a>
+	</li>
+	<li><a href="#" data-role-id="2" class="member-reset-role">Editor</a>
+	</li>
+	<li><a href="#" data-role-id="11" class="member-reset-role">Facebook</a>
+	</li>
+	<li><a href="#" data-role-id="12" class="member-reset-role">Google</a>
+	</li>
+	<li><a href="#" data-role-id="18" class="member-reset-role">LDAP</a>
+	</li>
+	<li><a href="#" data-role-id="14" class="member-reset-role">Live
+			Journal</a></li>
+	<li><a href="#" data-role-id="17" class="member-reset-role">My
+			OpenID</a></li>
+	<li><a href="#" data-role-id="6" class="member-reset-role">Not
+			Activated</a></li>
+	<li><a href="#" data-role-id="16" class="member-reset-role">OpenID</a>
+	</li>
+	<li><a href="#" data-role-id="8" class="member-reset-role">Self
+			Activated</a></li>
+	<li><a href="#" data-role-id="5" class="member-reset-role">Self
+			Registered</a></li>
+	<li><a href="#" data-role-id="10" class="member-reset-role">Twitter</a>
+	</li>
+	<li><a href="#" data-role-id="3" class="member-reset-role">Viewer</a>
+	</li>
+	<li><a href="#" data-role-id="13" class="member-reset-role">Yahoo</a>
+	</li>
+	<li class="divider"></li>
+	<li><a href="#" data-role-id="-1" class="member-reset-role">All
+			Roles</a></li>
+</ul>

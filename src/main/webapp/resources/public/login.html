@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login Java Blog</title>
+    <link rel="stylesheet" type="text/css" href="../../resources/bower_components/pure/pure.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/bower_components/pure/grids-responsive.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/public/css/pure-theme.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/public/css/style.public.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/public/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/public/css/calories-tracker.css">
+</head>
+
+<body class="pure-skin-theme" id="loginApp">
+
+    <header class="navbar-default navbar-fixed-top navbar-inverse">
+    <!--  <header class="page-header pure-g ">  -->
+        <div class="pure-u-lg-1-2 pure-u-1">
+            <!-- <a class="pure-menu-heading" href="#"> <img class="logo" src="../../resources/img/logo.png"> </a> -->
+            <span style="margin: 0 5px 10px 100px; font-size: 25px" class="header-element page-title">Sign In</span>
+            <span style="margin: 0 10px 10px 10px; font-size: 16px" class="header-element page-sub-title">log into your account </span>
+        </div>
+        
+        <div style="float:right;  margin: 20px 20px 10px 10px;"> <a style="float:right; background-color: #2D3E50; color: white;" class="btn btn-default" href="../../index">Back to Application</a></div>
+        
+    </header>
+
+<a style="float:right; margin: 0 20px 10px 10px; background-color: #2D3E50; color: white;" class="btn btn-default" href="../../index">Back to Application</a>
+
+	<div class="login-box login-box-pos-top-relative">
+		<main ng-controller="BaseFormCtrl">
+			<form ng-submit="onLogin()" name="form" class="pure-form login-form" novalidate ng-controller="LoginCtrl">
+				<div class="login-form">
+					<div class="login-title">Already a member? Sign in:</div>
+					<div class="login-form-inner">
+						<div id="notify-message"></div>
+						 <p><br></p>
+						<!--===================Username ===================-->
+						<div class="form-group">
+							<input tabindex="1"
+								class="input-xlarge login-form-field form-control"
+								type="text"
+								ng-focus="focus('username')" ng-blur="blur('username')"
+								ng-model="vm.username" name="username" placeholder="Username"
+								required>
+							<div class="error-messages" ng-show="isMessagesVisible('username')" ng-messages="form.username.$error" ng-cloak>
+								<div ng-message="required">The username is mandatory</div>
+							</div>
+						</div> <!-- /Username -->
+						<!--================== /Password =====================-->
+						<div class="form-group">
+							<input tabindex="2"
+								class="input-xlarge login-form-field form-control"
+								type="password"
+								ng-focus="focus('password')" ng-blur="blur('password')"
+								ng-model="vm.password" name="password" placeholder="Password">
+							<div class="error-messages"
+								ng-show="isMessagesVisible('password')"
+								ng-messages="form.password.$error" ng-cloak>
+								<div ng-message="required">The password is mandatory</div>
+								<div ng-message="minlength">must have minimum 6 characters</div>
+								<div ng-message="pattern">At least one number and uppercase</div>
+							</div>
+						</div> <!-- /Password -->
+						<input tabindex="3" class="login-form-field" id="remember-me" type="checkbox"> Remember Me
+					</div>  <!--  /login-form-inner -->
+	
+	
+					<div class="login-form-buttons">
+						<button type="submit" class="btn btn-default btn-primary sing-in-btn login-form-button btn-sm">Sign In</button>
+						&nbsp;
+						<div class="glyphicon glyphicon-refresh glyphicon-refresh-animate" id="login-spinner" style="vertical-align: middle; display: none"> </div>
+						<div style="float: right; margin-top: 5px"> <a href="../../register.html">Needs an account?
+						</a> <span>&nbsp;&nbsp;</span> <a href="forgot-password.html">Forgot your password?</a> </div>
+					</div> <!-- /login-form-buttons -->
+				</div> <!-- /login-form -->
+			</form>
+		</main>
+	</div>
+
+
+
+	<script type="text/javascript" 
+    		data-main="../../resources/public/js/run-loggin-app"
+            src="../../resources/bower_components/requirejs/require.js">
+	</script>
+
+
+</body>
+</html>

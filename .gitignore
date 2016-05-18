@@ -1,0 +1,10 @@
+.DS_Store
+.classpath
+.project
+.settings/
+.bin/
+.externalToolBuilders/
+/target
+# intellij related
+*.iml
+.idea
