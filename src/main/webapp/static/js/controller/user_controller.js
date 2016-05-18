@@ -112,11 +112,7 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
               $scope.myForm.$setPristine(); //reset Form
           };
           
-         
-          
-          
-          
-          
+
           
           
           self.guid = function(){
@@ -128,5 +124,8 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
         		  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
         		    s4() + '-' + s4() + s4() + s4();
           };
+          
+
 
       }]);
+

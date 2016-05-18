@@ -9,13 +9,13 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<!-- 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> -->
 	</head>
 
 
 
 <body ng-app="myApp"  class="ng-cloak" data-spy="scroll" data-target=".subnav" data-offset="50">
-    <a style="float:right; margin: 0 20px 10px 10px; background-color: #2D3E50; color: white;" class="btn btn-default" href="../../../resources/public/login.html">Sign Out</a>
+   <!--  <a style="float:right; margin: 0 20px 10px 10px; background-color: #2D3E50; color: white;" class="btn btn-default" href="../../../resources/public/login.html">Sign Out</a> -->
     <div class="wrapper">
         <div class="container">
             <h2>Members</h2>
@@ -27,7 +27,7 @@
             	<div id="div-members-list-0">
                   	<%@ include file="../admin/fragment/top-table-status-bar.jsp"%>
                   	
-						<div ng-controller="UserController as ctrl">
+						<div id="divID" ng-controller="UserController as ctrl">
 						
 						<div style="float: right"> 
 							<a  ng-click="ctrl.fetchAllUsers()" class="btn btn-default btn-info  btn-sm" id="refresh-member">
@@ -115,7 +115,7 @@
                 <!--/.fluid-container-->
                 <div class="push">
                     <!--//-->
-                </div>
+                </div>        
             </div>
             
             
@@ -131,20 +131,8 @@
 		<!--  Member Remove Member -->	
        <%@ include file="../admin/fragment/member-list-dialog-box.jsp" %>
         
-        
-        
-        
-        
 
 
-        
-        
-        
-        
-        
-        
-
-  
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script>
@@ -158,8 +146,22 @@
  
       
       
+
+<script type="text/javascript">
+ $('#myModal').on('hidden.bs.modal', function () {
+	   window.alert('hidden event fired!'); 
+/* 	  $scope.fetchAllUsers(); */
+	/*  angular.element('#UserController').scope().child.fetchAllUsers(); */
+	 
+	/*  angular.element('#ctrl').self.fetchAllUsers(); */
+	 
+/* 	 angular.element('#myctrl').scope().anyFunc('value1','value2');
+	
+	 angular.element('#UserController').scope().$apply()  */
+	 
+	/*    angular.element($("#UserController")).self.fetchAllUsers; */
+	  
+	});
+
+ </script>
  
- 
- 
- 
-     
