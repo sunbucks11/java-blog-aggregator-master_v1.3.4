@@ -1,6 +1,6 @@
 
 
-
+<!-- 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,12 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- Le styles -->
+   
     <link href="/Content/style.css" rel="stylesheet" type="text/css" />
     <link href="/Content/themes/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
@@ -50,58 +45,13 @@
     <link runat="server" rel="icon" href="http://localhost:50000/content/images/favicon.ico" type="image/ico" />
     
    </head>
-    
+   
+  -->  
+  
 <body data-spy="scroll" data-target=".subnav" data-offset="50">
-    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/Admin">
-                    <b>Role &amp; Member</b>
-                </a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <div class="navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li ><a href="/Admin"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
-                        <li > <a href="/Admin/Roles"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Roles</a></li>
-                        <li ><a href="/Admin/Members"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Members</a></li>
-                        <li class="active"><a href="/Admin/Fields"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Fields</a></li>
-                        <li ><a href="/Admin/Domains"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Domains</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span> More<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li ><a href="/Admin/Audit"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="margin-right:10px;"></span> Audit</a></li>
-                                <li class="divider"></li>
-                                <li ><a href="/Admin/Tools"><span class="glyphicon glyphicon-briefcase" aria-hidden="true" style="margin-right:10px;"></span> Tools</a></li>
-                                <li ><a href="/Admin/Settings"><span class="glyphicon glyphicon-cog" aria-hidden="true" style="margin-right:10px;"></span> Settings</a></li>
-                                <li class="divider"></li>
-                                <li ><a href="/Admin/API"><span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="margin-right:10px;"></span> API</a></li>
-                                <li ><a href="/Admin/Help"><span class="glyphicon glyphicon-book" aria-hidden="true" style="margin-right:10px;"></span> Help</a></li>
-                                <li ><a href="/Admin/FAQ"><span class="glyphicon glyphicon-question-sign" aria-hidden="true" style="margin-right:10px;"></span>FAQ</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                        <div class="btn-group pull-right" style="margin-top:8px">
-                            <a class="btn dropdown-toggle btn-default" data-toggle="dropdown" href="#" title="&lt;admin@demo.com&gt;" style="padding: 1px 4px 1px 1px !important"><img src="/Avatar/ozj15c6vx0smonb6n6mlgeve.jpg" style="width:30px;height:30px" class="img-circle" /> Admin <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/Profile">Profile</a></li>
-                                <li class="divider"></li>
-                                <li><a href="/SignOut">Sign Out</a></li>
-                            </ul>
-                        </div>
-                </div><!--/.nav-collapse -->
-            </div>
-        </div>
-    </nav>
-    
-    <div class="wrapper">
-        <div class="container">
+   
+<div class="wrapper">
+ <div class="container">
             
 
 

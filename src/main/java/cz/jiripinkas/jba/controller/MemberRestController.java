@@ -1,6 +1,7 @@
 package cz.jiripinkas.jba.controller;
  
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -50,6 +51,7 @@ public class MemberRestController {
     	// Find all users
     	List<User> users = userService.findAll();
     	List<String> roles = new ArrayList<String>();
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     	
     	
     	JSONArray resultJson = new JSONArray();
@@ -62,10 +64,22 @@ public class MemberRestController {
         		userJSON.put("name",user.getName());
         		userJSON.put("email",user.getEmail());
         		userJSON.put("roles",roles); 
-        		userJSON.put("createdDate",user.getCreatedDate()); 
-        		userJSON.put("lastLoginDate",user.getLastLoginDate()); 
+ 
         		
+        		Date date = user.getCreatedDate();
         		
+        		if (date != null){
+        		  userJSON.put("createdDate",dateFormat.format(date)); 
+        		}
+             
+        		date = user.getLastLoginDate();
+        		
+        		if(date != null ){
+        			date = user.getLastLoginDate();
+        			userJSON.put("lastLoginDate",dateFormat.format(date)); 
+        		}
+        		
+   
             } catch (JSONException e) {
                 e.printStackTrace();
             }

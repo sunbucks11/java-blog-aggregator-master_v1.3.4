@@ -29,22 +29,18 @@
 			      </div>
 			   </div>
 	
-
 			  <div class="form-group" data-ng-class="{'has-error':myForm.email.$dirty}">
 			      <label for="email">Email</label>    
 			       <input class="form-control" type="email" name="email" required="" data-ng-model="ctrl.user.email" />
 				   <span class="help-block" data-ng-show="myForm.email.$error.required && myForm.email.$dirty">required</span>
 				   <span class="help-block" data-ng-show="!myForm.email.$error.required && myForm.email.$error.email && myForm.email.$dirty">invalid email</span>
 			   </div>   
-			   
-			   
-			   
+
 			   <div class="form-group" data-ng-class="{'has-error':!myForm.password.$valid}">
 			      <label for="password">Password</label>
 			      <input class="form-control" type="password" name="password" required="" data-ng-model="ctrl.user.password" />
 			      <span class="help-block" data-ng-show="myForm.password.$error.required">This is required.</span>
 			   </div>
-
 
 
 			   <div class="form-group" data-ng-class="{'has-error':!myForm.passwordCompare.$valid}">
@@ -58,30 +54,18 @@
 			   
 			   <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">ResetForm</button> 
 			</form>
-					
-
-
+			
 			<!-- ====== Footer =====-->
 			
 			<div class="modal-footer">
-<!-- 			   <div style="float: left" class="form-actions floatRight"> -->
-<!-- 			      <button type="button" ng-click="ctrl.update()"class="btn btn-info btn-sm" ng-disabled="myForm.$pristine">Update</button> -->
-			      
-<!-- 			      <input type="submit" value="Add" class="btn btn-primary btn-sm" ng-disabled="myForm.$pristine"> -->
-<!-- 			      <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">ResetForm</button> -->
-<!-- 			   </div> -->
 			   <div>
 			      <button class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
 			   </div>
 			</div>
-			
-			<!-- =====================-->
-			
 		</div>
 	</div>
 </div>
 </div>
-
 
 
 

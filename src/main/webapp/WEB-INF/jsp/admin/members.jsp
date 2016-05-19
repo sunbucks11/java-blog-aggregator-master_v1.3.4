@@ -76,8 +76,8 @@
 						               </a>&nbsp; 
 						               <!-- ================= Name ================-->
 						               <!-- <a href="#" class="member-edit" style="white-space:nowrap !important;" data-member-id="1">Admin</a> -->
-						               <a href="#" class="member-edit" style="white-space: nowrap !important;" data-member-id="1">
-						               <span ng-bind="u.name"></span>
+						               <a data-toggle="modal" data-target="#editMemberModal" href="#" class="member-edit" style="white-space: nowrap !important;" data-member-id="1">
+						                    <span ng-bind="u.name"></span>
 						               </a>
 						               <div style="display: inline" class="member-add-role-inline">
 						                  <a class="member-add-role-inline-link btn-xs btn btn-default"
@@ -125,12 +125,24 @@
     
                 
 		                                
-		<!-- Model Add Member -->
+		<!-- Add Member Model -->
 		<%@ include file="../admin/fragment/members-model.jsp"%> 
 
-		<!--  Member Remove Member -->	
+		<!-- Remove Member Model -->	
        <%@ include file="../admin/fragment/member-list-dialog-box.jsp" %>
+       
+       <!--  Edit Member Model -->	
+       <%@ include file="../admin/fragment/edit-member.jsp" %>
         
+
+
+
+
+
+
+
+
+
 
 
 
@@ -144,24 +156,39 @@
 <!--         src="./resources/bower_components/requirejs/require.js"></script> -->
         
  
+
       
       
 
 <script type="text/javascript">
  $('#myModal').on('hidden.bs.modal', function () {
-	   window.alert('hidden event fired!'); 
-/* 	  $scope.fetchAllUsers(); */
-	/*  angular.element('#UserController').scope().child.fetchAllUsers(); */
+ 	 window.location.reload();
 	 
-	/*  angular.element('#ctrl').self.fetchAllUsers(); */
+// 	 $( "#member-table" ).load( "UserManagement.html #member-table" );
 	 
-/* 	 angular.element('#myctrl').scope().anyFunc('value1','value2');
-	
-	 angular.element('#UserController').scope().$apply()  */
-	 
-	/*    angular.element($("#UserController")).self.fetchAllUsers; */
-	  
+	 /* window.alert('hidden event fired!'); */
+	   
+	  /* angular.element('#divID').scope().myCtrl(); */
+      /* $scope.fetchAllUsers();*/
+	  /* angular.element('#UserController').scope().child.fetchAllUsers(); */
+	  /* angular.element('#ctrl').self.fetchAllUsers(); */
+      /* angular.element('#myctrl').scope().anyFunc('value1','value2');*/
 	});
-
  </script>
  
+ 
+ 
+ <script type="text/javascript">
+ $('#removeModel').on('hidden.bs.modal', function () {
+	 window.location.reload();
+	 /* window.alert('hidden event fired!'); */
+	   
+	  /* angular.element('#divID').scope().myCtrl(); */
+      /* $scope.fetchAllUsers();*/
+	  /* angular.element('#UserController').scope().child.fetchAllUsers(); */
+	  /* angular.element('#ctrl').self.fetchAllUsers(); */
+      /* angular.element('#myctrl').scope().anyFunc('value1','value2');*/
+	});
+ </script>
+ 
+ </body>

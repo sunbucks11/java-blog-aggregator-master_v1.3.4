@@ -9,9 +9,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import cz.jiripinkas.jba.entity.Blog;
+import cz.jiripinkas.jba.entity.Field;
 import cz.jiripinkas.jba.entity.Role;
 import cz.jiripinkas.jba.entity.User;
 import cz.jiripinkas.jba.repository.BlogRepository;
+import cz.jiripinkas.jba.repository.FieldRepository;
 import cz.jiripinkas.jba.repository.ItemRepository;
 import cz.jiripinkas.jba.repository.RoleRepository;
 import cz.jiripinkas.jba.repository.UserRepository;
@@ -34,6 +36,9 @@ public class InitDbService {
 
 	@Autowired
 	private BlogService blogService;
+	
+	@Autowired
+	private FieldRepository fieldRepository;
 
 	public void init() {
 		if (roleRepository.findByName("ROLE_ADMIN") == null) {
@@ -65,6 +70,26 @@ public class InitDbService {
 			blogRepository.save(blogJavavids);
 			blogService.saveItems(blogJavavids);
 
+			Field field1 = new Field();
+			field1.setName("name");
+			field1.setComment("This field is for first name");
+			fieldRepository.save(field1);
+		
+			Field field2 = new Field();
+			field2.setName("email");
+			field2.setComment("This field is for email address");
+			fieldRepository.save(field2);
+		
+			Field field3 = new Field();
+			field3.setName("password");
+			field3.setComment("This field is for password");
+			fieldRepository.save(field3);
+			
+			Field field4 = new Field();
+			field4.setName("confirmPassword");
+			field4.setComment("This field is for confirm password");
+			fieldRepository.save(field4);
+			
 		}
 	}
 }
