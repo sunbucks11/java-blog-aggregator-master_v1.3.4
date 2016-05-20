@@ -3,10 +3,6 @@
 
 <%@ include file="../layout/taglib.jsp" %>
 
-
-
-
-
     <link rel="stylesheet" type="text/css" href="./resources/bower_components/pure/pure.css">
     <link rel="stylesheet" type="text/css" href="./resources/bower_components/pure/grids-responsive.css">
     <link rel="stylesheet" type="text/css" href="./resources/public/css/pure-theme.css">

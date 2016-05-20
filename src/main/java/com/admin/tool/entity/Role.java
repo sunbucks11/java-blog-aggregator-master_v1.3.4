@@ -17,7 +17,6 @@ public class Role {
 
 	private String name;
 	
-	
 	private int isBuiltIn;
 	
 	private String backColor;
@@ -29,7 +28,7 @@ public class Role {
 	private Date createdDate;
 	
 	private Date modifiedDate;
-	
+		
 	@ManyToMany(mappedBy = "roles")
 	private List<User> users;
 

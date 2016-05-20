@@ -36,7 +36,7 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<div class="navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li class="${current == 'login' ? 'active' : ''}"><a href="<spring:url value="/" />"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <spring:message code="btn.home" text="Home" /></a></li>
+						<li class="${current == 'login' ? 'active' : ''}"><a href="<spring:url value="/" />"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><spring:message code="btn.home" text="Home" /></a></li>
 		              
 		              <security:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
 		                <li class="${current == 'register' ? 'active' : ''}"><a href="<spring:url value="/register.html" />"><span class="glyphicon glyphicon-registration-mark" aria-hidden="true"></span> <spring:message code="btn.register" text="Register" /></a></li>
@@ -71,7 +71,8 @@
 						</security:authorize>
 					</ul>
 					
-					 <span style="float: right!important;; margin-top: 15px; margin-left:20px; color: white">Language : <a href="?language=en">English</a> <span style="color: white;">&#124;</span><a href="?language=zh_CN"> Chinese</a> </span>
+					 <span style="float: right!important;; margin-top: 15px; margin-left:20px; color: white"><spring:message code="app.language.lbl" text="" /> : <a href="?language=en"><spring:message code="app.language.name.english" text="" /></a> 
+					 <span style="color: white;">&#124;</span><a href="?language=zh_CN"><spring:message code="app.language.name.chinese" text="" /> </a> </span>
 					
 					 <security:authorize access="isAuthenticated()">
 						<div class="btn-group pull-right" style="margin-top: 8px">

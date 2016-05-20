@@ -40,10 +40,14 @@ public class InitDbService {
 		if (roleRepository.findByName("ROLE_ADMIN") == null) {
 			Role roleUser = new Role();
 			roleUser.setName("ROLE_USER");
+			roleUser.setSettings("Ordinary users with limited privilages");
+			roleUser.setCreatedDate(new Date());
 			roleRepository.save(roleUser);
 
 			Role roleAdmin = new Role();
 			roleAdmin.setName("ROLE_ADMIN");
+			roleUser.setSettings("People who care about role and member management");
+			roleUser.setCreatedDate(new Date());
 			roleRepository.save(roleAdmin);
 
 			User userAdmin = new User();
@@ -71,10 +75,12 @@ public class InitDbService {
 			field1.setComment("This field is for first name");
 			fieldRepository.save(field1);
 
+			/*
 			Field field2 = new Field();
 			field2.setName("email");
 			field2.setComment("This field is for email address");
 			fieldRepository.save(field2);
+			*/
 
 			Field field3 = new Field();
 			field3.setName("password");
