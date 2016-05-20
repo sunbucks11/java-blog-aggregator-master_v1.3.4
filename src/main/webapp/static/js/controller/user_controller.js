@@ -108,7 +108,6 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
           self.reset = function(){
             /*  self.user={id:null,username:'',address:'',email:''};*/
         	  self.user={id:null ,name:'' ,email:'', password:'' , confirmPassword:''};
-//        	  angular.element( document.querySelector( '#member-table' ) ).bootstrapTable('load',self.user);
               $scope.myForm.$setPristine(); //reset Form
           };
           

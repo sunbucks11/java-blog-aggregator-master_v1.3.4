@@ -8,7 +8,7 @@
 	</definition>
 
 	<definition name="index" extends="common">
-		<put-attribute name="title" value="Java Blog Aggregator" />
+		<put-attribute name="title" value="Admin Tool" />
 		<put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
 		<put-attribute name="current" value="index" />
 	</definition>
@@ -47,28 +47,28 @@
 	
     <!-- Menu Bar -->
 	<definition name="UserManagement" extends="common">
-		<put-attribute name="title" value="Java Blog Aggregator" />
+		<put-attribute name="title" value="Admin Tool" />
 <!-- 		<put-attribute name="body" value="/WEB-INF/jsp/UserManagement.jsp" /> -->
 	    <put-attribute name="body" value="/WEB-INF/jsp/admin/members.jsp" />
 		<put-attribute name="current" value="UserManagement" />
 	</definition>
 
 	<definition name="RolesManagement" extends="common">
-		<put-attribute name="title" value="Java Blog Aggregator" />
+		<put-attribute name="title" value="Admin Tool" />
 		<put-attribute name="body" value="/WEB-INF/jsp/RolesManagement.jsp" />
 		<put-attribute name="current" value="RolesManagement" />
 	</definition>
 	
 	
 	<definition name="FieldsManagement" extends="common">
-		<put-attribute name="title" value="Java Blog Aggregator" />
+		<put-attribute name="title" value="Admin Tool" />
 		<put-attribute name="body" value="/WEB-INF/jsp/FieldsManagement.jsp" />
 		<put-attribute name="current" value="FieldsManagement" />
 	</definition>
 	
 	
 	<definition name="DomainsManagement" extends="common">
-		<put-attribute name="title" value="Java Blog Aggregator" />
+		<put-attribute name="title" value="Admin Tool" />
 		<put-attribute name="body" value="/WEB-INF/jsp/DomainsManagement.jsp" />
 		<put-attribute name="current" value="DomainsManagement" />
 	</definition>
@@ -76,43 +76,43 @@
 	
 	<!-- More -->
 	<definition name="api" extends="common">
-		<put-attribute name="title" value="Java Blog Aggregator" />
+		<put-attribute name="title" value="Admin Tool" />
 	    <put-attribute name="body" value="/WEB-INF/jsp/admin/more/api.jsp" />
 		<put-attribute name="current" value="api" />
 	</definition>
 	
 	<definition name="audit" extends="common">
-		<put-attribute name="title" value="Java Blog Aggregator" />
+		<put-attribute name="title" value="Admin Tool" />
 	    <put-attribute name="body" value="/WEB-INF/jsp/admin/more/audit.jsp" />
 		<put-attribute name="current" value="audit" />
 	</definition>
 	
 	<definition name="faq" extends="common">
-		<put-attribute name="title" value="Java Blog Aggregator" />
+		<put-attribute name="title" value="Admin Tool" />
 	    <put-attribute name="body" value="/WEB-INF/jsp/admin/more/faq.jsp" />
 		<put-attribute name="current" value="faq" />
 	</definition>
 	
 	<definition name="help" extends="common">
-		<put-attribute name="title" value="Java Blog Aggregator" />
+		<put-attribute name="title" value="Admin Tool" />
 	    <put-attribute name="body" value="/WEB-INF/jsp/admin/more/help.jsp" />
 		<put-attribute name="current" value="help" />
 	</definition>
 		
 	<definition name="settings" extends="common">
-		<put-attribute name="title" value="Java Blog Aggregator" />
+		<put-attribute name="title" value="Admin Tool" />
 	    <put-attribute name="body" value="/WEB-INF/jsp/admin/more/settings.jsp" />
 		<put-attribute name="current" value="help" />
 	</definition>
 	
 	<definition name="tools" extends="common">
-		<put-attribute name="title" value="Java Blog Aggregator" />
+		<put-attribute name="title" value="Admin Tool" />
 	    <put-attribute name="body" value="/WEB-INF/jsp/admin/more/tools.jsp" />
 		<put-attribute name="current" value="help" />
 	</definition>
 	
     <definition name="profile" extends="common">
-		<put-attribute name="title" value="Java Blog Aggregator" />
+		<put-attribute name="title" value="Admin Tool" />
 	    <put-attribute name="body" value="/WEB-INF/jsp/admin/profile.jsp" />
 		<put-attribute name="current" value="profile" />
 	</definition>

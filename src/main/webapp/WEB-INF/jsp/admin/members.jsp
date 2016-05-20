@@ -2,6 +2,8 @@
 	pageEncoding="ISO-8859-1"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 
+
+
 	<head>
 		<meta charset="utf-8">
 		<title>Members - Role &amp; Member</title>
@@ -9,7 +11,35 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<!-- 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> -->
+
+<style type="text/css">
+
+.btn-file {
+    position: relative;
+    overflow: hidden;    
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+}
+
+</style>
+
+
+
+
 	</head>
 
 
@@ -33,7 +63,9 @@
 							<a  ng-click="ctrl.fetchAllUsers()" class="btn btn-default btn-info  btn-sm" id="refresh-member">
 					          <i class="glyphicon glyphicon-refresh icon-white"></i>&nbsp;Refresh&nbsp;                      
 					         </a>
-						</div> <br /> <br /> 
+						</div> 
+						
+						<br /> <br /> 
 
 
 						   <table id="member-table" data-toggle="table"  width="100%" border="0" cellspacing="0" cellpadding="0"
@@ -71,7 +103,7 @@
 						                  data-original-title="Admin">
 						               <img class="img-circle"
 						                  width="22px" height="22px"
-						                  src="/avatar/ozj15c6vx0smonb6n6mlgeve.jpg"
+						                  src="http://www.onlinetestpro.co.uk/images/Admin.png"
 						                  style="width: 22px; height: 22px" />
 						               </a>&nbsp; 
 						               <!-- ================= Name ================-->
@@ -81,8 +113,7 @@
 						               </a>
 						               <div style="display: inline" class="member-add-role-inline">
 						                  <a class="member-add-role-inline-link btn-xs btn btn-default"
-						                     data-member-id="1" data-member-name="Admin" href="#">Add
-						                  Roles</a>
+						                     data-member-id="1" data-member-name="Admin" href="#">Add Roles</a>
 						               </div>
 						            </td>
 						            <!-- ================= Roles ================-->

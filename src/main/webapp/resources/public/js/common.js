@@ -45,14 +45,11 @@ angular.module('common', ['ngMessages'])
             })
             .then(function(response) {
                 if (response.data == 'ok') {
-                    //  window.location.replace('/java-blog-aggregator/resources/pages/calories-tracker.html');
-                	//  window.location.replace('../../index');
                        window.location.replace('./index');
                 }
                 else {
                     $scope.vm.errorMessages = [];
                     $scope.vm.errorMessages.push({description: 'Access denied - wrong username or password'});
-                    /*window.location.replace('./login.html?error=true');*/
                 }
             });
         }

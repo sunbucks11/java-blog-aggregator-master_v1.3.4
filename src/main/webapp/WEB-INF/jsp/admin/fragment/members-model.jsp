@@ -17,7 +17,7 @@
 			<!-- =============  Body ==============-->
 			<div class="modal-body" ng-controller="UserController as ctrl">
 
-			<form role="form" name="myForm" novalidate=""  ng-submit="ctrl.submit()"">
+			<form role="form" name="myForm" novalidate="" ng-submit="ctrl.submit()"">
 			
 			   <div class="form-group">
 			      <label for="uname">Name</label> 

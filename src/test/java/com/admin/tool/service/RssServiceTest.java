@@ -1,4 +1,4 @@
-package cz.jiripinkas.jba.service;
+package com.admin.tool.service;
 
 import static org.junit.Assert.*;
 
@@ -9,8 +9,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import cz.jiripinkas.jba.entity.Item;
-import cz.jiripinkas.jba.exception.RssException;
+import com.admin.tool.entity.Item;
+import com.admin.tool.exception.RssException;
+import com.admin.tool.service.RssService;
 
 public class RssServiceTest {
 	

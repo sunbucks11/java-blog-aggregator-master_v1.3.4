@@ -33,13 +33,15 @@
                        <!-- <label class="control-label">Instance Name</label> -->
 			          <img src="http://www.onlinetestpro.co.uk/images/Admin.png" alt="Admin" height="100" width="100">
 			        </div>
-			        
-			        <div style="float: left; margin-left: 150px; margin-top:-100px; display: inline-block;">
-			        	<b>Upload a Photo</b><br>
+
+					<div style="float: left; margin-left: 150px; margin-top:-100px; display: inline-block;">
+						<b>Upload a Photo</b><br>
 			    		<p>You can upload a JPG, GIF or PNG file. File size limit is about 4MB.</p>
-					   	<button class="btn btn-info btn-sm" data-dismiss="modal">Upload Photo</button>
-						<button class="btn btn-danger btn-sm" data-dismiss="modal">Reset Photo</button>
-			        </div>
+						<span class="btn btn-info btn-file"> Upload Photo <input type="file"></span>
+						<span class="btn btn-danger btn-file"> Reset Photo <input type="file"></span>
+					</div>  
+			        
+			        
 			         <br> <br>
 			         <form role="form" name="myForm" novalidate=""  ng-submit="ctrl.submit()"">
 				           <!-- Name -->
