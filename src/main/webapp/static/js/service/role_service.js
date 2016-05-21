@@ -5,7 +5,8 @@ App.factory('RoleService', ['$http', '$q', function($http, $q){
 	return {
 		
 			fetchAllRoles: function() {
-				      return $http.get('http://localhost:8080/admin-tool/role/')
+				      /*return $http.get('http://localhost:8080/admin-tool/role/')*/
+						return $http.get('http://localhost:8080/role/')
 							.then(
 									function(response){
 										return response.data;
@@ -18,7 +19,8 @@ App.factory('RoleService', ['$http', '$q', function($http, $q){
 			},
 		    
 		    createRole: function(role){
-					return $http.post('http://localhost:8080/admin-tool/role/', role)
+					/*return $http.post('http://localhost:8080/admin-tool/role/', role)*/
+					return $http.post('http://localhost:8080/role/', role)
 							.then(
 									function(response){
 										return response.data;
@@ -31,7 +33,8 @@ App.factory('RoleService', ['$http', '$q', function($http, $q){
 		    },
 		    
 		    updateRole: function(role, id){
-					return $http.put('http://localhost:8080/admin-tool/role/'+id, role)
+					/*return $http.put('http://localhost:8080/admin-tool/role/'+id, role)*/
+		    		 return $http.put('http://localhost:8080/role/'+id, role)
 							.then(
 									function(response){
 										return response.data;
@@ -44,7 +47,8 @@ App.factory('RoleService', ['$http', '$q', function($http, $q){
 			},
 		    
 			deleteRole: function(id){
-					return $http.delete('http://localhost:8080/admin-tool/role/'+id)
+					/*return $http.delete('http://localhost:8080/admin-tool/role/'+id)*/
+					 return $http.delete('http://localhost:8080/role/'+id)
 							.then(
 									function(response){
 										return response.data;

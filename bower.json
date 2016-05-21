@@ -1,0 +1,33 @@
+{
+  "name": "admin-tool",
+  "homepage": "https://github.com/sunbucks11/java-blog-aggregator-master_v1.3.4",
+  "authors": [
+    "semir"
+  ],
+  "description": "admin tool",
+  "main": "bower.json",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node",
+    "yui"
+  ],
+  "keywords": [
+    "bower"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-color-picker": "angularjs-color-picker#^1.1.2",
+    "angular-password": "^1.0.1",
+    "angular-bootstrap-colorpicker": "^3.0.25"
+  }
+}

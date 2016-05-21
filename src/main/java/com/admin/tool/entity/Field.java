@@ -1,5 +1,7 @@
 package com.admin.tool.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,24 +17,12 @@ public class Field {
 	
 	private String comment;
 	
-	/*
 	private boolean enabled;
-
-	public boolean isEnabled() {
-		return enabled;
-	}
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-	*/
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	
+	private Date createdDate;
+	
+	private Date modifiedDate;
+	
 
 	public Integer getId() {
 		return id;
@@ -42,6 +32,13 @@ public class Field {
 		this.id = id;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public String getComment() {
 		return comment;
@@ -50,5 +47,25 @@ public class Field {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+	
+	public boolean isEnabled() {
+		return enabled;
+	}
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+	public Date getModifiedDate() {
+		return modifiedDate;
+	}
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
+	}
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	
 
 }

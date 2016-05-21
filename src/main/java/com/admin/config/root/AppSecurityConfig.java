@@ -44,7 +44,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/index**","/login**", "/loginError**","/register**").permitAll()
         .antMatchers("/register/**").hasAnyRole("ADMIN","ANONYMOUS")
         .antMatchers("/UserManagement**").hasRole("ADMIN")
-        .antMatchers("/UserManagement/**").hasRole("ADMIN")
+        .antMatchers("/UserManagement/**").hasRole("ADMIN")        
         .antMatchers("/users**").hasRole("ADMIN")
         .antMatchers("/users/**").hasRole("ADMIN")
         .antMatchers("/account**").hasRole("USER")

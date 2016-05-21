@@ -63,6 +63,9 @@ public class UserService {
 		user.setPassword(encoder.encode(user.getPassword()));
 
 		List<Role> roles = new ArrayList<Role>();
+		
+		// I SET THE ROLE JUST FOR TEST
+		// TO BE RETRIEVED FROM user PARAMETER PASSED	
 		roles.add(roleRepository.findByName("ROLE_USER"));
 		user.setRoles(roles);
 		user.setCreatedDate(new Date());
@@ -87,5 +90,29 @@ public class UserService {
 	public boolean isUserExist(User user) {
 		return findOne(user.getName())!=null;
 	}
+	
+    // Find number of users with a given role	
+	public int findNumOfUsersWithRole(String roleName){
+		List<User> users = new ArrayList<User>();
+		List<Role> roles = new ArrayList<Role>();
+		
+		users = findAll();
+		int numberOfUsers = 0;
+		int i = 0;
+		
+		for (User user : users) {
+			
+			roles = user.getRoles();
+			
+			for (Role role : roles) {
+				if (role.getName().equals(roleName)){
+					numberOfUsers++;
+				}
+			}
 
+			i++;
+		}
+		return numberOfUsers;
+	}
+	
 }

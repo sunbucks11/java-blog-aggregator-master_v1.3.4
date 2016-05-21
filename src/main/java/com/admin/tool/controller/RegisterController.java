@@ -34,7 +34,7 @@ public class RegisterController {
 
 	@RequestMapping
 	public String showRegister(Model model) {
-		model.addAttribute("fields", fieldService.getFields());
+		model.addAttribute("fields", fieldService.findAll());
 		return "user-register";
 	}
 

@@ -63,7 +63,7 @@ App.controller('RoleController', ['$scope', 'RoleService', function($scope, Role
       */     
               
           self.submit = function() {
-                  console.log('Saving New User', self.role);  
+                  console.log('Saving New Role', self.role);  
                   self.createRole(self.role);
                   self.reset();
           };     

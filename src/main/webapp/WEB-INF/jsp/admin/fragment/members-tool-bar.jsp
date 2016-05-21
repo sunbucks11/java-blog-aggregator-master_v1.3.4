@@ -1,6 +1,6 @@
 <div class="subnav" style="padding:7px">
    <div class="btn-toolbar">
-      <a data-toggle="modal" data-target="#myModal" class="btn btn-default btn-success btn-sm  triggerRemove" style="vertical-align:top !important" id="add-member">
+      <a data-toggle="modal" data-target="#memberModal" class="btn btn-default btn-success btn-sm  triggerRemove" style="vertical-align:top !important" id="add-member">
       <i class="glyphicon glyphicon-user"></i>  Add                     
       </a>
       <a data-toggle="modal" data-target="#removeModel" class="btn btn-default btn-danger btn-sm" style="vertical-align:top !important" id="remove-member">

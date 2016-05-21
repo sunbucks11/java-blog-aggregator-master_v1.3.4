@@ -17,7 +17,7 @@ public class FieldService {
 	@Autowired
 	private FieldRepository fieldRepository;
 	
-	public List<Field> getFields(){	
+	public List<Field> findAll(){	
 		return fieldRepository.findAll();
 	}		
 }

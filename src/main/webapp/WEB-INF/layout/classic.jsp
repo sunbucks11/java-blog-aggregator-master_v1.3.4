@@ -30,7 +30,8 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="<spring:url value="/" />"> <b>Role &amp; Member</b></a>
+				<%-- <a class="navbar-brand" href="<spring:url value="/" />"> <b>Role &amp; Member</b></a> --%>
+				<a class="navbar-brand" href="<spring:url value="/" />"> <b>Admin Tool</b></a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -71,8 +72,11 @@
 						</security:authorize>
 					</ul>
 					
-					 <span style="float: right!important;; margin-top: 15px; margin-left:20px; color: white"><spring:message code="app.language.lbl" text="" /> : <a href="?language=en"><spring:message code="app.language.name.english" text="" /></a> 
-					 <span style="color: white;">&#124;</span><a href="?language=zh_CN"><spring:message code="app.language.name.chinese" text="" /> </a> </span>
+					 <span style="float: right!important;; margin-top: 15px; margin-left:20px; color: white"><spring:message code="app.language.lbl" text="" /> : 
+					   <a style="color: white;" href="?language=en"><spring:message code="app.language.name.english" text="" /></a> 
+					 	<span style="color: white;">&#124;</span>
+					 		<a style="color: white;" href="?language=zh_CN"><spring:message code="app.language.name.chinese" text="" /> </a> 
+					 	</span>
 					
 					 <security:authorize access="isAuthenticated()">
 						<div class="btn-group pull-right" style="margin-top: 8px">

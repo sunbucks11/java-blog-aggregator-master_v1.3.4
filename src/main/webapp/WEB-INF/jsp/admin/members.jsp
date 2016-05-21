@@ -1,46 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+	pageEncoding="ISO-8859-1"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 
 
 
 	<head>
 		<meta charset="utf-8">
-		<title>Members - Role &amp; Member</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-<style type="text/css">
+		<style type="text/css">
+		
+		.btn-file {
+		    position: relative;
+		    overflow: hidden;    
+		}
+		.btn-file input[type=file] {
+		    position: absolute;
+		    top: 0;
+		    right: 0;
+		    min-width: 100%;
+		    min-height: 100%;
+		    font-size: 100px;
+		    text-align: right;
+		    filter: alpha(opacity=0);
+		    opacity: 0;
+		    outline: none;
+		    background: white;
+		    cursor: inherit;
+		    display: block;
+			}
+		}
+		</style>
 
-.btn-file {
-    position: relative;
-    overflow: hidden;    
-}
-.btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: inherit;
-    display: block;
-}
-}
-
-</style>
-
-
-
-
-	</head>
+</head>
 
 
 
@@ -48,7 +45,7 @@
    <!--  <a style="float:right; margin: 0 20px 10px 10px; background-color: #2D3E50; color: white;" class="btn btn-default" href="../../../resources/public/login.html">Sign Out</a> -->
     <div class="wrapper">
         <div class="container">
-            <h2>Members</h2>
+            <h2>Users</h2>
             <div id="general-message"></div>
             
             
@@ -57,7 +54,7 @@
             	<div id="div-members-list-0">
                   	<%@ include file="../admin/fragment/top-table-status-bar.jsp"%>
                   	
-						<div id="divID" ng-controller="UserController as ctrl">
+						<div ng-controller="UserController as ctrl">
 						
 						<div style="float: right"> 
 							<a  ng-click="ctrl.fetchAllUsers()" class="btn btn-default btn-info  btn-sm" id="refresh-member">
@@ -157,7 +154,7 @@
                 
 		                                
 		<!-- Add Member Model -->
-		<%@ include file="../admin/fragment/members-model.jsp"%> 
+		<%@ include file="../admin/fragment/member-model.jsp"%> 
 
 		<!-- Remove Member Model -->	
        <%@ include file="../admin/fragment/member-list-dialog-box.jsp" %>
@@ -192,7 +189,7 @@
       
 
 <script type="text/javascript">
- $('#myModal').on('hidden.bs.modal', function () {
+ $('#memberModal').on('hidden.bs.modal', function () {
  	 window.location.reload();
 	 
 // 	 $( "#member-table" ).load( "UserManagement.html #member-table" );

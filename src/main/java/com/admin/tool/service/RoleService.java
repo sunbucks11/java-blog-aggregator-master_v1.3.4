@@ -33,14 +33,31 @@ public class RoleService {
 		}
 		return roleNames;
 	}
-	
-/*	
-	public List<Role> getRoles(){	
-		return roleRepository.findAll();
-	}
-*/
 
+	
+	public void delete(int id) {
+		roleRepository.delete(id);
+	}
+	
+	
+	public Role findOne(int id) {
+		return roleRepository.findOne(id);
+	}
+	
+	
+	public Role findOne(String roleName) {
+		return roleRepository.findByName(roleName);
+	}
+	
 	public List<Role> findAll() {
 		return roleRepository.findAll();
+	}
+
+	public boolean isRoleExist(Role role) {
+		return findOne(role.getName())!=null;
+	}
+
+	public void save(Role newRole) {
+		roleRepository.save(newRole);
 	}
 }

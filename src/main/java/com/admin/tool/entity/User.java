@@ -21,7 +21,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.admin.tool.annotation.UniqueUsername;
 
 @Entity
-@Table(name = "app_user")
+@Table(name = "user")
 public class User {
 
 	@Id
