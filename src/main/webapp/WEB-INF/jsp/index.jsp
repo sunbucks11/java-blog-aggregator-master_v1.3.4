@@ -6,7 +6,7 @@
 <div class="container">
 <div class="wrapper">
 
-  <div class="jumbotron">
+  <div style="background-color: #C9D872" class="jumbotron">
     <h1><spring:message code="index.banner.h1" text=" " /></h1>
     <p><spring:message code="index.banner.h2" text=" " /></p>
     <p>

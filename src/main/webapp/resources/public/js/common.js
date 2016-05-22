@@ -45,7 +45,7 @@ angular.module('common', ['ngMessages'])
             })
             .then(function(response) {
                 if (response.data == 'ok') {
-                       window.location.replace('./index');
+                       window.location.replace('./home');
                 }
                 else {
                     $scope.vm.errorMessages = [];

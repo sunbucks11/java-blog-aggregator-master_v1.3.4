@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.admin.tool.security.AjaxAuthenticationSuccessHandler;
 import com.admin.tool.security.SecurityUserDetailsService;
@@ -41,10 +42,43 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/resources/bower_components/**").permitAll()
 
         // Spring
-        .antMatchers("/index**","/login**", "/loginError**","/register**").permitAll()
+        .antMatchers("/home**","/login**", "/logout**", "/loginError**","/register**").permitAll()
         .antMatchers("/register/**").hasAnyRole("ADMIN","ANONYMOUS")
+        
+        
+        .antMatchers("/index**").hasRole("ADMIN")
+        .antMatchers("/index/**").hasRole("ADMIN") 
+                
         .antMatchers("/UserManagement**").hasRole("ADMIN")
-        .antMatchers("/UserManagement/**").hasRole("ADMIN")        
+        .antMatchers("/UserManagement/**").hasRole("ADMIN")
+
+        .antMatchers("/RolesManagement**").hasRole("ADMIN")
+        .antMatchers("/RolesManagement/**").hasRole("ADMIN")
+        
+        .antMatchers("/FieldsManagement**").hasRole("ADMIN")
+        .antMatchers("/FieldsManagement/**").hasRole("ADMIN") 
+        
+        .antMatchers("/DomainsManagement**").hasRole("ADMIN")
+        .antMatchers("/DomainsManagement/**").hasRole("ADMIN") 
+        
+        .antMatchers("/AuditManagement**").hasRole("ADMIN")
+        .antMatchers("/AuditManagement/**").hasRole("ADMIN") 
+        
+        .antMatchers("/ToolsManagement**").hasRole("ADMIN")
+        .antMatchers("/ToolsManagement/**").hasRole("ADMIN") 
+        
+        .antMatchers("/SettingsManagement**").hasRole("ADMIN")
+        .antMatchers("/SettingsManagement/**").hasRole("ADMIN")
+        
+        .antMatchers("/ApiManagement**").hasRole("ADMIN")
+        .antMatchers("/ApisManagement/**").hasRole("ADMIN") 
+        
+        .antMatchers("/HelpManagement**").hasRole("ADMIN")
+        .antMatchers("/HelpManagement/**").hasRole("ADMIN") 
+        
+        .antMatchers("/FaqManagement**").hasRole("ADMIN")
+        .antMatchers("/FaqManagement/**").hasRole("ADMIN") 
+
         .antMatchers("/users**").hasRole("ADMIN")
         .antMatchers("/users/**").hasRole("ADMIN")
         .antMatchers("/account**").hasRole("USER")
@@ -53,19 +87,22 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         .and()  
       .formLogin()
         
-         // SPA
         .loginPage("/login")
         .failureUrl("/loginError")
         .loginProcessingUrl("/j_spring_security_check")
-         .defaultSuccessUrl("/index")
+        .defaultSuccessUrl("/login")
         .usernameParameter("username")
         .passwordParameter("password")
         .successHandler(new AjaxAuthenticationSuccessHandler(new SavedRequestAwareAuthenticationSuccessHandler()))
         .and()
-        .httpBasic()
-        
+        .httpBasic()       
         .and()
         .logout()
-        .logoutSuccessUrl("/index");
+        .deleteCookies("remove")
+        .invalidateHttpSession(true)
+        .logoutUrl("/logout")
+        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+        .logoutSuccessUrl("/logout")
+        .permitAll();
   }
 }

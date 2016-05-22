@@ -31,14 +31,15 @@
 						class="icon-bar"></span>
 				</button>
 				<%-- <a class="navbar-brand" href="<spring:url value="/" />"> <b>Role &amp; Member</b></a> --%>
-				<a class="navbar-brand" href="<spring:url value="/" />"> <b>Admin Tool</b></a>
+				<a class="navbar-brand" href="<spring:url value="/home" />"> <b>Admin Tool</b></a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<div class="navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li class="${current == 'login' ? 'active' : ''}"><a href="<spring:url value="/" />"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><spring:message code="btn.home" text="Home" /></a></li>
-		              
+					  <security:authorize access="! isAuthenticated() && !hasRole('ROLE_ADMIN')">	
+		                <li class="${current == 'home' ? 'active' : ''}"><a href="<spring:url value="/home.html" />"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <spring:message code="btn.home" text="Home" /></a></li>
+		              </security:authorize>
 		              <security:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
 		                <li class="${current == 'register' ? 'active' : ''}"><a href="<spring:url value="/register.html" />"><span class="glyphicon glyphicon-registration-mark" aria-hidden="true"></span> <spring:message code="btn.register" text="Register" /></a></li>
 		              </security:authorize>
@@ -47,14 +48,19 @@
 		               <li class="${current == 'login' ? 'active' : ''}"><a href="<spring:url value="/login.html" />"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> <spring:message code="btn.login" text="Login" /></a></li>
 		              </security:authorize>
 
-		              <security:authorize access="isAuthenticated()">
+		              <security:authorize access="isAuthenticated()  && !hasRole('ROLE_ADMIN')">
 		                <li class="${current == 'register' ? 'active' : ''}"><a href="<spring:url value="/account.html" />"><span class="glyphicon glyphicon glyphicon-edit" aria-hidden="true"></span> <spring:message code="btn.account" text="Account" /></a></li>
 		              </security:authorize>
 		              
-		              <security:authorize access="hasRole('ROLE_ADMIN')">
+		              <security:authorize access="hasRole('ROLE_ADMIN')">	
+						<li class="${current == 'home' ? 'active' : ''}"> <a href="<spring:url value="/index.html" />"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <spring:message code="btn.index" text="Index" /></a></li>
+						
 						<li class="${current == 'RolesManagement' ? 'active' : ''}"> <a href="<spring:url value="/RolesManagement.html" />"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> <spring:message code="btn.roles" text="Roles" /></a></li>
 	                    <li class="${current == 'UserManagement' ? 'active' : ''}"><a href="<spring:url value="/UserManagement.html" />"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <spring:message code="btn.members" text="Members" /></a></li>
-	                    <li class="${current == 'FieldsManagement' ? 'active' : ''}"><a href="<spring:url value="/FieldsManagement.html" />"> <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span><spring:message code="btn.fields" text="Fields" /></a></li>
+	                    
+	                    
+	                    <li class="${current == 'FieldsManagement' ? 'active' : ''}"><a href="<spring:url value="/FieldsManagement.html" />"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <spring:message code="btn.fields" text="Fields" /></a></li>
+	                    
 	                    <li class="${current == 'DomainsManagement' ? 'active' : ''}"><a href="<spring:url value="/DomainsManagement.html" />"> <span class="glyphicon glyphicon-th" aria-hidden="true"></span> <spring:message code="btn.domains" text="Domains" /> </a></li>
 
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span></span> <spring:message code="btn.more" text="More" /> <span class="caret"></span></a>
@@ -87,7 +93,7 @@
 								<li><a href="<spring:url value="/profile" />"><spring:message code="btn.profile" text="Profile" /></a></li>
 								<li class="divider"></li>
 								<security:authorize access="isAuthenticated()">
-								<li><a href="<spring:url value="/logout" />"><spring:message code="btn.logout" text="Logout" /></a></li>
+								<li><a href="<spring:url value="/logout.html" />"><spring:message code="btn.logout" text="Logout" /></a></li>
 								</security:authorize>			              
 				              <security:authorize access="! isAuthenticated()">
 				                 <li class="${current == 'login' ? 'active' : ''}"><a href="<spring:url value="/resources/public/login.html" />"><spring:message code="btn.login" text="Login" /></a></li>
