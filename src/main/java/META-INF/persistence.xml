@@ -6,5 +6,6 @@
 		<class>com.admin.tool.entity.Blog</class>
 		<class>com.admin.tool.entity.Item</class>
 		<class>com.admin.tool.entity.Field</class>
+		<class>com.admin.tool.entity.Audit</class>
 	</persistence-unit>
 </persistence>

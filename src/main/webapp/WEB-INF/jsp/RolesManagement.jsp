@@ -52,7 +52,8 @@
 			              <li><a href="#" id="roles-import">CSV</a></li>
 			          </ul>
 			      </div><!-- /btn-group -->
-			      &nbsp;<a class="btn btn-default btn-info btn-sm" style="vertical-align:top !important" id="role-refresh"><i class="glyphicon glyphicon-refresh icon-white"></i>&nbsp;Refresh&nbsp;</a>
+			      &nbsp;
+			      <!-- <a class="btn btn-default btn-info btn-sm" style="vertical-align:top !important" id="role-refresh"><i class="glyphicon glyphicon-refresh icon-white"></i>&nbsp;Refresh&nbsp;</a> -->
 			    </div>
 			</div>
 			<p/>
@@ -66,13 +67,16 @@
 				
 					<div ng-controller="RoleController as ctrl">
 					
-					
+					    <!-- ======== Refresh Button ======== -->
 					   <div style="float: right"> 
 							<a  ng-click="ctrl.fetchAllRoles()" class="btn btn-default btn-info  btn-sm" id="refresh-member">
 					          <i class="glyphicon glyphicon-refresh icon-white"></i>&nbsp;Refresh&nbsp;                      
 					         </a>
 						</div> 
-					
+					    <br><br>
+						
+						<!-- ======== Top page number ========= -->
+					    <%@ include file="./admin/fragment/top-table-status-bar.jsp"%>
 						
 						<table id="roles-list-0"  width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-striped table-bordered table-condensed" data-items-per-page="40"  data-current-page="1"  data-total-items="18" data-sort-column="1" data-sort-order-asc="true">
 							

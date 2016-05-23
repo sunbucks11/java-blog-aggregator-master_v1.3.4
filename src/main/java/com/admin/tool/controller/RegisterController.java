@@ -1,5 +1,7 @@
 package com.admin.tool.controller;
 
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.admin.tool.entity.User;
+import com.admin.tool.service.AuditService;
 import com.admin.tool.service.FieldService;
 import com.admin.tool.service.UserService;
 
@@ -25,7 +28,11 @@ public class RegisterController {
 
 	@Autowired
 	private FieldService fieldService;
+	
+	@Autowired
+	private AuditService auditService;
 
+	String message = "";
 	
 	@ModelAttribute("user")
 	public User constructUser() {
@@ -41,9 +48,13 @@ public class RegisterController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String doRegister(@Valid @ModelAttribute("user") User user, BindingResult result) {
 		if (result.hasErrors()) {
+			message = "Error creating user";
+			auditService.update(new Date(), "App", "localhost", "", message, "exclamation-red");
 			return "user-register";
 		}
 		userService.save(user);
+		message = "User " +  "has been created: " + user.getName() ;
+		auditService.update(new Date(), "App", "localhost", user.getEmail(), message, "tick-circle");
 		return "redirect:/register.html?success=true";
 	}
 	

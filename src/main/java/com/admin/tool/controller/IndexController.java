@@ -64,9 +64,9 @@ public class IndexController {
 		return "api";
 	}
 
-	@RequestMapping("/audit")
+	@RequestMapping("/AuditManagement")
 	public String audit(Model model) {
-		return "audit";
+		return "AuditManagement";
 	}
 
 	@RequestMapping("/faq")

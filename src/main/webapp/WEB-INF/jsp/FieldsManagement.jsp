@@ -1,7 +1,10 @@
- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+        
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
+	
+
 <html>
 
 
@@ -38,7 +41,8 @@
 			              <li><a href="#" id="roles-import">CSV</a></li>
 			          </ul>
 			      </div><!-- /btn-group -->
-			      &nbsp;<a class="btn btn-default btn-info btn-sm" style="vertical-align:top !important" id="role-refresh"><i class="glyphicon glyphicon-refresh icon-white"></i>&nbsp;Refresh&nbsp;</a>
+			      &nbsp;
+			      <!-- <a class="btn btn-default btn-info btn-sm" style="vertical-align:top !important" id="role-refresh"><i class="glyphicon glyphicon-refresh icon-white"></i>&nbsp;Refresh&nbsp;</a> -->
 			    </div>
 			</div>
 			<p/>
@@ -49,7 +53,8 @@
 						    <div class="div-table-info-fl">Showing <b>1</b> to <b>18</b> of <b>18</b> entries</div>
 						</div>
 						<!-- ======================================== -->
-				
+
+<%-- <form:form commandName="user" cssClass="form-horizontal registrationForm">	 --%>			
 <div ng-controller="FieldController as ctrl">
 					
 					
@@ -58,7 +63,7 @@
 					          <i class="glyphicon glyphicon-refresh icon-white"></i>&nbsp;Refresh&nbsp;                      
 					         </a>
 						</div> 
-					
+						<br><br>
 						
 						<table id="roles-list-0"  width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-striped table-bordered table-condensed" data-items-per-page="40"  data-current-page="1"  data-total-items="18" data-sort-column="1" data-sort-order-asc="true">
 							
@@ -99,7 +104,21 @@
 						              
 						              <!-- ==========  Enabled  ========== --> 
 						              <td style="white-space:nowrap">
+<!-- 						               <input  id="audit-event-select-10246" class="audit-event-select" data-audit-event-id="10246" type="checkbox" />
+						                <input type="checkbox" name="" id="1"><br/>		 -->				               
 						               <div class="table-date-full">{{ f.enabled}}</div>
+						               
+						               
+						          <!-- 
+									 <div class="col-sm-10">
+										<form:input path="name" cssClass=" input-xlarge login-form-field form-control" />
+										<form:errors path="name" />
+								    </div>
+						           -->          
+						               
+						               
+						               
+						               
 						              </td>
 						              
 						      		<!-- ==========  Created Date  ========== --> 
@@ -125,6 +144,10 @@
 						        </tbody>
 							</table>
 						</div>
+															
+<%-- </form:form>	 --%>					
+						
+						
 						
 						<!-- ======== Bottom table status bar  ======== -->
 						<div class="div-table-info">
@@ -164,10 +187,129 @@
  
    $('#removeFieldModel').on('hidden.bs.modal', function () {
 	 window.location.reload();
-	});
-   
-   
- </script>
+	}); 
+</script>
+
+
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	$(".registrationForm").validate(
+		{
+			rules: {
+				name: {
+					required : true,
+					minlength : 3,
+					remote : {
+						url: "<spring:url value='/register/available.html' />",
+						type: "get",
+						data: {
+							username: function() {
+								return $("#name").val();
+							}
+						}
+					}
+				},
+				email: {
+					required : true,
+					email: true
+				},
+				password: {
+					required : true,
+					minlength : 5
+				},
+				password_again: {
+					required : true,
+					minlength : 5,
+					equalTo: "#password"
+				}
+			},
+			highlight: function(element) {
+				$(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+			},
+			unhighlight: function(element) {
+				$(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+			},
+			messages: {
+				name: {
+					remote: "Such username already exists!"
+				}
+			}
+		}
+	);
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<script type="text/javascript">
+function UpdateCheckBoxStatus ()
+{
+    var CurrentChoice = $('#choiceSelector').val();
+
+    $.ajax({
+        url: "<spring:url value='/register/available.html' />",
+        data: { "selected": CurrentChoice },
+        type: "post",
+        dataType: "json",
+
+        success: function (data)
+        {
+            SetCheckbox($('#changingCheckboxes').children("input:[type='checkbox']"), true);
+            $.each(data.disabled, function ()
+            {
+               SetCheckbox($('#changingCheckboxes #' + this), false);
+            });
+        }
+    });
+
+}
+
+/// Sets the checkbox to enabled or disabled
+/// @param th Jquery reference of one or more checkboxes
+/// @param usable True/False if the checkbox is enabled/disabled
+function SetCheckbox (th, usable)
+{
+    if (usable)
+        th.removeAttr("disabled");
+    else if (!usable)
+        th.attr("disabled", true);
+}
+
+
+$(function ()
+{
+    $('#choiceSelector').change(UpdateCheckBoxStatus);
+    UpdateCheckBoxStatus(); //run for page load
+});
+
+</script>
+-->
 
 
 

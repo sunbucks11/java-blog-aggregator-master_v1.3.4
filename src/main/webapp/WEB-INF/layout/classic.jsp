@@ -65,7 +65,7 @@
 
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span></span> <spring:message code="btn.more" text="More" /> <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="<spring:url value="/audit.html" />"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="margin-right: 10px;"></span><spring:message code="btn.audit" text="Audit" /></a></li>
+								<li><a href="<spring:url value="/AuditManagement.html" />"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="margin-right: 10px;"></span><spring:message code="btn.audit" text="Audit" /></a></li>
 								<li class="divider"></li>
 								<li><a href="<spring:url value="/tools.html" />"><span class="glyphicon glyphicon-briefcase" aria-hidden="true" style="margin-right: 10px;"></span><spring:message code="btn.tools" text="Tools" /></a></li>
 								<li><a href="<spring:url value="/settings.html" />"><span class="glyphicon glyphicon-cog" aria-hidden="true" style="margin-right: 10px;"></span><spring:message code="btn.settings" text="Settings" /></a></li>

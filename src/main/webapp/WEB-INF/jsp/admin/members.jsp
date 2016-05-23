@@ -52,18 +52,19 @@
             <!--============ Members Tool Bar ============-->
              <%@ include file="../admin/fragment/members-tool-bar.jsp"%>
             	<div id="div-members-list-0">
-                  	<%@ include file="../admin/fragment/top-table-status-bar.jsp"%>
-                  	
+
 						<div ng-controller="UserController as ctrl">
 						
+						<!-- ======== Refresh Button ========= -->
 						<div style="float: right"> 
 							<a  ng-click="ctrl.fetchAllUsers()" class="btn btn-default btn-info  btn-sm" id="refresh-member">
 					          <i class="glyphicon glyphicon-refresh icon-white"></i>&nbsp;Refresh&nbsp;                      
 					         </a>
-						</div> 
-						
+						</div> 	
 						<br /> <br /> 
 
+						<!-- ======== Top page number ========= -->
+					    <%@ include file="../admin/fragment/top-table-status-bar.jsp"%>
 
 						   <table id="member-table" data-toggle="table"  width="100%" border="0" cellspacing="0" cellpadding="0"
 						      class="table table-striped table-bordered table-condensed"

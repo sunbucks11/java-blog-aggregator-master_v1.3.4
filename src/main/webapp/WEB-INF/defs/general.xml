@@ -96,10 +96,10 @@
 		<put-attribute name="current" value="api" />
 	</definition>
 	
-	<definition name="audit" extends="common">
+	<definition name="AuditManagement" extends="common">
 		<put-attribute name="title" value="Admin Tool" />
-	    <put-attribute name="body" value="/WEB-INF/jsp/admin/more/audit.jsp" />
-		<put-attribute name="current" value="audit" />
+	    <put-attribute name="body" value="/WEB-INF/jsp/admin/more/AuditManagement.jsp" />
+		<put-attribute name="current" value="AuditManagement" />
 	</definition>
 	
 	<definition name="faq" extends="common">
