@@ -83,6 +83,7 @@ public class RoleRestController {
         		roleJSON.put("name",role.getName());
         		roleJSON.put("settings",role.getSettings());
         		roleJSON.put("member", numOfUsersWithRole);
+        		roleJSON.put("backcolor", role.getBackColor());
         		//userJSON.put("roles",roles); 
         		Date date = role.getCreatedDate();
         		

@@ -1,8 +1,16 @@
 'use strict';
 
+
+App.controller('MainCtrl', function($scope) {
+      $scope.newObject = {};
+	  $scope.items = [{name:'Enable'}];
+});
+
+
 App.controller('FieldController', ['$scope', 'FieldService', function($scope, FieldService) {
           var self = this;
-          self.field={id:'',name:'' ,comment:'' ,enabled:'' };
+
+          self.field={id:'',name:'' ,comment:'' ,enabled:''};
           self.fields=[];
        
           self.fetchAllFields = function(){
