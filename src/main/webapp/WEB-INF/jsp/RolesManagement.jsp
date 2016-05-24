@@ -92,7 +92,7 @@
 						        </tr>
 						    </thead>
 						    <tbody>
-						          <tr ng-repeat="r in ctrl.roles">
+						          <tr ng-repeat="r in ctrl.roles track by r.id">
 						               <td style="text-align:center" class="table-first-column" style="width:2%">
 						              </td>
 						              
@@ -104,9 +104,12 @@
 						              
 						              <!-- ==========  Role Name ========== -->
 						              <td>
-						                <a href="#" class="role-edit" data-role-id="1">
-						                <span class="label" style="vertical-align:baseline !important;background-color:#c32113 !important; color:White !important">{{ r.name}}</span>
-						                </a>
+						             <a ng-click="ctrl.edit(r.id)" data-toggle="modal" data-target="#roleModel" href="#" class="role-edit" data-role-id="1">
+						                <!--  <span class="label" style="vertical-align:baseline !important; background-color:#c32113 !important; color:White !important">{{ r.name}}</span> -->
+						                 <span class="label" ng-style={background:'{{r.backcolor}}'}>{{r.name}}</span>
+						              </a>  
+						                <!-- <span ng-style="{'color': #c32113}">{{r.name}}</span> -->
+						                <!-- {{r.backcolor}} -->
 						              </td>
 						              
 						              <!-- ==========  Members  ========== -->
@@ -140,8 +143,11 @@
 						    <div class="div-table-info-fl">Showing <b>1</b> to <b>18</b> of <b>18</b> entries</div>    
 						</div>	
 				</div>	<!-- /div-roles-list-0 -->
-    </div><!--/.fluid-container-->
+	
+    </div><!--/.fluid-container-->     
   </div>
+
+
 
 
 
@@ -152,6 +158,11 @@
 		
 		<!-- Add Remove Role Model -->
 		<%@ include file="./admin/fragment/role-remove-model.jsp"%> 
+
+
+
+
+
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
@@ -179,19 +190,32 @@
    
  </script>
 
-<!-- 
+
 <script>
 function myFunction() {
     var x = document.getElementById("color2").value;
     document.getElementById("demo").innerHTML = "You selected: " + x;
-    
-   
-    $scope.$apply(function() { 
-    	   // every changes goes here
-    	document.getElementById("myText").defaultValue = x;
-    	});
+/*     document.getElementById("inputValue").innerHTML = "You selected: " + x;
+    $("#inputValue").val(x); */
 }
-</script> -->
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

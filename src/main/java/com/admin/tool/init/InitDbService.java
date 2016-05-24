@@ -42,12 +42,14 @@ public class InitDbService {
 			roleUser.setName("ROLE_USER");
 			roleUser.setSettings("Ordinary users with limited privilages");
 			roleUser.setCreatedDate(new Date());
+			roleUser.setBackColor("#FFAB23");
 			roleRepository.save(roleUser);
 
 			Role roleAdmin = new Role();
 			roleAdmin.setName("ROLE_ADMIN");
 			roleAdmin.setSettings("People who care about role and member management");
 			roleAdmin.setCreatedDate(new Date());
+			roleAdmin.setBackColor("#D00200");
 			roleRepository.save(roleAdmin);
 
 			User userAdmin = new User();

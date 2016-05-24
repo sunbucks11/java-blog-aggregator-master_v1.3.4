@@ -28,7 +28,7 @@
 									<div class="form-group">
 										<label for="role-name">Name</label> 
 										<input type="text" class="input-xlarge form-control" id="role-name" placeholder="Enter role name" required="" 
-										data-ng-model="ctrl.role.name" style="color: black" maxlength="64" />
+										ng-bind="ctrl.role.name" data-ng-model="ctrl.role.name" style="color: black" maxlength="64" />
 										
 									 <div class="has-error" ng-show="roleForm.$dirty">
 								         <span ng-show="roleForm.role-name.$error.required">This is a required field</span> 
@@ -45,39 +45,57 @@
 									</div>
 									<br>
 									<br>
-									<!-- ======= Background color ======= -->
-
-
-							  	<input type="submit" value="Add" class="btn btn-primary btn-sm" ng-disabled="!roleForm.$valid"> 
-
-					      	 </form>
-					      	 
-							 
-						
-   							 <div class="colorpicker">
+									
+							 <!-- ======= Background color ======= -->			  	
+     						<div ng-controller="ExampleController">
+							  	<br>
+							  	<strong>Background colour: </strong>
+							  	<input data-ng-model="ctrl.role.backColor" type="color" value={{getColor()}} />
+							  	{{ctrl.role.backColor}}  
+							 </div> 
+	
+							  	
+							 <!--   	
+							  <div class="colorpicker">
 								<input onchange="myFunction()" type="text" id="color2" />
 								 <br>	
 								 <br>
-								<div id="colorpicker2"></div>
+								 <div id="colorpicker2"></div>
 							 </div>	 
-					
-									
 							 <p id="demo"></p>
-					      	 		  
-						      	 		  
+							 -->	
+							 
+						<!-- <input type="submit" value="Add" class="btn btn-primary btn-sm" ng-disabled="!roleForm.$valid"> -->
+
+					
+					      	 
+							
+							 <br> <br> <br>
+							 
+													 
+	 		  
 				   		</div> <!-- /RoleController -->
 	
 					<!-- ====== Footer =====-->
 					<div class="modal-footer">
 						<div class="bootstrap-dialog-footer">
 							<div class="bootstrap-dialog-footer-buttons">
-							<div class="modal-body" ng-controller="RoleController as ctrl" >
-								<!-- <button class="btn btn-primary btn-sm" ng-disabled="!roleForm.$valid">Add</button> -->
+							<!-- <div class="modal-body" ng-controller="RoleController as ctrl" > -->
+								 <button class="btn btn-primary btn-sm" ng-disabled="!roleForm.$valid">Add</button> 
 								 <button class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
-							</div>
+							<!-- </div> -->
 						</div>
 					</div>
 				</div> <!-- /body -->
+		
+		
+		    </form>
+		
+		
+		
+		
+		
+		
 		
 
 		</div>

@@ -93,7 +93,7 @@
 						              <td>
 						                <a href="#" class="role-edit" data-role-id="1">
 						                <span class="label" style="vertical-align:baseline !important;background-color:#c32113 !important; color:White !important">{{ f.name}}</span>
-						                </a>
+						                </a> 
 						              </td>
 						              
 						              <!-- ==========  Comment  ========== -->
@@ -106,7 +106,21 @@
 						              <td style="white-space:nowrap">
 <!-- 						               <input  id="audit-event-select-10246" class="audit-event-select" data-audit-event-id="10246" type="checkbox" />
 						                <input type="checkbox" name="" id="1"><br/>		 -->				               
-						               <div class="table-date-full">{{ f.enabled}}</div>
+						               <!-- <div class="table-date-full">{{ f.enabled}}</div> -->
+						               
+
+						               
+						               
+						               
+						               	<div ng-controller="MainCtrl">
+    										<li ng-repeat="item in items">
+										    <label>{{item.name}}</label>
+										    <input type="checkbox" ng-model="newObject[item.name]">
+										   </li> 
+										   <pre>{{newObject | json}}</pre> 
+										   
+										   
+										</div>	  
 						               
 						               
 						          <!-- 
@@ -143,6 +157,82 @@
 						          </tr>
 						        </tbody>
 							</table>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+									<!-- =============  Body ==============-->
+		 <div class="modal-body" ng-controller="FieldController as ctrl" style="overflow-y: auto;">
+			<div class="bootstrap-dialog-body">
+		
+		
+							<form role="form" name="roleForm" novalidate="" ng-submit="ctrl.submit()"">			
+
+
+
+							  	<input type="submit" value="Add" class="btn btn-primary btn-sm" ng-disabled="!roleForm.$valid">
+							  	
+
+		 </form>
+
+							
+							 <br> <br> <br>
+							 
+													 
+ 	 		  
+						      	 		  
+				   		</div> <!-- /RoleController -->
+		</div>	
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
 						</div>
 															
 <%-- </form:form>	 --%>					

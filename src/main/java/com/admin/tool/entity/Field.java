@@ -1,6 +1,7 @@
 package com.admin.tool.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,19 @@ public class Field {
 	private Date createdDate;
 	
 	private Date modifiedDate;
+
+
+	private String items;
 	
+	
+	
+	public String getItems() {
+		return items;
+	}
+
+	public void setItems(String items) {
+		this.items = items;
+	}
 
 	public Integer getId() {
 		return id;
