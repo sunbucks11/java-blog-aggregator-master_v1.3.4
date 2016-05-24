@@ -9,7 +9,8 @@
 <head>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-     	<script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> 
+     <!--  
+     	<script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> 		
 		<script type="text/javascript" charset="utf-8" src="/resources/js/farbtastic.js"></script>
 		
 		<script type="text/javascript" charset="utf-8">
@@ -23,6 +24,7 @@
 		   margin: 1em;
 		 }
 		</style> 
+		-->
 </head>
 
 
@@ -182,24 +184,17 @@
    $('#removeRoleModel').on('hidden.bs.modal', function () {
 	 window.location.reload();
 	});
-   
-/*  	 $(function () {
-		   $('#colorpicker2').farbtastic({ callback: '#color2', width: 150 });
-		 }); */
-   
-   
  </script>
 
 
+<!--  
 <script>
 function myFunction() {
     var x = document.getElementById("color2").value;
     document.getElementById("demo").innerHTML = "You selected: " + x;
-/*     document.getElementById("inputValue").innerHTML = "You selected: " + x;
-    $("#inputValue").val(x); */
 }
 </script>
-
+-->
 
 
 

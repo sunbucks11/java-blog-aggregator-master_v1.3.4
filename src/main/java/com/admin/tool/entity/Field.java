@@ -18,24 +18,12 @@ public class Field {
 	
 	private String comment;
 	
-	private boolean enabled;
+	//private boolean enabled;
+	private String enabled;
 	
 	private Date createdDate;
 	
 	private Date modifiedDate;
-
-
-	private String items;
-	
-	
-	
-	public String getItems() {
-		return items;
-	}
-
-	public void setItems(String items) {
-		this.items = items;
-	}
 
 	public Integer getId() {
 		return id;
@@ -61,9 +49,13 @@ public class Field {
 		this.comment = comment;
 	}
 	
-	public boolean isEnabled() {
+	public String isEnabled() {
 		return enabled;
 	}
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
+	}
+	
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -76,9 +68,7 @@ public class Field {
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+
 	
 
 }

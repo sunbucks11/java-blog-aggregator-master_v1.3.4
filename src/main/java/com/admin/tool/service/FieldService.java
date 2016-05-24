@@ -16,8 +16,17 @@ public class FieldService {
 
 	@Autowired
 	private FieldRepository fieldRepository;
-	
-	public List<Field> findAll(){	
+
+	public List<Field> findAll() {
 		return fieldRepository.findAll();
-	}		
+	}
+
+	public Field findOne(String fieldName) {
+		return fieldRepository.findByName(fieldName);
+	}
+
+	public void save(Field field) {
+		fieldRepository.save(field);
+	}
+
 }

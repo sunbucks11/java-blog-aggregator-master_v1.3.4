@@ -79,7 +79,7 @@
 						        </tr>
 						    </thead>
 						    <tbody>
-						          <tr ng-repeat="f in ctrl.fields">
+						          <tr ng-repeat="f in ctrl.fields track by f.id">
 						               <td style="text-align:center" class="table-first-column" style="width:2%">
 						              </td>
 						              
@@ -107,20 +107,37 @@
 <!-- 						               <input  id="audit-event-select-10246" class="audit-event-select" data-audit-event-id="10246" type="checkbox" />
 						                <input type="checkbox" name="" id="1"><br/>		 -->				               
 						               <!-- <div class="table-date-full">{{ f.enabled}}</div> -->
-						               
+						              
 
+						           
+						            <!-- 
+						             <input type='checkbox' ng-click='onCompleteTodo(todo)' ng-model="todo.done">
+   									  {{todo.text}}
+						            -->
+						            
+						               <input type='checkbox' ng-model="f.enabled">
+						               <input type='checkbox' ng-click='onCompleteTodo(todo,f)' ng-model="todo.done">
+<!--    									   {{todo.text}}    -->
+
+                                      <button type="button" ng-click="ctrl.update()"  class="btn btn-info btn-sm" >Update</button>
+
+						               <!-- 
+						               <button ng-click='onEnabled(f)'>
+										  Add
+										</button>
+										-->
 						               
 						               
-						               
+						             <!-- 
 						               	<div ng-controller="MainCtrl">
     										<li ng-repeat="item in items">
 										    <label>{{item.name}}</label>
 										    <input type="checkbox" ng-model="newObject[item.name]">
 										   </li> 
 										   <pre>{{newObject | json}}</pre> 
-										   
-										   
 										</div>	  
+						             -->
+						               
 						               
 						               
 						          <!-- 
@@ -181,14 +198,14 @@
 			<div class="bootstrap-dialog-body">
 		
 		
-							<form role="form" name="roleForm" novalidate="" ng-submit="ctrl.submit()"">			
+							 <form role="form" name="roleForm" novalidate="" ng-submit="ctrl.submit()"">			
 
 
 
 							  	<input type="submit" value="Add" class="btn btn-primary btn-sm" ng-disabled="!roleForm.$valid">
 							  	
 
-		 </form>
+		                   </form>
 
 							
 							 <br> <br> <br>

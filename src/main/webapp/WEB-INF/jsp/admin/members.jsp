@@ -117,16 +117,18 @@
 						            <!-- ================= Roles ================-->
 						            <td>
 						               <div style="display: inline;" ng-repeat="r in u.roles">
-						                  <span
-						                     class={{r}}>{{r | limitTo : 5 : 5}}</span>
+						                  <span class={{r}}>{{r | limitTo : 5 : 5}}</span>
 						               </div>
 						            </td>
+						            <!-- ================= Email ================-->
 						            <td>
 						               <span ng-bind="u.email">
 						            </td>
+						            <!-- ================= Last Login Date ================-->
 						            <td style="white-space: nowrap">
 						               <div class="table-date-full">{{u.lastLoginDate}}</div>
 						            </td>
+						            <!-- ================= Created Date ================-->
 						            <td style="white-space: nowrap">
 						               <div class="table-date-full">{{u.createdDate}}</div>
 						            </td>
@@ -220,4 +222,7 @@
 	});
  </script>
  
+ 
+ 
  </body>
+</html>

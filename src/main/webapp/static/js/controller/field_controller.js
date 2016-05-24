@@ -1,17 +1,67 @@
 'use strict';
 
-
+/*
 App.controller('MainCtrl', function($scope) {
       $scope.newObject = {};
 	  $scope.items = [{name:'Enable'}];
 });
-
+*/
 
 App.controller('FieldController', ['$scope', 'FieldService', function($scope, FieldService) {
           var self = this;
 
-          self.field={id:'',name:'' ,comment:'' ,enabled:''};
+          self.field={id:'',name:'' ,comment:'' ,enabled:'',createdDate:'' ,modifiedDate:'' };
           self.fields=[];
+          
+          
+          $scope.todos=[
+                        {'text': "Enable",
+                         'done': false
+                         }
+                        ];
+          
+        
+          $scope.onCompleteTodo = function(todo,f) {
+              //console.log("onCompleteTodo -done: " + todo.done + " : " + todo.text);
+              self.field.enabled = todo.done;
+
+              console.log("Enabled : " + self.field.enabled);
+              console.log("Field Id: " + f.id); 
+              console.log("Field name: " + f.name); 
+              console.log("Field comment: " + f.comment); 
+              console.log("Field Created: " + f.createdDate); 
+              
+              self.field.name = f.name;
+              self.field.comment = f.comment;
+                                     
+              self.updateField(self.field, f.id);
+              
+             // self.updateField(f, f.id);
+             
+  
+              //self.createField(f);
+              /*
+              $scope.doneAfterClick=todo.done;
+              $scope.todoText = todo.text;
+              */
+         };
+          
+          
+ 
+         $scope.onEnabled = function(f) {
+             console.log("Field: " + f);
+             self.field.enabled = f.done;
+             console.log("Field Enabled : " + f.enabled);   
+             console.log("Field Comment : " + f.comment);  
+            
+             //self.createField(f);
+        };
+         
+         
+          
+          
+          
+          
        
           self.fetchAllFields = function(){
               FieldService.fetchAllFields()
@@ -113,7 +163,7 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
           
           self.reset = function(){
         	  self.field={id:null ,name:'' ,comment:'', enabled:''};
-              $scope.myForm.$setPristine(); //reset Form
+              //$scope.myForm.$setPristine(); //reset Form
           };
           
 
@@ -129,6 +179,22 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
         		    s4() + '-' + s4() + s4() + s4();
           };
           
+          
+          
+          /*
+          $scope.stateChanged = function (qId) {
+          	   if($scope.answers[qId]){ //If it is checked
+          	       alert('test');
+          	   }
+          	}
+        
+          
+          self.stateChanged = function (qId) {
+         	   if($scope.newObject[qId]){ //If it is checked
+         	       alert('test');
+         	   }
+         	}
+            */
 
 
       }]);
