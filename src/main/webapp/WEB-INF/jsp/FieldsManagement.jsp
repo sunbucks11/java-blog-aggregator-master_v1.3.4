@@ -25,7 +25,7 @@
 			<div id="general-message"></div>
 			<div class="subnav" style="padding:7px">
 			   <a data-toggle="modal" data-target="#fieldModel" class="btn btn-default btn-success btn-sm" style="vertical-align:top !important" id="role-add"><i class="glyphicon glyphicon-tasks"></i>  Add</a>
-			   <a data-toggle="modal" data-target="#fieldRoleModel"  class="btn btn-default btn-danger btn-sm" style="vertical-align:top !important" id="role-remove"><i class="glyphicon glyphicon-minus icon-white"></i> Remove</a>&nbsp;
+			   <a data-toggle="modal" data-target="#removeFieldModel"  class="btn btn-default btn-danger btn-sm" style="vertical-align:top !important" id="role-remove"><i class="glyphicon glyphicon-minus icon-white"></i> Remove</a>&nbsp;
 			   <div class="pull-right">
 			      <div class="btn-group">
 			          <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown"><i class="glyphicon glyphicon-download"></i>&nbsp;Export&nbsp;<span class="caret"></span></button>
@@ -104,52 +104,12 @@
 						              
 						              <!-- ==========  Enabled  ========== --> 
 						              <td style="white-space:nowrap">
-<!-- 						               <input  id="audit-event-select-10246" class="audit-event-select" data-audit-event-id="10246" type="checkbox" />
-						                <input type="checkbox" name="" id="1"><br/>		 -->				               
-						               <!-- <div class="table-date-full">{{ f.enabled}}</div> -->
-						              
-
-						           
-						            <!-- 
-						             <input type='checkbox' ng-click='onCompleteTodo(todo)' ng-model="todo.done">
-   									  {{todo.text}}
-						            -->
-						            
-						               <input type='checkbox' ng-model="f.enabled">
-						               <input type='checkbox' ng-click='onCompleteTodo(todo,f)' ng-model="todo.done">
-<!--    									   {{todo.text}}    -->
-
-                                      <button type="button" ng-click="ctrl.update()"  class="btn btn-info btn-sm" >Update</button>
-
-						               <!-- 
-						               <button ng-click='onEnabled(f)'>
-										  Add
-										</button>
-										-->
-						               
-						               
-						             <!-- 
-						               	<div ng-controller="MainCtrl">
-    										<li ng-repeat="item in items">
-										    <label>{{item.name}}</label>
-										    <input type="checkbox" ng-model="newObject[item.name]">
-										   </li> 
-										   <pre>{{newObject | json}}</pre> 
-										</div>	  
-						             -->
-						               
-						               
-						               
-						          <!-- 
-									 <div class="col-sm-10">
-										<form:input path="name" cssClass=" input-xlarge login-form-field form-control" />
-										<form:errors path="name" />
-								    </div>
-						           -->          
-						               
-						               
-						               
-						               
+	 						              <!-- <input  id="audit-event-select-10246" class="audit-event-select" data-audit-event-id="10246" type="checkbox" /> -->				               
+						
+							           <input ng-checked={{f.enabled}} type='checkbox' ng-click='onCompleteTodo(todo,f)' ng-model="todo.done">
+							         
+							           <!-- <input ng-checked={{f.enabled}} type='checkbox' ng-click='onCompleteTodo(todo, f.id)' ng-model="checkboxModel.value1">  -->
+							          <!-- <input ng-checked={{f.enabled}} type='checkbox' ng-click='onCompleteTodo(f.id)' ng-model="checkboxModel.value1"> -->
 						              </td>
 						              
 						      		<!-- ==========  Created Date  ========== --> 
@@ -166,87 +126,25 @@
 						               <!-- 
 						              	<div class="muted table-date-relative">3 years ago</div>
 						              -->
-						              </td>
-						              
-						              
-						              
-						              
+						              </td>  
 						          </tr>
 						        </tbody>
 							</table>
 							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-									<!-- =============  Body ==============-->
-		 <div class="modal-body" ng-controller="FieldController as ctrl" style="overflow-y: auto;">
-			<div class="bootstrap-dialog-body">
+
+								<!-- =============  Body ==============-->
+								<div class="modal-body" ng-controller="FieldController as ctrl" style="overflow-y: auto;">
+								<div class="bootstrap-dialog-body">
 		
-		
-							 <form role="form" name="roleForm" novalidate="" ng-submit="ctrl.submit()"">			
-
-
-
-							  	<input type="submit" value="Add" class="btn btn-primary btn-sm" ng-disabled="!roleForm.$valid">
-							  	
-
-		                   </form>
-
-							
-							 <br> <br> <br>
-							 
-													 
- 	 		  
-						      	 		  
+								 <br> <br> <br>
+ 		  
 				   		</div> <!-- /RoleController -->
-		</div>	
+					</div>	
 							
 							
 							
 							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
+	
 							
 							
 							
@@ -268,12 +166,12 @@
 
 
 		<!-- Add Role Model -->
-	<%-- 	<%@ include file="./admin/fragment/role-model.jsp"%>  --%>
+	 	<%@ include file="./admin/fragment/field-model.jsp"%> 
 		
 		
 		<!-- Add Remove Role Model -->
-	<%-- 	<%@ include file="./admin/fragment/role-remove-model.jsp"%> 
- --%>
+		<%@ include file="./admin/fragment/field-remove-model.jsp"%> 
+
 
 
 
@@ -295,134 +193,15 @@
    $('#removeFieldModel').on('hidden.bs.modal', function () {
 	 window.location.reload();
 	}); 
+   
+   
+/*    window.onload = function() {
+	   angular.element(document.getElementById('tableDiv')).scope().fetchAllFields();
+	 }; */
+   
 </script>
-
-
-
-
-
-
-
-<script type="text/javascript">
-$(document).ready(function() {
-	
-	$(".registrationForm").validate(
-		{
-			rules: {
-				name: {
-					required : true,
-					minlength : 3,
-					remote : {
-						url: "<spring:url value='/register/available.html' />",
-						type: "get",
-						data: {
-							username: function() {
-								return $("#name").val();
-							}
-						}
-					}
-				},
-				email: {
-					required : true,
-					email: true
-				},
-				password: {
-					required : true,
-					minlength : 5
-				},
-				password_again: {
-					required : true,
-					minlength : 5,
-					equalTo: "#password"
-				}
-			},
-			highlight: function(element) {
-				$(element).closest('.form-group').removeClass('has-success').addClass('has-error');
-			},
-			unhighlight: function(element) {
-				$(element).closest('.form-group').removeClass('has-error').addClass('has-success');
-			},
-			messages: {
-				name: {
-					remote: "Such username already exists!"
-				}
-			}
-		}
-	);
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-<script type="text/javascript">
-function UpdateCheckBoxStatus ()
-{
-    var CurrentChoice = $('#choiceSelector').val();
-
-    $.ajax({
-        url: "<spring:url value='/register/available.html' />",
-        data: { "selected": CurrentChoice },
-        type: "post",
-        dataType: "json",
-
-        success: function (data)
-        {
-            SetCheckbox($('#changingCheckboxes').children("input:[type='checkbox']"), true);
-            $.each(data.disabled, function ()
-            {
-               SetCheckbox($('#changingCheckboxes #' + this), false);
-            });
-        }
-    });
-
-}
-
-/// Sets the checkbox to enabled or disabled
-/// @param th Jquery reference of one or more checkboxes
-/// @param usable True/False if the checkbox is enabled/disabled
-function SetCheckbox (th, usable)
-{
-    if (usable)
-        th.removeAttr("disabled");
-    else if (!usable)
-        th.attr("disabled", true);
-}
-
-
-$(function ()
-{
-    $('#choiceSelector').change(UpdateCheckBoxStatus);
-    UpdateCheckBoxStatus(); //run for page load
-});
-
-</script>
--->
-
-
 
 
 </body>
 </html>
-
-
 

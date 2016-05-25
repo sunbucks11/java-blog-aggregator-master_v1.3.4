@@ -45,7 +45,7 @@ public class FieldRestController {
 
 	private String message = "";
 	
-	private static final Logger LOGGER = Logger.getLogger(SecurityUserDetailsService.class);
+	private static final Logger LOGGER = Logger.getLogger(FieldRestController.class);
 	
     //-------------------Retrieve All Fields--------------------------------------------------------
 	   
@@ -65,7 +65,7 @@ public class FieldRestController {
         		roleJSON.put("id",field.getId());
         		roleJSON.put("name",field.getName());
         		roleJSON.put("comment", field.getComment());
-        		roleJSON.put("enabled",field.isEnabled());
+        		roleJSON.put("enabled",field.getEnabled());
         		roleJSON.put("createdDate",field.getCreatedDate());
         		roleJSON.put("modifiedDate",field.getModifiedDate());
         		
@@ -90,14 +90,13 @@ public class FieldRestController {
     
 	@RequestMapping(value = "/field/", method = RequestMethod.POST)
     public ResponseEntity<Void> createUser(@RequestBody Field field,    UriComponentsBuilder ucBuilder) {
-        System.out.println("Creating User " + field.getName());
+        System.out.println("Creating Field " + field.getName());
  
-       /*
-        if (fieldService.isFieldExist(field) || fieldRepository.findByEmail(user.getEmail()) != null) {
-            System.out.println("A User with name " + user.getName() + " already exist");
+        if (fieldService.isRoleExist(field)) {
+            System.out.println("A Field with name " + field.getName() + " already exist");
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
-        */
+        
         
 
 		/*		
@@ -110,9 +109,16 @@ public class FieldRestController {
 		user.setCreatedDate(new Date());
 		userRepository.save(user);
         */
+        
+        Field newField = new Field();
+        newField.setName(field.getName());
+        newField.setEnabled("true");
+        newField.setComment(field.getComment());
+        newField.setCreatedDate(new Date());
+        fieldService.save(newField);
 		
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(field.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/field/{id}").buildAndExpand(field.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 	
@@ -136,7 +142,7 @@ public class FieldRestController {
         }
 		
 
-        updateField.setEnabled(field.isEnabled());
+        updateField.setEnabled(field.getEnabled());
         updateField.setModifiedDate(new Date());
         
         message = "Successfully update field : " + field.getName();
@@ -152,7 +158,7 @@ public class FieldRestController {
     		userJSON.put("id",updateField.getId());
     		userJSON.put("name",updateField.getName());
     		userJSON.put("email",updateField.getComment());
-    		userJSON.put("enabled",updateField.isEnabled());    
+    		userJSON.put("enabled",updateField.getEnabled());    
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -164,6 +170,25 @@ public class FieldRestController {
     	return new ResponseEntity<String>(resultJson.toString(), headers, HttpStatus.OK);
     }
 	
+	
+	
+	
+	
+    //------------------- Delete a User --------------------------------------------------------
+    
+    @RequestMapping(value = "/field/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Role> deleteRole(@PathVariable("id") int id) {
+        System.out.println("Fetching & Deleting Field with id " + id);
+ 
+        Field field = fieldService.findOne(id);
+        if (field == null) {
+            System.out.println("Unable to delete. Field with id " + id + " not found");
+            return new ResponseEntity<Role>(HttpStatus.NOT_FOUND);
+        }
+ 
+        fieldService.delete(id);;
+        return new ResponseEntity<Role>(HttpStatus.NO_CONTENT);
+    }
 	
 	
 	

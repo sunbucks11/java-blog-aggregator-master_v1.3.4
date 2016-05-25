@@ -20,24 +20,60 @@
 			            <div class="alert alert-success login-label">Registration successfull!</div>
 			          </c:if>
 			  
+
+
+
+
 			   
-			   <c:forEach items="${fields}" var="field">
-			        <c:set var="theString" value="${field.name}"/>
-			        
-			        
-			
-			                
+		 <c:forEach items="${fields}" var="field">
+		 
+		 	  <c:set var="theString" value="${field.name}"/>
+		 	 
+ 		 	   <c:if test="${field.name eq 'confirmPassword'}"> 
+			            <c:if test="${field.enabled eq 'true'}"> 
 			            <div class="form-group">
-			              <label for="name" class="col-sm-2 control-label login-label">Name:</label>
+			              <label for="password" class="col-sm-2 control-label login-label">Confirm Password:</label>
 			              <div class="col-sm-10">
-			                <form:input path="name"
-			                  cssClass=" input-xlarge login-form-field form-control" />
-			                <form:errors path="name" />
-			                </div>
+			                <input type="password" name="password_again" id="password_again"
+			                  class="form-control" />
+			              </div>
 			            </div>
-			  
+			          </c:if> 
+			       </c:if> 
+		 	 
+		 	 
+		 	 
+	 					<c:if test="${field.enabled eq 'true' and field.name ne 'confirmPassword' }">
+				            <div class="form-group">
+				              <label for="name" class="col-sm-2 control-label login-label">${field.name}:</label>
+				              <div class="col-sm-10">
+				                <form:input path="${field.name}"
+				                  cssClass=" input-xlarge login-form-field form-control" />
+				                <form:errors path="${field.name}" />
+				                </div>
+				            </div>
+			  			</c:if>
+			  		   
+		 
+		 
 			
-			<!--        
+			<!-- 
+			     <c:set var="theString" value="${field.name}"/>
+	 
+	 				<c:if test="${field.name eq 'name'}">
+	 					<c:if test="${field.enabled eq 'true'}"> 
+				            <div class="form-group">
+				              <label for="name" class="col-sm-2 control-label login-label">Name:</label>
+				              <div class="col-sm-10">
+				                <form:input path="name"
+				                  cssClass=" input-xlarge login-form-field form-control" />
+				                <form:errors path="name" />
+				                </div>
+				            </div>
+			  			</c:if>
+			  		</c:if>
+			
+			        
 			    &nbsp;
 			                  
 			
@@ -70,8 +106,8 @@
 			        
 			    &nbsp;   
 			          
-			           <c:if test="${field.name eq 'confirmPassword'}"> 
-			              <c:if test="${field.enabled eq 'true'}"> 
+			          <c:if test="${field.name eq 'confirmPassword'}"> 
+			            <c:if test="${field.enabled eq 'true'}"> 
 			            <div class="form-group">
 			              <label for="password" class="col-sm-2 control-label login-label">Confirm Password:</label>
 			              <div class="col-sm-10">
@@ -80,12 +116,14 @@
 			              </div>
 			            </div>
 			          </c:if> 
-			       </c:if>  
+			       </c:if> 
+	-->    
 			       
-			-->
-			       
-			       
-			 </c:forEach>
+			        			       
+ </c:forEach>
+
+
+
 			
 			          <div class="login-form-buttons">
 			            <button style="background-color: green;" submit" class="btn btn-default btn-primary sing-in-btn login-form-button btn-sm">Create User</button>

@@ -130,7 +130,7 @@ public class RoleRestController {
 		newRole.setCreatedDate(new Date());
 		newRole.setBackColor(role.getBackColor());
 		
-		String backcolor = role.getBackColor();
+		//String backcolor = role.getBackColor();
 
 	   //roleRepository.save(newRole);
 		roleService.save(newRole);

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.admin.tool.entity.User;
+import com.admin.tool.security.SecurityUserDetailsService;
 import com.admin.tool.service.AuditService;
 import com.admin.tool.service.FieldService;
 import com.admin.tool.service.UserService;
@@ -31,6 +33,8 @@ public class RegisterController {
 	
 	@Autowired
 	private AuditService auditService;
+	
+	private static final Logger LOGGER = Logger.getLogger(RegisterController.class);
 
 	String message = "";
 	
@@ -47,6 +51,22 @@ public class RegisterController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String doRegister(@Valid @ModelAttribute("user") User user, BindingResult result) {
+		
+		if(user.getName() == null || 
+		   user.getEmail() == null ||
+		   user.getPassword() == null ||
+		   
+		   user.getName().isEmpty() ||
+		   user.getEmail().isEmpty() ||
+		   user.getPassword().isEmpty()){
+			
+			message = "Error creating user : mandatory fields are missing";
+			auditService.update(new Date(), "App", "localhost", "", message, "exclamation-red");
+			LOGGER.info(message);
+			return "redirect:/register.html?success=false";
+		}
+		
+		
 		if (result.hasErrors()) {
 			message = "Error creating user";
 			auditService.update(new Date(), "App", "localhost", "", message, "exclamation-red");

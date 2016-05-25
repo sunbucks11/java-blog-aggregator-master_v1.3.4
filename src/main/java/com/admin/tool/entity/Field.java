@@ -49,7 +49,7 @@ public class Field {
 		this.comment = comment;
 	}
 	
-	public String isEnabled() {
+	public String getEnabled() {
 		return enabled;
 	}
 	public void setEnabled(String enabled) {

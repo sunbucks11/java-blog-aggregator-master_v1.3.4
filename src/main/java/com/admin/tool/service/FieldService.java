@@ -25,8 +25,22 @@ public class FieldService {
 		return fieldRepository.findByName(fieldName);
 	}
 
+	
+	public Field findOne(int id) {
+		return fieldRepository.findOne(id);
+	}
+	
 	public void save(Field field) {
 		fieldRepository.save(field);
+	}
+
+	public boolean isRoleExist(Field field) {
+		return findOne(field.getName())!=null;
+
+	}
+
+	public void delete(int id) {
+		fieldRepository.delete(id);	
 	}
 
 }

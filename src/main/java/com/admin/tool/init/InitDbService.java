@@ -38,6 +38,8 @@ public class InitDbService {
 
 	public void init() {
 		if (roleRepository.findByName("ROLE_ADMIN") == null) {
+			
+			// Roles
 			Role roleUser = new Role();
 			roleUser.setName("ROLE_USER");
 			roleUser.setSettings("Ordinary users with limited privilages");
@@ -52,6 +54,7 @@ public class InitDbService {
 			roleAdmin.setBackColor("#D00200");
 			roleRepository.save(roleAdmin);
 
+			// User
 			User userAdmin = new User();
 			userAdmin.setEnabled(true);
 			userAdmin.setName("admin");
@@ -65,41 +68,40 @@ public class InitDbService {
 			userAdmin.setRoles(roles);
 			userRepository.save(userAdmin);
 
+			// Blog
 			Blog blogJavavids = new Blog();
 			blogJavavids.setName("JavaVids");
 			blogJavavids.setUrl("http://feeds.feedburner.com/javavids?format=xml");
 			blogJavavids.setUser(userAdmin);
 			blogRepository.save(blogJavavids);
 			blogService.saveItems(blogJavavids);
-
+  
+			// Fields
 			Field field1 = new Field();
 			field1.setName("name");
 			field1.setComment("This field is for first name");
-			field1.setEnabled("true");
+			field1.setEnabled("false");
 			field1.setCreatedDate(new Date());
 			fieldRepository.save(field1);
 
-		
 			Field field2 = new Field();
 			field2.setName("email");
 			field2.setComment("This field is for email address");
-			field2.setEnabled("true");
+			field2.setEnabled("false");
 			field2.setCreatedDate(new Date());
 			fieldRepository.save(field2);
 			
-
 			Field field3 = new Field();
 			field3.setName("password");
 			field3.setComment("This field is for password");
-			field3.setEnabled("true");
+			field3.setEnabled("false");
 			field3.setCreatedDate(new Date());
 			fieldRepository.save(field3);
 			
-
 			Field field4 = new Field();
 			field4.setName("confirmPassword");
 			field4.setComment("This field is for confirm password");
-			field4.setEnabled("true");
+			field4.setEnabled("false");
 			field4.setCreatedDate(new Date());
 			fieldRepository.save(field4);
 

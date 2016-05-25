@@ -10,56 +10,144 @@ App.controller('MainCtrl', function($scope) {
 App.controller('FieldController', ['$scope', 'FieldService', function($scope, FieldService) {
           var self = this;
 
-          self.field={id:'',name:'' ,comment:'' ,enabled:'',createdDate:'' ,modifiedDate:'' };
+          self.field={id:'',name:'' ,comment:'' ,createdDate:'' ,modifiedDate:''};
           self.fields=[];
+
           
           
+ 	  
+  /*        
+         $scope.checkboxModel =  {
+        	      value1 : false
+          };
+   
+		          $scope.onCompleteTodo = function(todo, id) {
+		             // self.field.enabled = todo.done;
+		        	   alert('Id is: ' + id + '\n' + self.fields[id].enabled); 
+		        	   
+		        	  
+		        	
+		        	   for(var i = 0; i < self.fields.length; i++){
+		                   if(self.fields[i].id == id) {
+		                	   
+		                	   alert('is: ' + id + '\n' + 
+		                			  'Enabled: ' + self.fields[i].enabled + '\n' + 
+		                			  'name: ' + self.fields[i].name	
+		                	         );
+		                	   
+		                	   if(self.fields[i].enabled == true) {
+		                		   self.fields[i].enabled = false;
+		                		}
+		
+		                	   
+		                	   alert('Id is: ' + id + '\n' + self.fields[id].enabled); 
+		                	
+		                 	  console.log('id to be edited', self.fields[i]);
+			                  self.fields[i].enabled =  $scope.checkboxModel.value1;
+		                	  self.field.id = self.fields[i].id;
+		                	  self.field.name = self.fields[i].name;
+		                	  self.field.comment = self.fields[i].comment;
+		                	  self.field.enabled = self.fields[i].enabled;  
+		                      break;
+		                    
+		                   }
+		               }
+		        	   
+		        	   self.updateField(self.field, id);
+		        	   
+		          };
+		          
+  */        
+		          
+				          
+		          
+		     
+          
+          
+          
+		          
+         /*
           $scope.todos=[
-                        {'text': "Enable",
+                        {
                          'done': false
                          }
                         ];
+          */
           
-        
-          $scope.onCompleteTodo = function(todo,f) {
-              //console.log("onCompleteTodo -done: " + todo.done + " : " + todo.text);
-              self.field.enabled = todo.done;
-
-              console.log("Enabled : " + self.field.enabled);
-              console.log("Field Id: " + f.id); 
-              console.log("Field name: " + f.name); 
-              console.log("Field comment: " + f.comment); 
-              console.log("Field Created: " + f.createdDate); 
-              
-              self.field.name = f.name;
-              self.field.comment = f.comment;
-                                     
-              self.updateField(self.field, f.id);
-              
-             // self.updateField(f, f.id);
-             
-  
-              //self.createField(f);
-              /*
-              $scope.doneAfterClick=todo.done;
-              $scope.todoText = todo.text;
-              */
-         };
-          
+         /* 
+          $scope.done = false;
+         
+          $scope.$watch('done', function() {
+        	//  $scope.done = false;
+              alert('hey, myVar has changed!' + $scope.done);
+          });
+          */
           
  
-         $scope.onEnabled = function(f) {
-             console.log("Field: " + f);
-             self.field.enabled = f.done;
-             console.log("Field Enabled : " + f.enabled);   
-             console.log("Field Comment : " + f.comment);  
-            
-             //self.createField(f);
-        };
-         
-         
+    
           
           
+          
+   
+          $scope.todos=[
+                        {
+                         'done': false
+                         }
+                        ];
+ 
+          
+            $scope.onCompleteTodo = function(todo,f) { 
+            	
+	              self.field.enabled = todo.done;
+	              console.log("Enabled : " + self.field.enabled);
+	              console.log("Field Id: " + f.id); 
+	              console.log("Field name: " + f.name); 
+	              console.log("Field comment: " + f.comment); 
+	              console.log("Field Created: " + f.createdDate); 
+	             // alert('Enabled is set to : '+ self.field.enable)
+	              
+	              self.field.name = f.name;
+	              self.field.comment = f.comment;
+	                                     
+	              self.updateField(self.field, f.id);
+            	
+            	
+
+            	/*
+            	try{
+	              self.field.enabled = todo.done;
+	              console.log("Enabled : " + self.field.enabled);
+	              console.log("Field Id: " + f.id); 
+	              console.log("Field name: " + f.name); 
+	              console.log("Field comment: " + f.comment); 
+	              console.log("Field Created: " + f.createdDate); 
+	              alert('Enabled is set to : '+ self.field.enable)
+	              
+	              self.field.name = f.name;
+	              self.field.comment = f.comment;
+	                                     
+	              self.updateField(self.field, f.id);
+            	}
+            	catch(e)
+            	{
+            		alert('An error has occurred: '+e.message)
+            	}
+            	
+            	finally{
+            	    //alert('I am alerted regardless of the outcome above')
+            	    self.field.enabled = todo.done;
+  	              	self.field.name = f.name;
+  	              	self.field.comment = f.comment;                     
+  	              	self.updateField(self.field, f.id);
+            	}
+            	*/
+
+         };
+       
+
+         
+         
+         
           
           
        
@@ -67,7 +155,8 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
               FieldService.fetchAllFields()
                   .then(
       					       function(d) {
-      						        self.fields = d;
+      					    	 console.error('Successfully fetched fields: ');
+      						        self.fields = d;  
       					       },
             					function(errResponse){
             						console.error('Error while fetching fields');
