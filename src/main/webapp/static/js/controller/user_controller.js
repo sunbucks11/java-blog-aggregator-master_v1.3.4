@@ -6,6 +6,66 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
           self.user={id:'',name:'' ,email:'' ,password:'' ,roles:[]};
           self.users=[];
        
+          
+          window.selectedUser = {};
+          
+          
+          // Checkbox selection
+          $scope.selection = {
+              ids: {}
+          
+          };
+          
+          
+          // Add or Remove role/s
+          $scope.onAddOrRemoveRole = function(r) { 
+        	  
+        	  /*
+              console.log("Enabled : " + $scope.selection.ids[r.id]);
+    	      console.log("Role Id: " + r.id); 
+              console.log("Fole name: " + r.name); 
+              console.log("Role Created: " + r.createdDate); 
+              */
+              
+              
+    	      //console.log("User Id: " + u.id); 
+              console.log("User name: " + selectedUser.id); 
+             // console.log("User Created: " + u.createdDate); 
+              
+              console.log("Role name: " + r.name); 
+              
+              
+              
+              /*
+    	      self.user.enabled = $scope.selection.ids[r.id];
+    	      self.user.name = r.name;
+    	      self.user.comment = r.comment;
+    	      */
+              
+              //self.updateUser(self.user, r.id);
+              self.updateUserRole(selectedUser, r);
+              
+      };
+          
+      
+      
+      
+      // Add or Remove role/s
+      $scope.onAddRoleSaveUser = function(u) { 
+    	  selectedUser = u;
+    	  //console.log("Selected user: " + selectedUser.name); 
+      };
+      
+      
+      
+      
+      
+      
+      
+          
+          
+          
+          
           self.fetchAllUsers = function(){
               UserService.fetchAllUsers()
                   .then(
@@ -37,6 +97,33 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
 				              }	
                   );
           };
+          
+          
+          
+          
+          
+          
+          
+          
+          self.updateUserRole = function(user, id, role){
+              UserService.updateUserRole(user, id, role)
+		              .then(
+				              self.fetchAllUsers, 
+				              function(errResponse){
+					               console.error('Error while updating User fole.');
+				              }	
+                  );
+          };
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
 
          self.deleteUser = function(id){
               UserService.deleteUser(id)

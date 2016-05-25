@@ -9,157 +9,46 @@ App.controller('MainCtrl', function($scope) {
 
 App.controller('FieldController', ['$scope', 'FieldService', function($scope, FieldService) {
           var self = this;
-
-          self.field={id:'',name:'' ,comment:'' ,createdDate:'' ,modifiedDate:''};
+          self.field={id:'',name:'' ,comment:'',enabled:'' ,createdDate:'' ,modifiedDate:''};
           self.fields=[];
 
+  
+          // Checkbox selection
+          $scope.selection = {
+              ids: {}
           
-          
- 	  
-  /*        
-         $scope.checkboxModel =  {
-        	      value1 : false
+          };
+ 
+          // Enable or disable field/s
+          $scope.onEnableOrDisable = function(f) { 
+        	  
+	              console.log("Enabled : " + $scope.selection.ids[f.id]);
+        	      console.log("Field Id: " + f.id); 
+	              console.log("Field name: " + f.name); 
+	              console.log("Field comment: " + f.comment); 
+	              console.log("Field Created: " + f.createdDate); 
+	              console.log("Field Modified: " + f.modifiedDate); 
+
+        	      self.field.enabled = $scope.selection.ids[f.id];
+        	      self.field.name = f.name;
+        	      self.field.comment = f.comment;
+	              
+	              self.updateField(self.field, f.id);        
           };
    
-		          $scope.onCompleteTodo = function(todo, id) {
-		             // self.field.enabled = todo.done;
-		        	   alert('Id is: ' + id + '\n' + self.fields[id].enabled); 
-		        	   
-		        	  
-		        	
-		        	   for(var i = 0; i < self.fields.length; i++){
-		                   if(self.fields[i].id == id) {
-		                	   
-		                	   alert('is: ' + id + '\n' + 
-		                			  'Enabled: ' + self.fields[i].enabled + '\n' + 
-		                			  'name: ' + self.fields[i].name	
-		                	         );
-		                	   
-		                	   if(self.fields[i].enabled == true) {
-		                		   self.fields[i].enabled = false;
-		                		}
-		
-		                	   
-		                	   alert('Id is: ' + id + '\n' + self.fields[id].enabled); 
-		                	
-		                 	  console.log('id to be edited', self.fields[i]);
-			                  self.fields[i].enabled =  $scope.checkboxModel.value1;
-		                	  self.field.id = self.fields[i].id;
-		                	  self.field.name = self.fields[i].name;
-		                	  self.field.comment = self.fields[i].comment;
-		                	  self.field.enabled = self.fields[i].enabled;  
-		                      break;
-		                    
-		                   }
-		               }
-		        	   
-		        	   self.updateField(self.field, id);
-		        	   
-		          };
-		          
-  */        
-		          
-				          
-		          
-		     
-          
-          
-          
-		          
-         /*
-          $scope.todos=[
-                        {
-                         'done': false
-                         }
-                        ];
-          */
-          
-         /* 
-          $scope.done = false;
-         
-          $scope.$watch('done', function() {
-        	//  $scope.done = false;
-              alert('hey, myVar has changed!' + $scope.done);
-          });
-          */
-          
- 
-    
-          
-          
-          
-   
-          $scope.todos=[
-                        {
-                         'done': false
-                         }
-                        ];
- 
-          
-            $scope.onCompleteTodo = function(todo,f) { 
-            	
-	              self.field.enabled = todo.done;
-	              console.log("Enabled : " + self.field.enabled);
-	              console.log("Field Id: " + f.id); 
-	              console.log("Field name: " + f.name); 
-	              console.log("Field comment: " + f.comment); 
-	              console.log("Field Created: " + f.createdDate); 
-	             // alert('Enabled is set to : '+ self.field.enable)
-	              
-	              self.field.name = f.name;
-	              self.field.comment = f.comment;
-	                                     
-	              self.updateField(self.field, f.id);
-            	
-            	
 
-            	/*
-            	try{
-	              self.field.enabled = todo.done;
-	              console.log("Enabled : " + self.field.enabled);
-	              console.log("Field Id: " + f.id); 
-	              console.log("Field name: " + f.name); 
-	              console.log("Field comment: " + f.comment); 
-	              console.log("Field Created: " + f.createdDate); 
-	              alert('Enabled is set to : '+ self.field.enable)
-	              
-	              self.field.name = f.name;
-	              self.field.comment = f.comment;
-	                                     
-	              self.updateField(self.field, f.id);
-            	}
-            	catch(e)
-            	{
-            		alert('An error has occurred: '+e.message)
-            	}
-            	
-            	finally{
-            	    //alert('I am alerted regardless of the outcome above')
-            	    self.field.enabled = todo.done;
-  	              	self.field.name = f.name;
-  	              	self.field.comment = f.comment;                     
-  	              	self.updateField(self.field, f.id);
-            	}
-            	*/
-
-         };
        
-
-         
-         
-         
-          
-          
+       
        
           self.fetchAllFields = function(){
               FieldService.fetchAllFields()
                   .then(
       					       function(d) {
-      					    	 console.error('Successfully fetched fields: ');
-      						        self.fields = d;  
+      						      self.fields = d;  
+      						      console.debug('Successfully fetched all fields! ');
       					       },
             					function(errResponse){
-            						console.error('Error while fetching fields');
+      					    	   console.error('Error while fetching fields');
             					}
       			       );
           };

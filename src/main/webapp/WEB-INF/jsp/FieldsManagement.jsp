@@ -3,18 +3,12 @@
         
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
-	
 
 <html>
 
-
-
 <head>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
 </head>
-
-
 
 
 <body ng-app="myApp"  class="ng-cloak" data-spy="scroll" data-target=".subnav" data-offset="50">
@@ -54,10 +48,9 @@
 						</div>
 						<!-- ======================================== -->
 
-<%-- <form:form commandName="user" cssClass="form-horizontal registrationForm">	 --%>			
-<div ng-controller="FieldController as ctrl">
-					
-					
+		
+				<div ng-controller="FieldController as ctrl">
+
 					   <div style="float: right"> 
 							<a  ng-click="ctrl.fetchAllFields()" class="btn btn-default btn-info  btn-sm" id="refresh-member">
 					          <i class="glyphicon glyphicon-refresh icon-white"></i>&nbsp;Refresh&nbsp;                      
@@ -104,12 +97,11 @@
 						              
 						              <!-- ==========  Enabled  ========== --> 
 						              <td style="white-space:nowrap">
-	 						              <!-- <input  id="audit-event-select-10246" class="audit-event-select" data-audit-event-id="10246" type="checkbox" /> -->				               
-						
-							           <input ng-checked={{f.enabled}} type='checkbox' ng-click='onCompleteTodo(todo,f)' ng-model="todo.done">
-							         
-							           <!-- <input ng-checked={{f.enabled}} type='checkbox' ng-click='onCompleteTodo(todo, f.id)' ng-model="checkboxModel.value1">  -->
-							          <!-- <input ng-checked={{f.enabled}} type='checkbox' ng-click='onCompleteTodo(f.id)' ng-model="checkboxModel.value1"> -->
+	 						            <!-- <input  id="audit-event-select-10246" class="audit-event-select" data-audit-event-id="10246" type="checkbox" /> -->	
+ 	 						           <!-- <pre ng-bind="selection.ids | json"></pre> -->
+	 						            <div>
+										  <input ng-checked={{f.enabled}} type="checkbox" ng-click='onEnableOrDisable(f)' ng-model="selection.ids[f.id]" name="group"  /> 
+										</div>
 						              </td>
 						              
 						      		<!-- ==========  Created Date  ========== --> 
@@ -134,33 +126,19 @@
 
 								<!-- =============  Body ==============-->
 								<div class="modal-body" ng-controller="FieldController as ctrl" style="overflow-y: auto;">
-								<div class="bootstrap-dialog-body">
-		
-								 <br> <br> <br>
- 		  
-				   		</div> <!-- /RoleController -->
-					</div>	
-							
-							
-							
-							
-	
-							
-							
-							
-						</div>
-															
-<%-- </form:form>	 --%>					
-						
-						
-						
+									<div class="bootstrap-dialog-body">
+									  <br> <br> <br>
+					   				</div> <!-- /RoleController -->
+							    </div>	
+					</div>
+
 						<!-- ======== Bottom table status bar  ======== -->
 						<div class="div-table-info">
 						    <div class="div-table-info-fl">Showing <b>1</b> to <b>18</b> of <b>18</b> entries</div>    
 						</div>	
 				</div>	<!-- /div-roles-list-0 -->
-    </div><!--/.fluid-container-->
-  </div>
+    	</div><!--/.fluid-container-->
+  	</div>
 
 
 
@@ -173,16 +151,11 @@
 		<%@ include file="./admin/fragment/field-remove-model.jsp"%> 
 
 
-
-
-
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script>
         <script src="<c:url value='/static/js/app.js' />"> </script>
         <script src="<c:url value='/static/js/service/field_service.js' />"></script>
         <script src="<c:url value='/static/js/controller/field_controller.js' />"></script> 
-
-
 
 
 <script type="text/javascript">
@@ -194,13 +167,7 @@
 	 window.location.reload();
 	}); 
    
-   
-/*    window.onload = function() {
-	   angular.element(document.getElementById('tableDiv')).scope().fetchAllFields();
-	 }; */
-   
 </script>
-
 
 </body>
 </html>

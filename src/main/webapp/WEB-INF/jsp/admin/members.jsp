@@ -53,7 +53,7 @@
              <%@ include file="../admin/fragment/members-tool-bar.jsp"%>
             	<div id="div-members-list-0">
 
-						<div ng-controller="UserController as ctrl">
+		<div ng-controller="UserController as ctrl">
 						
 						<!-- ======== Refresh Button ========= -->
 						<div style="float: right"> 
@@ -109,10 +109,18 @@
 						               <a data-toggle="modal" data-target="#editMemberModal" href="#" class="member-edit" style="white-space: nowrap !important;" data-member-id="1">
 						                    <span ng-bind="u.name"></span>
 						               </a>
+						               
+										               
+						               
 						               <div style="display: inline" class="member-add-role-inline">
-						                  <a class="member-add-role-inline-link btn-xs btn btn-default"
-						                     data-member-id="1" data-member-name="Admin" href="#">Add Roles</a>
+						                  <a ng-click='onAddRoleSaveUser(u)' class="member-add-role-inline-link btn-xs btn btn-default" data-toggle="modal" data-target="#addRoleModel"  data-member-id="1" data-member-name="Admin" href="#">Add Roles</a>
+<!-- 						                   <input ng-checked={{r.enabled}} type="checkbox" ng-click='onAddOrRemoveRole(r, u)' ng-model="selection.ids[r.id]" name="group"  />  -->
 						               </div>
+						               
+						               
+						               
+						               
+						               
 						            </td>
 						            <!-- ================= Roles ================-->
 						            <td>
@@ -135,6 +143,9 @@
 						         </tr>
 						      </tbody>
 						   </table>
+						   
+						   
+	
 						</div>
      
                        <!-- ====== Bottom table status bar -->
@@ -166,6 +177,38 @@
        <%@ include file="../admin/fragment/edit-member.jsp" %>
         
 
+	   <%@ include file="../admin/fragment/add-role-model.jsp"%> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -183,6 +226,9 @@
         <script src="<c:url value='/static/js/service/user_service.js' />"></script>
         <script src="<c:url value='/static/js/controller/user_controller.js' />"></script> 
         
+        <script src="<c:url value='/static/js/service/role_service.js' />"></script>
+        <script src="<c:url value='/static/js/controller/role_controller.js' />"></script> 
+        
 <!--         <script type="text/javascript" data-main="./resources/public/js/run-create-user-app" -->
 <!--         src="./resources/bower_components/requirejs/require.js"></script> -->
         
@@ -195,31 +241,17 @@
  $('#memberModal').on('hidden.bs.modal', function () {
  	 window.location.reload();
 	 
-// 	 $( "#member-table" ).load( "UserManagement.html #member-table" );
-	 
-	 /* window.alert('hidden event fired!'); */
-	   
-	  /* angular.element('#divID').scope().myCtrl(); */
-      /* $scope.fetchAllUsers();*/
-	  /* angular.element('#UserController').scope().child.fetchAllUsers(); */
-	  /* angular.element('#ctrl').self.fetchAllUsers(); */
-      /* angular.element('#myctrl').scope().anyFunc('value1','value2');*/
 	});
- </script>
- 
- 
- 
- <script type="text/javascript">
+
  $('#removeModel').on('hidden.bs.modal', function () {
 	 window.location.reload();
-	 /* window.alert('hidden event fired!'); */
-	   
-	  /* angular.element('#divID').scope().myCtrl(); */
-      /* $scope.fetchAllUsers();*/
-	  /* angular.element('#UserController').scope().child.fetchAllUsers(); */
-	  /* angular.element('#ctrl').self.fetchAllUsers(); */
-      /* angular.element('#myctrl').scope().anyFunc('value1','value2');*/
 	});
+ 
+ 
+ $('#addRoleModel').on('hidden.bs.modal', function () {
+ 	 window.location.reload();
+	 
+  });
  </script>
  
  

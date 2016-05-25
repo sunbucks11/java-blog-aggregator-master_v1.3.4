@@ -41,18 +41,17 @@
 			          </c:if> 
 			       </c:if> 
 		 	 
-		 	 
-		 	 
-	 					<c:if test="${field.enabled eq 'true' and field.name ne 'confirmPassword' }">
+	
+	 				<c:if test="${field.enabled eq 'true' and field.name ne 'confirmPassword' }">
 				            <div class="form-group">
-				              <label for="name" class="col-sm-2 control-label login-label">${field.name}:</label>
+				              <label for="name" class="col-sm-2 control-label login-label">${fn:toUpperCase(fn:substring(theString, 0, 1))}${fn:toLowerCase(fn:substring(theString, 1,fn:length(theString)))}:</label>
 				              <div class="col-sm-10">
 				                <form:input path="${field.name}"
 				                  cssClass=" input-xlarge login-form-field form-control" />
 				                <form:errors path="${field.name}" />
 				                </div>
 				            </div>
-			  			</c:if>
+			  		</c:if>
 			  		   
 		 
 		 

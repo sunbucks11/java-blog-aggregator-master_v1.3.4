@@ -45,6 +45,33 @@ App.factory('UserService', ['$http', '$q', function($http, $q){
 									}
 							);
 			},
+			
+			
+			
+			
+			
+		    updateUserRole: function(user, role){
+				/*return $http.put('http://localhost:8080/admin-tool/user/'+id, user)*/
+	    		 return $http.put('http://localhost:8080/add-role/', user, role)
+						.then(
+								function(response){
+									return response.data;
+								}, 
+								function(errResponse){
+									console.error('Error while updating user role');
+									return $q.reject(errResponse);
+								}
+						);
+		},
+			
+			
+			
+			
+			
+			
+			
+			
+			
 		    
 			deleteUser: function(id){
 					/*return $http.delete('http://localhost:8080/admin-tool/user/'+id)*/

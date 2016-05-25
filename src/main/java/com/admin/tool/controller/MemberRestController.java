@@ -142,6 +142,49 @@ public class MemberRestController {
     }
  
     
+	
+
+	
+	
+	
+	
+	
+	
+     //------------------- Update User Role --------------------------------------------------------
+	@RequestMapping(value = "/add-role/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<String> updateUserRole(@RequestBody User user, @RequestBody Role role) {
+        
+		int id = 1;
+		System.out.println("Updating User Role" + id);
+        
+        User currentUser = userService.findOne(id); 
+        if (currentUser==null) {
+            System.out.println("User with id " + id + " not found");
+            return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+            //return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+        }
+        
+        
+        
+        JSONArray resultJson = new JSONArray();
+        JSONObject userJSON = new JSONObject(); 
+        
+        
+        
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+    	return new ResponseEntity<String>(resultJson.toString(), headers, HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
    
     //------------------- Update a User --------------------------------------------------------
      
