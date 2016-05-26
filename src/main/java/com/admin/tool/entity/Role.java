@@ -7,11 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@Table(name = "role")
 public class Role {
 
 	@Id
@@ -29,11 +31,11 @@ public class Role {
 	private String foreColor;
 	
 	private String settings;
-	
+
 	//@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy,HH:00", timezone="CET")
 	//@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="EEE, dd MMM yyyy HH:mm:ss zzz")
 	//@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	//private Date createdDate;
+	private Date createdDate;
 	
 	private Date modifiedDate;
 		
@@ -72,7 +74,7 @@ public class Role {
 		this.settings = settings;
 	}
 
-/*
+
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -80,7 +82,7 @@ public class Role {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
-*/
+
 	
 	public Date getModifiedDate() {
 		return modifiedDate;

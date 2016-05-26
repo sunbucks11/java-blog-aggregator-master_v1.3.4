@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.TimeZone;
 
 import org.hibernate.HibernateException;
 import org.hibernate.SQLQuery;
@@ -34,6 +35,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
 
 
 
@@ -84,9 +86,9 @@ public class RoleRestController {
         		roleJSON.put("settings",role.getSettings());
         		roleJSON.put("member", numOfUsersWithRole);
         		roleJSON.put("backcolor", role.getBackColor());
-        		//userJSON.put("roles",roles); 
-        		//Date date = role.getCreatedDate();
-        		/*
+        		// userJSON.put("roles",roles); 
+        		Date date = role.getCreatedDate();
+        		
         		if (date != null){
         			roleJSON.put("createdDate",dateFormat.format(date)); 
         		}
@@ -97,10 +99,7 @@ public class RoleRestController {
         			date = role.getModifiedDate();
         			roleJSON.put("lastLoginDate",dateFormat.format(date)); 
         		}
-        		*/
-        		
-        		
-        		
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -115,7 +114,7 @@ public class RoleRestController {
 
 
 	
-    //-------------------Create a User--------------------------------------------------------
+    //-------------------Create a Role--------------------------------------------------------
     
 	@RequestMapping(value = "/role/", method = RequestMethod.POST)
     public ResponseEntity<Void> createUser(@RequestBody Role role,    UriComponentsBuilder ucBuilder) {
@@ -130,10 +129,14 @@ public class RoleRestController {
 		Role newRole = new Role();
 		newRole.setName(role.getName());
 		newRole.setSettings(role.getSettings());
-		//newRole.setCreatedDate(new Date());
-		newRole.setBackColor(role.getBackColor());
+		newRole.setCreatedDate(new Date());
+		
+	    newRole.setBackColor(role.getBackColor());
 		
 		//String backcolor = role.getBackColor();
+	    
+	    System.out.println("\nDate: " +  newRole.getCreatedDate() + "\n");
+	    
 
 	   //roleRepository.save(newRole);
 		roleService.save(newRole);
@@ -163,22 +166,7 @@ public class RoleRestController {
         return new ResponseEntity<Role>(HttpStatus.NO_CONTENT);
     }
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
     //------------------- Update a User --------------------------------------------------------

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.apache.taglibs.standard.tag.common.core.ForEachSupport;
 import org.json.JSONArray;
@@ -58,75 +59,10 @@ public class MemberRestController {
     public ResponseEntity<String> listAllUsers(Principal principal) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        
         return new ResponseEntity<String>(getAllUsers().toString(), headers, HttpStatus.OK);
     }
- 
-	
-	
-	
-	
-	
-	// getAllUsers
-	private JSONArray getAllUsers(){	
-    	// Find all users
-    	List<User> users = userService.findAll();
-    	List<String> roles = new ArrayList<String>();
-    	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    	
-    	
-    	JSONArray resultJson = new JSONArray();
 
-    	for(User user :users){
-    		roles = roleService.findRolesById(user.getId());
-    		JSONObject userJSON = new JSONObject();   	
-        	try {
-        		userJSON.put("id",user.getId());
-        		userJSON.put("name",user.getName());
-        		userJSON.put("email",user.getEmail());
-        		userJSON.put("roles",roles); 
- 
-        		
-        		Date date = user.getCreatedDate();
-        		
-        		if (date != null){
-        		  userJSON.put("createdDate",dateFormat.format(date)); 
-        		}
-             
-        		date = user.getLastLoginDate();
-        		
-        		if(date != null ){
-        			date = user.getLastLoginDate();
-        			userJSON.put("lastLoginDate",dateFormat.format(date)); 
-        		}
-        		
-   
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        	resultJson.put(userJSON);
-    	}
-    	
-    	return resultJson;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
  
 /*    
     //-------------------Retrieve Single User--------------------------------------------------------
@@ -189,7 +125,6 @@ public class MemberRestController {
      //------------------- Update User Role --------------------------------------------------------
 	@RequestMapping(value = "/add-role/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<String> updateUserRole(@PathVariable("id") int id, @RequestBody String newRole) {
-	//public ResponseEntity<String> updateUserRole(@PathVariable("id") int id,  @RequestBody Role newRole) {
 		
 		System.out.println("Updating User Role" + id);
         
@@ -199,13 +134,10 @@ public class MemberRestController {
             return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
         }
         
-        //ObjectMapper mapper = new ObjectMapper();
-        ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
-       //SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy,HH:00");
-       // SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
-       // mapper.setDateFormat(formatter);
-        List<Role> userRoles = currentUser.getRoles();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+        mapper.setDateFormat(dateFormat);       
         Role roleJson = null; 
         
          try {
@@ -222,104 +154,42 @@ public class MemberRestController {
 		}
          
 
+
+      List<Role> userRoles = currentUser.getRoles();
+      List<Role> newUserRoles = new ArrayList<Role>();
+      
       @SuppressWarnings("unchecked")
 	  Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>)    
         		 SecurityContextHolder.getContext().getAuthentication().getAuthorities();
       
       
-     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    	Object username = authentication.getDetails();
-        
-
       
-    	if(!authorities.contains(roleJson.getName())){
-    		
-    		List<Role> roles = new ArrayList<Role>();
-    		
-    		// Add new role
-    		Role addRole = new Role();
+   
+      for (Role role : userRoles) {
+    	/*
+		if(!role.getName().equals(roleJson.getName()) && !authorities.contains(roleJson.getName())){
+			roleDoesNotExist = true; 
+		}
+		*/
+    	  
+    	  newUserRoles.add(role);
+	  } 
+  
+      
+      
+      if(!authorities.contains(roleJson.getName())){
+			// Add the New role
+			Role addRole = new Role();
 			addRole.setName(roleJson.getName());
 			addRole.setSettings(roleJson.getSettings());
 			addRole.setBackColor(roleJson.getBackColor());
-			roles.add(addRole);
+			addRole.setCreatedDate(new Date());
 			roleService.save(addRole);
-			//currentUser.setRoles(roles);
-			
-			// Add ROLE_USER
-			Role roleUser = new Role();
-			roleUser.setName("ROLE_USER");
-			roleUser.setSettings("Ordinary users with limited privilages");
-			//roleUser.setCreatedDate(new Date());
-			roleUser.setBackColor("#FFAB23");
-			roleService.save(roleUser);
-			
-			// Add ROLE_ADMIN
-			Role roleAdmin = new Role();
-			roleAdmin.setName("ROLE_ADMIN");
-			roleAdmin.setSettings("People who care about role and member management");
-			//roleAdmin.setCreatedDate(new Date());
-			roleAdmin.setBackColor("#D00200");
-			roleService.save(roleAdmin);
-			
-			// Add all the roles to the user
-			roles.add(roleAdmin);
-			roles.add(roleUser);
-			roles.add(addRole);
-			currentUser.setRoles(roles);
-			
-			// Save the roles to the user
+
+			newUserRoles.add(addRole);
+			currentUser.setRoles(newUserRoles);
 			userService.save(currentUser);
-    	}
- 
-
-    	/*
-			// Roles
-			Role roleUser = new Role();
-			roleUser.setName("ROLE_USER");
-			roleUser.setSettings("Ordinary users with limited privilages");
-			//roleUser.setCreatedDate(new Date());
-			roleUser.setBackColor("#FFAB23");
-			roleService.save(roleUser);
-
-			Role roleAdmin = new Role();
-			roleAdmin.setName("ROLE_ADMIN");
-			roleAdmin.setSettings("People who care about role and member management");
-			//roleAdmin.setCreatedDate(new Date());
-			roleAdmin.setBackColor("#D00200");
-			roleService.save(roleAdmin);
-			
-			
-			List<Role> roles = new ArrayList<Role>();
-			roles.add(roleAdmin);
-			roles.add(roleUser);
-			roles.add(addRole);
-			currentUser.setRoles(roles);
-			*/
-			
-			//userService.save(currentUser);
-  
-
-      
-
-   	//Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	//String username = authentication.getName();
-   
-        /* 
-        // Get all the Roles assigned to the user 
-        for (Role role : userRoles) {
-          if(!role.getName().equals(roleJson.getName())){
-					Role addRole = new Role();
-					addRole.setName(roleJson.getName());
-					addRole.setSettings(roleJson.getSettings());
-					addRole.setBackColor(roleJson.getBackColor());
-					//addRole.setCreatedDate(new Date());
-					// TODO: increment number of members using this role
-					userRoles.add(addRole);
-					currentUser.setRoles(userRoles);
-					userService.save(currentUser);
-          }
-        }
-        */
+      }
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -433,5 +303,66 @@ public class MemberRestController {
     }
  
  */
+    
+    
+    
+    
+    
+    
+    
+    
+    
+	// getAllUsers
+	private JSONArray getAllUsers(){	
+    	// Find all users
+    	List<User> users = userService.findAll();
+    	//List<String> roles = new ArrayList<String>();
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    	
+    	
+    	JSONArray resultJson = new JSONArray();
+
+    	for(User user :users){
+
+    		  List<Role> userRoles = user.getRoles();
+    	      List<Role>  allUserRoles = new ArrayList<Role>();
+
+    	      for (Role role : userRoles) {
+    	    	  allUserRoles.add(role);
+    		  } 
+    		//roles = roleService.findRolesById(user.getId());
+    		JSONObject userJSON = new JSONObject();   	
+        	try {
+        		userJSON.put("id",user.getId());
+        		userJSON.put("name",user.getName());
+        		userJSON.put("email",user.getEmail());
+        		userJSON.put("roles",allUserRoles); 
+
+        		Date date = user.getCreatedDate();
+        		
+        		if (date != null){
+        		  userJSON.put("createdDate",dateFormat.format(date)); 
+        		}
+             
+        		date = user.getLastLoginDate();
+        		
+        		if(date != null ){
+        			date = user.getLastLoginDate();
+        			userJSON.put("lastLoginDate",dateFormat.format(date)); 
+        		}
+        		
+   
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        	resultJson.put(userJSON);
+    	}
+    	
+    	return resultJson;
+	}
+    
+    
+    
+    
  
 }
