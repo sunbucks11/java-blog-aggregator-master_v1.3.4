@@ -18,32 +18,26 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
           
           
           // Add or Remove role/s
-          $scope.onAddOrRemoveRole = function(r) { 
+          $scope.onAddOrRemoveRole = function(role) { 
         	  
-        	  /*
-              console.log("Enabled : " + $scope.selection.ids[r.id]);
-    	      console.log("Role Id: " + r.id); 
-              console.log("Fole name: " + r.name); 
-              console.log("Role Created: " + r.createdDate); 
+        	  
+              console.log("Enabled : " + $scope.selection.ids[role.id]);
+    	      console.log("Role Id: " + role.id); 
+              console.log("Fole name: " + role.name); 
+              console.log("Fole settings: " + role.settings); 
+              console.log("Role Created: " + role.createdDate); 
+              
+              
+              
+    	       /*
+              console.log("User id: " + selectedUser.id);
+              console.log("User name: " + self.user.name); 
+              console.log("User email: " + self.user.email);
               */
               
-              
-    	      //console.log("User Id: " + u.id); 
-              console.log("User name: " + selectedUser.id); 
-             // console.log("User Created: " + u.createdDate); 
-              
-              console.log("Role name: " + r.name); 
-              
-              
-              
-              /*
-    	      self.user.enabled = $scope.selection.ids[r.id];
-    	      self.user.name = r.name;
-    	      self.user.comment = r.comment;
-    	      */
-              
-              //self.updateUser(self.user, r.id);
-              self.updateUserRole(selectedUser, r);
+
+             //  self.updateUserRole(selectedUser.id, r);
+              UserService.updateUserRole(selectedUser.id, role)
               
       };
           
@@ -53,7 +47,7 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
       // Add or Remove role/s
       $scope.onAddRoleSaveUser = function(u) { 
     	  selectedUser = u;
-    	  //console.log("Selected user: " + selectedUser.name); 
+    	  //console.log("Selected user id " + selectedUser.id); 
       };
       
       
@@ -104,9 +98,9 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
           
           
           
-          
-          self.updateUserRole = function(user, id, role){
-              UserService.updateUserRole(user, id, role)
+     
+          self.updateUserRole = function(id, role){
+              UserService.updateUserRole(id, role)
 		              .then(
 				              self.fetchAllUsers, 
 				              function(errResponse){
@@ -114,7 +108,7 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
 				              }	
                   );
           };
-          
+        
           
           
           

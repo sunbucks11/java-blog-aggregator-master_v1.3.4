@@ -19,6 +19,7 @@ import org.hibernate.validator.constraints.Email;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.admin.tool.annotation.UniqueUsername;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "user")
@@ -49,10 +50,12 @@ public class User {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<Blog> blogs;
 
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	//@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="EEE, dd MMM yyyy HH:mm:ss zzz")
 	private Date createdDate;
 		
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	//@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="EEE, dd MMM yyyy HH:mm:ss zzz")
 	private Date lastLoginDate;
 
 	

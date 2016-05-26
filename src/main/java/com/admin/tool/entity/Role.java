@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Role {
 
@@ -19,13 +22,18 @@ public class Role {
 	
 	private int isBuiltIn;
 	
+	@JsonIgnoreProperties(ignoreUnknown = true)
 	private String backColor;
 	
+	@JsonIgnoreProperties(ignoreUnknown = true)
 	private String foreColor;
 	
 	private String settings;
 	
-	private Date createdDate;
+	//@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy,HH:00", timezone="CET")
+	//@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="EEE, dd MMM yyyy HH:mm:ss zzz")
+	//@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	//private Date createdDate;
 	
 	private Date modifiedDate;
 		
@@ -64,6 +72,7 @@ public class Role {
 		this.settings = settings;
 	}
 
+/*
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -71,7 +80,8 @@ public class Role {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
-
+*/
+	
 	public Date getModifiedDate() {
 		return modifiedDate;
 	}

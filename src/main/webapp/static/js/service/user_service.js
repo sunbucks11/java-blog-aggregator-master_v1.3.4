@@ -52,7 +52,7 @@ App.factory('UserService', ['$http', '$q', function($http, $q){
 			
 		    updateUserRole: function(user, role){
 				/*return $http.put('http://localhost:8080/admin-tool/user/'+id, user)*/
-	    		 return $http.put('http://localhost:8080/add-role/', user, role)
+	    		 return $http.put('http://localhost:8080/add-role/'+ selectedUser.id, role)
 						.then(
 								function(response){
 									return response.data;

@@ -126,6 +126,7 @@
 						            <td>
 						               <div style="display: inline;" ng-repeat="r in u.roles">
 						                  <span class={{r}}>{{r | limitTo : 5 : 5}}</span>
+						                  <span class="label ng-binding" ng-style="{background:'#FFAB23'}" style="background: rgb(255, 171, 35);">{{r}}</span>
 						               </div>
 						            </td>
 						            <!-- ================= Email ================-->

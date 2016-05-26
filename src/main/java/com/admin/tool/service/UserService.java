@@ -86,7 +86,6 @@ public class UserService {
 		return userRepository.findByName(username);
 	}
 	
-	
 	public boolean isUserExist(User user) {
 		return findOne(user.getName())!=null;
 	}

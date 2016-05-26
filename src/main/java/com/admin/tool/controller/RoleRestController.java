@@ -85,8 +85,8 @@ public class RoleRestController {
         		roleJSON.put("member", numOfUsersWithRole);
         		roleJSON.put("backcolor", role.getBackColor());
         		//userJSON.put("roles",roles); 
-        		Date date = role.getCreatedDate();
-        		
+        		//Date date = role.getCreatedDate();
+        		/*
         		if (date != null){
         			roleJSON.put("createdDate",dateFormat.format(date)); 
         		}
@@ -97,6 +97,9 @@ public class RoleRestController {
         			date = role.getModifiedDate();
         			roleJSON.put("lastLoginDate",dateFormat.format(date)); 
         		}
+        		*/
+        		
+        		
         		
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -127,7 +130,7 @@ public class RoleRestController {
 		Role newRole = new Role();
 		newRole.setName(role.getName());
 		newRole.setSettings(role.getSettings());
-		newRole.setCreatedDate(new Date());
+		//newRole.setCreatedDate(new Date());
 		newRole.setBackColor(role.getBackColor());
 		
 		//String backcolor = role.getBackColor();

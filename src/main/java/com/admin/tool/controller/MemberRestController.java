@@ -1,8 +1,10 @@
 package com.admin.tool.controller;
  
+import java.io.IOException;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +17,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,6 +33,10 @@ import com.admin.tool.entity.User;
 import com.admin.tool.repository.UserRepository;
 import com.admin.tool.service.RoleService;
 import com.admin.tool.service.UserService;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
  
 @RestController
@@ -47,7 +56,18 @@ public class MemberRestController {
    
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
     public ResponseEntity<String> listAllUsers(Principal principal) {
-    	
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity<String>(getAllUsers().toString(), headers, HttpStatus.OK);
+    }
+ 
+	
+	
+	
+	
+	
+	// getAllUsers
+	private JSONArray getAllUsers(){	
     	// Find all users
     	List<User> users = userService.findAll();
     	List<String> roles = new ArrayList<String>();
@@ -86,11 +106,27 @@ public class MemberRestController {
         	resultJson.put(userJSON);
     	}
     	
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        return new ResponseEntity<String>(resultJson.toString(), headers, HttpStatus.OK);
-    }
- 
+    	return resultJson;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
  
 /*    
     //-------------------Retrieve Single User--------------------------------------------------------
@@ -152,29 +188,145 @@ public class MemberRestController {
 	
      //------------------- Update User Role --------------------------------------------------------
 	@RequestMapping(value = "/add-role/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<String> updateUserRole(@RequestBody User user, @RequestBody Role role) {
-        
-		int id = 1;
+	public ResponseEntity<String> updateUserRole(@PathVariable("id") int id, @RequestBody String newRole) {
+	//public ResponseEntity<String> updateUserRole(@PathVariable("id") int id,  @RequestBody Role newRole) {
+		
 		System.out.println("Updating User Role" + id);
         
         User currentUser = userService.findOne(id); 
         if (currentUser==null) {
             System.out.println("User with id " + id + " not found");
             return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
-            //return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
         }
         
+        //ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+       //SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy,HH:00");
+       // SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
+       // mapper.setDateFormat(formatter);
+        List<Role> userRoles = currentUser.getRoles();
+        Role roleJson = null; 
         
+         try {
+			roleJson = mapper.readValue(newRole, Role.class);
+		} catch (JsonParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (JsonMappingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+         
+
+      @SuppressWarnings("unchecked")
+	  Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>)    
+        		 SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+      
+      
+     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	Object username = authentication.getDetails();
         
-        JSONArray resultJson = new JSONArray();
-        JSONObject userJSON = new JSONObject(); 
-        
-        
-        
+
+      
+    	if(!authorities.contains(roleJson.getName())){
+    		
+    		List<Role> roles = new ArrayList<Role>();
+    		
+    		// Add new role
+    		Role addRole = new Role();
+			addRole.setName(roleJson.getName());
+			addRole.setSettings(roleJson.getSettings());
+			addRole.setBackColor(roleJson.getBackColor());
+			roles.add(addRole);
+			roleService.save(addRole);
+			//currentUser.setRoles(roles);
+			
+			// Add ROLE_USER
+			Role roleUser = new Role();
+			roleUser.setName("ROLE_USER");
+			roleUser.setSettings("Ordinary users with limited privilages");
+			//roleUser.setCreatedDate(new Date());
+			roleUser.setBackColor("#FFAB23");
+			roleService.save(roleUser);
+			
+			// Add ROLE_ADMIN
+			Role roleAdmin = new Role();
+			roleAdmin.setName("ROLE_ADMIN");
+			roleAdmin.setSettings("People who care about role and member management");
+			//roleAdmin.setCreatedDate(new Date());
+			roleAdmin.setBackColor("#D00200");
+			roleService.save(roleAdmin);
+			
+			// Add all the roles to the user
+			roles.add(roleAdmin);
+			roles.add(roleUser);
+			roles.add(addRole);
+			currentUser.setRoles(roles);
+			
+			// Save the roles to the user
+			userService.save(currentUser);
+    	}
+ 
+
+    	/*
+			// Roles
+			Role roleUser = new Role();
+			roleUser.setName("ROLE_USER");
+			roleUser.setSettings("Ordinary users with limited privilages");
+			//roleUser.setCreatedDate(new Date());
+			roleUser.setBackColor("#FFAB23");
+			roleService.save(roleUser);
+
+			Role roleAdmin = new Role();
+			roleAdmin.setName("ROLE_ADMIN");
+			roleAdmin.setSettings("People who care about role and member management");
+			//roleAdmin.setCreatedDate(new Date());
+			roleAdmin.setBackColor("#D00200");
+			roleService.save(roleAdmin);
+			
+			
+			List<Role> roles = new ArrayList<Role>();
+			roles.add(roleAdmin);
+			roles.add(roleUser);
+			roles.add(addRole);
+			currentUser.setRoles(roles);
+			*/
+			
+			//userService.save(currentUser);
+  
+
+      
+
+   	//Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	//String username = authentication.getName();
+   
+        /* 
+        // Get all the Roles assigned to the user 
+        for (Role role : userRoles) {
+          if(!role.getName().equals(roleJson.getName())){
+					Role addRole = new Role();
+					addRole.setName(roleJson.getName());
+					addRole.setSettings(roleJson.getSettings());
+					addRole.setBackColor(roleJson.getBackColor());
+					//addRole.setCreatedDate(new Date());
+					// TODO: increment number of members using this role
+					userRoles.add(addRole);
+					currentUser.setRoles(userRoles);
+					userService.save(currentUser);
+          }
+        }
+        */
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-    	return new ResponseEntity<String>(resultJson.toString(), headers, HttpStatus.OK);
-	}
+    	//return new ResponseEntity<String>(resultJson.toString(), headers, HttpStatus.OK);
+        return new ResponseEntity<String>(getAllUsers().toString(), headers, HttpStatus.OK);
+
+ }
 	
 	
 	
