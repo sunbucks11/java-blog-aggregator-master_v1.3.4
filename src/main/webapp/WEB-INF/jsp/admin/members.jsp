@@ -139,7 +139,7 @@
 						                  
 						                  
                                         <div class="label member-role-label" ng-style={background:'{{r.roleBackColor}}'}>{{r.roleName}}
-                                        <div class="member-role-label-cross role-member-remove-cross" data-role-id="7" data-member-id="2" data-role-name="API Members" data-member-name="Example Site">&nbsp;|&nbsp;<b>x</b></div></div>
+                                        <div ng-click='onRemoveUserRole(r.roleId, u.email)' class="member-role-label-cross role-member-remove-cross" data-role-id="7" data-member-id="2" data-role-name="API Members" data-member-name="Example Site">&nbsp;|&nbsp;<b>x</b></div></div>
 						                  
 						                  
 <!-- 						                  <span class="label ng-binding" ng-style="{background:'#FFAB23'}" style="background: rgb(255, 171, 35);">{{r}}</span> -->

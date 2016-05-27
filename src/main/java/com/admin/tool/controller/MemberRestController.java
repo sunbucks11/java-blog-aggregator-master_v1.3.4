@@ -116,13 +116,44 @@ public class MemberRestController {
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
  
-    
-	
 
 	
-	
-	
-	
+	   
+    //------------------- Delete a User Role --------------------------------------------------------
+    @RequestMapping(value = "/delete-role/{id}", method = RequestMethod.PUT)
+    // public ResponseEntity<String> deleteUserRole(@PathVariable("id") int id, @RequestBody User user) {
+    public ResponseEntity<String> deleteUserRole(@PathVariable("id") int roleId, String emailAddress) {
+        System.out.println("Fetching & Deleting Role with id " + roleId);
+ 
+        // Find a the role to be deleted
+        Role role = roleService.findOne(roleId);
+        if (role == null) {
+            System.out.println("Unable to delete. Role with id " + roleId + " not found");
+            return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+        }
+        
+        
+        // Find a user with the above role
+          User user = userService.findOne("admin");
+        
+
+        // Remove the role from the user
+        List<Role> userRoles = user.getRoles();
+        
+        for (Role userRole : userRoles) {
+			if(userRole.getId() == role.getId()){
+				
+				// Remove the role
+				//userRoles.remove(userRole);
+			}
+		}
+
+        user.setRoles(userRoles);
+		userService.save(user);
+        
+        //userService.delete(id);;
+        return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
+    }
 	
 	
      //------------------- Update User Role --------------------------------------------------------
@@ -157,7 +188,6 @@ public class MemberRestController {
 		}
          
 
-
       List<Role> userRoles = currentUser.getRoles();
       List<Role> newUserRoles = new ArrayList<Role>();
       
@@ -178,8 +208,7 @@ public class MemberRestController {
     	  newUserRoles.add(role);
 	  } 
   
-      
-      
+
       if(roleDoesNotExist){
 			// Add the New role
 			Role addRole = new Role();
@@ -201,13 +230,7 @@ public class MemberRestController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-   
+
     //------------------- Update a User --------------------------------------------------------
      
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
@@ -271,8 +294,7 @@ public class MemberRestController {
         headers.setContentType(MediaType.APPLICATION_JSON);
     	return new ResponseEntity<String>(resultJson.toString(), headers, HttpStatus.OK);
     }
- 
-    
+
     
     //------------------- Delete a User --------------------------------------------------------
      

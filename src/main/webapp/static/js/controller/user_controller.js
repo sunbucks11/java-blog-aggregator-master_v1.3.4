@@ -8,6 +8,7 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
        
           
           window.selectedUser = {};
+          window.selectedRoleUserEmail= {};
           
           
           // Checkbox selection
@@ -19,37 +20,38 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
           
           // Add or Remove role/s
           $scope.onAddOrRemoveRole = function(role) { 
-        	  
-        	  
               console.log("Enabled : " + $scope.selection.ids[role.id]);
     	      console.log("Role Id: " + role.id); 
               console.log("Fole name: " + role.name); 
               console.log("Fole settings: " + role.settings); 
               console.log("Role Created: " + role.createdDate); 
               
-              
-              
-    	       /*
-              console.log("User id: " + selectedUser.id);
-              console.log("User name: " + self.user.name); 
-              console.log("User email: " + self.user.email);
-              */
-              
-
-             //  self.updateUserRole(selectedUser.id, r);
               UserService.updateUserRole(selectedUser.id, role)
               
       };
           
-      
-      
-      
-      // Add or Remove role/s
+
+      // Save selected user through the checkbox globally
       $scope.onAddRoleSaveUser = function(u) { 
     	  selectedUser = u;
     	  //console.log("Selected user id " + selectedUser.id); 
       };
       
+
+      
+      
+      
+      
+      
+      
+      // Remove a Role from a user
+      $scope.onRemoveUserRole = function (roleId, emailAddress){
+    	  console.log("Role Id to be deleted: " + roleId);
+    	  console.log("selectedRoleUserEmail: " + emailAddress);
+    	 // selectedRoleUserId = userId;
+    	  //UserService.deleteUserRole(roleId, user);
+    	  UserService.deleteUserRole(roleId, selectedRoleUserEmail);
+      }
       
       
       
@@ -98,6 +100,8 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
           
           
           
+          
+          
      
           self.updateUserRole = function(id, role){
               UserService.updateUserRole(id, role)
@@ -109,6 +113,11 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
                   );
           };
         
+          
+          
+          
+          
+          
           
           
           

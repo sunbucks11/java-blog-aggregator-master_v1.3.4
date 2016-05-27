@@ -32,9 +32,6 @@ public class Role {
 	
 	private String settings;
 
-	//@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy,HH:00", timezone="CET")
-	//@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="EEE, dd MMM yyyy HH:mm:ss zzz")
-	//@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createdDate;
 	
 	private Date modifiedDate;
@@ -42,6 +39,9 @@ public class Role {
 	@ManyToMany(mappedBy = "roles")
 	private List<User> users;
 
+	public Role(){	
+	}
+	
 	public int getIsBuiltIn() {
 		return isBuiltIn;
 	}

@@ -57,17 +57,18 @@ public class User {
 	//@DateTimeFormat(pattern = "dd-MM-yyyy")
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="EEE, dd MMM yyyy HH:mm:ss zzz")
 	private Date lastLoginDate;
-
+	
+	public User(){
+		
+	}
 	
 	public Date getCreatedDate() {
 		return createdDate;
 	}
 
-
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
-
 
 	public Date getLastLoginDate() {
 		return lastLoginDate;
@@ -77,12 +78,6 @@ public class User {
 	public void setLastLoginDate(Date lastLoginDate) {
 		this.lastLoginDate = lastLoginDate;
 	}
-
-
-	public User(){
-		
-	}
-	
 	
 	public boolean isEnabled() {
 		return enabled;

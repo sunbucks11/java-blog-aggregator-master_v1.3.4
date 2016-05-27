@@ -50,6 +50,8 @@ App.factory('UserService', ['$http', '$q', function($http, $q){
 			
 			
 			
+			
+			// Add User Role
 		    updateUserRole: function(user, role){
 				/*return $http.put('http://localhost:8080/admin-tool/user/'+id, user)*/
 	    		 return $http.put('http://localhost:8080/add-role/'+ selectedUser.id, role)
@@ -64,6 +66,32 @@ App.factory('UserService', ['$http', '$q', function($http, $q){
 						);
 		},
 			
+		
+		
+		
+		
+		
+		deleteUserRole: function(roleId, emailAddress){
+			  return $http.put('http://localhost:8080/delete-role/'+ roleId, self.user.email)
+					.then(
+							function(response){
+								return response.data;
+							}, 
+							function(errResponse){
+								/*
+								console.log("Role's to be id in Service: " + roleId);
+								console.log("User's id in Service: " + user.id);
+								console.log("User's name in Service: " + user.name);
+								console.log("User's email in Service: " + user.email);
+								console.error('Error Message : ' + errResponse);
+								*/
+								console.error('Error while deleting user role');
+								
+								return $q.reject(errResponse);
+							}
+					);
+	},
+		
 			
 			
 			
