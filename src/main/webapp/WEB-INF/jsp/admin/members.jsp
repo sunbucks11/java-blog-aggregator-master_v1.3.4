@@ -128,7 +128,7 @@
 <!-- <div  data-toggle="modal" data-target="#removeModelConfirm" ng-click='onRemoveUserRole(r.roleId, u.email)' class="member-role-label-cross role-member-remove-cross" >&nbsp;|&nbsp;<b>x</b></div></div> -->
 						        
 <!-- <div data-toggle="modal" data-target="#removeModelConfirm" data-title="Delete User" data-message="Are you sure you want to delete this user ?" ng-click='onRemoveUserRole(r.roleId, u.email)' class="member-role-label-cross role-member-remove-cross" >&nbsp;|&nbsp;<b>x</b></div></div> -->					                  
-<div    confirmed-click="onRemoveUserRole(r.roleId, u.email)"  ng-confirm-click="Would you like delete the role --- {{ r.roleName }}?"  class="member-role-label-cross role-member-remove-cross" >&nbsp;|&nbsp;<b>x</b></div></div>
+<div    confirmed-click="onRemoveUserRole(r.roleId, u.email)"  ng-confirm-click="Are you sure to remove role '{{r.roleName}}' from user --- {{ u.name }}?"  class="member-role-label-cross role-member-remove-cross" >&nbsp;|&nbsp;<b>x</b></div></div>
 
 
 						               </div>
