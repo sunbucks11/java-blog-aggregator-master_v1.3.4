@@ -53,7 +53,7 @@
              <%@ include file="../admin/fragment/members-tool-bar.jsp"%>
             	<div id="div-members-list-0">
 
-		<div ng-controller="UserController as ctrl">
+		<div id="myctrl" ng-controller="UserController as ctrl">
 						
 						<!-- ======== Refresh Button ========= -->
 						<div style="float: right"> 
@@ -123,26 +123,14 @@
 						               <div style="display: inline;" ng-repeat="r in u.roles">
 <!-- 						                  <span class={{r}}>{{r | limitTo : 5 : 5}}</span> -->
 	
-						                  <!-- <span class="label">{{r.roleName}}</span> -->
-						                  <!-- <span class="label" ng-style={background:'{{r.roleBackColor}}'}>{{r.roleName}}</span> -->
 
-						                  
-<!-- 						                  <div class="label member-role-label" ng-style={background:'{{r.roleBackColor}}'}>{{r.roleName}}
-							                  <div class="member-role-label-cross role-member-remove-cross" 
-							                  		data-role-id="1" 
-							                  		data-member-id="1" 
-							                  		data-role-name="Admins" 
-							                  		data-member-name="Admin">&nbsp;|&nbsp;
-							                  		<b>x</b>
-							                  </div>
-						                  </div> -->
-						                  
-						                  
-                                        <div class="label member-role-label" ng-style={background:'{{r.roleBackColor}}'}>{{r.roleName}}
-                                        <div ng-click='onRemoveUserRole(r.roleId, u.email)' class="member-role-label-cross role-member-remove-cross" data-role-id="7" data-member-id="2" data-role-name="API Members" data-member-name="Example Site">&nbsp;|&nbsp;<b>x</b></div></div>
-						                  
-						                  
-<!-- 						                  <span class="label ng-binding" ng-style="{background:'#FFAB23'}" style="background: rgb(255, 171, 35);">{{r}}</span> -->
+                                       <div class="label member-role-label" ng-style={background:'{{r.roleBackColor}}'}>{{r.roleName}}
+<!-- <div  data-toggle="modal" data-target="#removeModelConfirm" ng-click='onRemoveUserRole(r.roleId, u.email)' class="member-role-label-cross role-member-remove-cross" >&nbsp;|&nbsp;<b>x</b></div></div> -->
+						        
+<!-- <div data-toggle="modal" data-target="#removeModelConfirm" data-title="Delete User" data-message="Are you sure you want to delete this user ?" ng-click='onRemoveUserRole(r.roleId, u.email)' class="member-role-label-cross role-member-remove-cross" >&nbsp;|&nbsp;<b>x</b></div></div> -->					                  
+<div    confirmed-click="onRemoveUserRole(r.roleId, u.email)"  ng-confirm-click="Would you like delete the role --- {{ r.roleName }}?"  class="member-role-label-cross role-member-remove-cross" >&nbsp;|&nbsp;<b>x</b></div></div>
+
+
 						               </div>
 						            </td>
 						            <!-- ================= Email ================-->
@@ -195,42 +183,8 @@
         
 
 	   <%@ include file="../admin/fragment/add-role-model.jsp"%> 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	   
+	   <%@ include file="../admin/fragment/role-remove-confirm-model.jsp"%> 
 
 
 
@@ -264,12 +218,53 @@
 	 window.location.reload();
 	});
  
- 
+ /*
  $('#addRoleModel').on('hidden.bs.modal', function () {
  	 window.location.reload();
 	 
   });
+ */
+ 
+ 
  </script>
+ 
+ 
+ 
+ 
+ 
+ 
+ <!-- Dialog show event handler -->
+<script type="text/javascript">
+  $('#removeModelConfirm').on('show.bs.modal', function (e) {
+      $message = $(e.relatedTarget).attr('data-message');
+      $(this).find('.modal-body p').text($message);
+      $title = $(e.relatedTarget).attr('data-title');
+      $(this).find('.modal-title').text($title);
+
+      // Pass form reference to modal for submission on yes/ok
+      var form = $(e.relatedTarget).closest('form');
+      $(this).find('.modal-footer #confirm').data('form', form);
+  });
+
+
+  /*
+  $('#removeModelConfirm').find('.modal-footer #confirm').on('click', function(){
+	  alert("User Deleted");
+	  
+	  
+	  angular.element('#myctrl').scope().onRemoveUserRole();
+	  
+	  
+	  window.location.reload();
+      $(this).data('form').submit();
+  });
+  */
+</script>
+ 
+ 
+ 
+ 
+ 
  
  
  

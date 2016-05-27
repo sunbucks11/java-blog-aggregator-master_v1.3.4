@@ -27,6 +27,7 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
               console.log("Role Created: " + role.createdDate); 
               
               UserService.updateUserRole(selectedUser.id, role)
+              window.location.reload();
               
       };
           
@@ -40,20 +41,25 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
 
       
       
+      $scope.onRemoveUserRole = function(roleId, emailAddress) {
+  	   selectedRoleUserEmail = emailAddress;
+ 	   UserService.deleteUserRole(roleId, selectedRoleUserEmail);
+ 	   window.location.reload();
+ 	   
+      }
       
       
       
-      
+     /* 
       // Remove a Role from a user
       $scope.onRemoveUserRole = function (roleId, emailAddress){
     	  console.log("Role Id to be deleted: " + roleId);
-    	  //console.log("selectedRoleUserEmail: " + emailAddress);
-    	 // selectedRoleUserId = userId;
+
     	  selectedRoleUserEmail = emailAddress;
-    	  //UserService.deleteUserRole(roleId, user);
-    	  UserService.deleteUserRole(roleId, selectedRoleUserEmail);
+    	   UserService.deleteUserRole(roleId, selectedRoleUserEmail);
+    	  //self.deleteUserRole(roleId, selectedRoleUserEmail);
       }
-      
+      */
       
       
       
@@ -95,15 +101,7 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
                   );
           };
           
-          
-          
-          
-          
-          
-          
-          
-          
-     
+
           self.updateUserRole = function(id, role){
               UserService.updateUserRole(id, role)
 		              .then(
@@ -114,6 +112,21 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
                   );
           };
         
+          
+          
+          
+          
+          
+
+          self.deleteUserRole = function(roleId, selectedRoleUserEmail){
+               UserService.deleteUser(roleId, selectedRoleUserEmail)
+ 		              .then(
+ 				              self.fetchAllUsers, 
+ 				              function(errResponse){
+ 					               console.error('Error while deleting User.');
+ 				              }	
+                   );
+           };
           
           
           
