@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.admin.tool.entity.Role;
 import com.admin.tool.entity.User;
 import com.admin.tool.repository.UserRepository;
 import com.admin.tool.service.AuditService;
@@ -52,9 +53,22 @@ public class SecurityUserDetailsService implements UserDetailsService {
 		}
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+		
+		
+		  List<Role> userRoles = user.getRoles();
+	      for (Role role : userRoles) {
+	    	    
+	  		if(role.getName().equals("ROLE_ADMIN")){
+	  			authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+	  		}
+	  	  } 
+
+	      /*
 		if (user.getName().equals("admin"))
 			authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        */
 
+		
 		message = "Found user in database: " + user.getName();
 		LOGGER.info(message);
 		user.setLastLoginDate(new Date());

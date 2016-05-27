@@ -58,18 +58,11 @@ public class UserService {
 	}
 
 	public void save(User user) {
+		/*
 		user.setEnabled(true);
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		user.setPassword(encoder.encode(user.getPassword()));
-
-		List<Role> roles = new ArrayList<Role>();
-		
-		// I SET THE ROLE JUST FOR TEST
-		// TO BE RETRIEVED FROM user PARAMETER PASSED	
-		roles.add(roleRepository.findByName("ROLE_USER"));
-		user.setRoles(roles);
-		user.setCreatedDate(new Date());
-
+		*/
 		userRepository.save(user);
 	}
 

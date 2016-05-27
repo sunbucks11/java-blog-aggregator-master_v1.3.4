@@ -47,7 +47,7 @@ public class User {
 	@JoinTable
 	private List<Role> roles; 
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
 	private List<Blog> blogs;
 
 	//@DateTimeFormat(pattern = "dd-MM-yyyy")

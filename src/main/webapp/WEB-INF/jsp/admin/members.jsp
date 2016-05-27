@@ -110,8 +110,7 @@
 						                    <span ng-bind="u.name"></span>
 						               </a>
 						               
-										               
-						               
+
 						               <div style="display: inline" class="member-add-role-inline">
 						                  <a ng-click='onAddRoleSaveUser(u)' class="member-add-role-inline-link btn-xs btn btn-default" data-toggle="modal" data-target="#addRoleModel"  data-member-id="1" data-member-name="Admin" href="#">Add Roles</a>
 <!-- 						                   <input ng-checked={{r.enabled}} type="checkbox" ng-click='onAddOrRemoveRole(r, u)' ng-model="selection.ids[r.id]" name="group"  />  -->
@@ -120,11 +119,28 @@
     
 						            </td>
 						            <!-- ================= Roles ================-->
-						            <td>
+						            <td id="member-roles-all-1">
 						               <div style="display: inline;" ng-repeat="r in u.roles">
 <!-- 						                  <span class={{r}}>{{r | limitTo : 5 : 5}}</span> -->
+	
+						                  <!-- <span class="label">{{r.roleName}}</span> -->
+						                  <!-- <span class="label" ng-style={background:'{{r.roleBackColor}}'}>{{r.roleName}}</span> -->
+
 						                  
-						                  <span>{{r}}</span>
+<!-- 						                  <div class="label member-role-label" ng-style={background:'{{r.roleBackColor}}'}>{{r.roleName}}
+							                  <div class="member-role-label-cross role-member-remove-cross" 
+							                  		data-role-id="1" 
+							                  		data-member-id="1" 
+							                  		data-role-name="Admins" 
+							                  		data-member-name="Admin">&nbsp;|&nbsp;
+							                  		<b>x</b>
+							                  </div>
+						                  </div> -->
+						                  
+						                  
+                                        <div class="label member-role-label" ng-style={background:'{{r.roleBackColor}}'}>{{r.roleName}}
+                                        <div class="member-role-label-cross role-member-remove-cross" data-role-id="7" data-member-id="2" data-role-name="API Members" data-member-name="Example Site">&nbsp;|&nbsp;<b>x</b></div></div>
+						                  
 						                  
 <!-- 						                  <span class="label ng-binding" ng-style="{background:'#FFAB23'}" style="background: rgb(255, 171, 35);">{{r}}</span> -->
 						               </div>

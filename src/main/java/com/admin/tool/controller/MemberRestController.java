@@ -99,15 +99,18 @@ public class MemberRestController {
 		System.out.println(roleService.findAll().get(0).getName() + "\n" + roleService.findAll().get(1).getName());
 		
 		List<Role> roles = new ArrayList<Role>();
-		roles.add(roleService.findAll().get(0));
+		
+		// JUST FOR TEST INTIAL ASSIGN A NEW CREATED USER 
+		// THE ROLE "ROLE_USER"
+		Role addRole = new Role();
+		addRole = roleService.findOne("ROLE_USER");
+		roles.add(addRole);
 		user.setRoles(roles);
-		//user.setRoles(roleService.getRoles());
 		user.setEnabled(true);
 		user.setCreatedDate(new Date());
-		//user.setBlogs(null);
-
-		userRepository.save(user);
-       // userService.save(user);
+		userService.save(user);
+		///////////////////////////////
+		        
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
@@ -158,33 +161,29 @@ public class MemberRestController {
       List<Role> userRoles = currentUser.getRoles();
       List<Role> newUserRoles = new ArrayList<Role>();
       
-      @SuppressWarnings("unchecked")
+/*      @SuppressWarnings("unchecked")
 	  Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>)    
-        		 SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+        		 SecurityContextHolder.getContext().getAuthentication().getAuthorities();*/
       
       
+     boolean roleDoesNotExist = true;
       
    
       for (Role role : userRoles) {
-    	/*
-		if(!role.getName().equals(roleJson.getName()) && !authorities.contains(roleJson.getName())){
-			roleDoesNotExist = true; 
+    
+		if(role.getName().equals(roleJson.getName())){
+			roleDoesNotExist = false; 
 		}
-		*/
-    	  
+ 
     	  newUserRoles.add(role);
 	  } 
   
       
       
-      if(!authorities.contains(roleJson.getName())){
+      if(roleDoesNotExist){
 			// Add the New role
 			Role addRole = new Role();
-			addRole.setName(roleJson.getName());
-			addRole.setSettings(roleJson.getSettings());
-			addRole.setBackColor(roleJson.getBackColor());
-			addRole.setCreatedDate(new Date());
-			roleService.save(addRole);
+			addRole = roleService.findOne(roleJson.getName());
 
 			newUserRoles.add(addRole);
 			currentUser.setRoles(newUserRoles);
@@ -194,7 +193,8 @@ public class MemberRestController {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
     	//return new ResponseEntity<String>(resultJson.toString(), headers, HttpStatus.OK);
-        return new ResponseEntity<String>(getAllUsers().toString(), headers, HttpStatus.OK);
+        //return new ResponseEntity<String>(getAllUsers().toString(), headers, HttpStatus.OK);
+        return new ResponseEntity<String>(headers, HttpStatus.OK);
 
  }
 	
@@ -321,22 +321,52 @@ public class MemberRestController {
     	
     	
     	JSONArray resultJson = new JSONArray();
+    	
 
     	for(User user :users){
 
-    		  List<Role> userRoles = user.getRoles();
-    	      List<Role>  allUserRoles = new ArrayList<Role>();
+    		JSONArray roleResultJson = new JSONArray();
+    		
+    		User currentUser = userService.findOne(user.getId()); 
+    		
+    		  List<Role> userRoles = currentUser.getRoles();
+    	      //List<Role>  allUserRoles = new ArrayList<Role>();
+    	      
+    	      JSONObject userJSON = new JSONObject();
+    	      JSONObject roleJSON = new JSONObject(); 
 
+    	      /*
     	      for (Role role : userRoles) {
     	    	  allUserRoles.add(role);
     		  } 
+    	      */
+    	      
+    	     /* 
+    	      for (Role roleInUser: allUserRoles){
+    	    	  roleJSON = new JSONObject(); 
+    	    	  try {
+    	    	     roleJSON.put("roleId",roleInUser.getId());
+    	    	     roleJSON.put("roleName",roleInUser.getName());
+    	    	     roleJSON.put("roleBackColor",roleInUser.getBackColor());
+    	    	     
+    	    	     //userJSON.put("roles",roleJSON); 
+    	    	     
+    	    	  } catch (JSONException e) {
+    	                e.printStackTrace();
+    	            }
+    	    	  
+    	    	  roleResultJson.put(roleJSON);
+    	      }
+    	      */
+    	      
+    	      
+    	      
     		//roles = roleService.findRolesById(user.getId());
-    		JSONObject userJSON = new JSONObject();   	
+    		 userJSON = new JSONObject();   	
         	try {
         		userJSON.put("id",user.getId());
         		userJSON.put("name",user.getName());
         		userJSON.put("email",user.getEmail());
-        		userJSON.put("roles",allUserRoles); 
 
         		Date date = user.getCreatedDate();
         		
@@ -351,11 +381,38 @@ public class MemberRestController {
         			userJSON.put("lastLoginDate",dateFormat.format(date)); 
         		}
         		
+        		
+        		/////////// Add Roles to Json ///////
+	      	      for (Role roleInUser: userRoles){
+	      	    	 // roleResultJson = new JSONArray();
+	    	    	  roleJSON = new JSONObject(); 
+	    	    	     roleJSON.put("roleId",roleInUser.getId());
+	    	    	     roleJSON.put("roleName",roleInUser.getName());
+	    	    	     roleJSON.put("roleBackColor",roleInUser.getBackColor());
+	
+	    	    	     roleResultJson.put(roleJSON);
+	    	      }
+	      	      /////////////////////////////////////////
+	      	      
+        		  userJSON.put("roles",roleResultJson); 
+        		
+        		
+        		
+        		
+        		
+        		
    
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         	resultJson.put(userJSON);
+        	
+        	
+        	
+        	
+        	
+        	
+        	
     	}
     	
     	return resultJson;

@@ -129,6 +129,7 @@ public class RoleRestController {
 		Role newRole = new Role();
 		newRole.setName(role.getName());
 		newRole.setSettings(role.getSettings());
+		newRole.setBackColor(role.getBackColor());
 		newRole.setCreatedDate(new Date());
 		
 	    newRole.setBackColor(role.getBackColor());
