@@ -47,8 +47,9 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
       // Remove a Role from a user
       $scope.onRemoveUserRole = function (roleId, emailAddress){
     	  console.log("Role Id to be deleted: " + roleId);
-    	  console.log("selectedRoleUserEmail: " + emailAddress);
+    	  //console.log("selectedRoleUserEmail: " + emailAddress);
     	 // selectedRoleUserId = userId;
+    	  selectedRoleUserEmail = emailAddress;
     	  //UserService.deleteUserRole(roleId, user);
     	  UserService.deleteUserRole(roleId, selectedRoleUserEmail);
       }

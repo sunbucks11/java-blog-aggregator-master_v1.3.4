@@ -122,7 +122,7 @@ public class MemberRestController {
     //------------------- Delete a User Role --------------------------------------------------------
     @RequestMapping(value = "/delete-role/{id}", method = RequestMethod.PUT)
     // public ResponseEntity<String> deleteUserRole(@PathVariable("id") int id, @RequestBody User user) {
-    public ResponseEntity<String> deleteUserRole(@PathVariable("id") int roleId, String emailAddress) {
+    public ResponseEntity<String> deleteUserRole(@PathVariable("id") int roleId, @RequestBody String emailAddress) {
         System.out.println("Fetching & Deleting Role with id " + roleId);
  
         // Find a the role to be deleted

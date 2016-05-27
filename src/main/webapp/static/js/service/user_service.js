@@ -71,8 +71,8 @@ App.factory('UserService', ['$http', '$q', function($http, $q){
 		
 		
 		
-		deleteUserRole: function(roleId, emailAddress){
-			  return $http.put('http://localhost:8080/delete-role/'+ roleId, self.user.email)
+		deleteUserRole: function(roleId, selectedRoleUserEmail){
+			  return $http.put('http://localhost:8080/delete-role/'+ roleId, selectedRoleUserEmail)
 					.then(
 							function(response){
 								return response.data;
