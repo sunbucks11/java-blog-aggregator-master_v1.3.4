@@ -1,3 +1,4 @@
+<!-- 
 <!-- Modal Dialog -->
 <div class="modal fade" id="removeModelConfirm" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -16,7 +17,7 @@
     </div>
   </div>
 </div>
-
+-->
 
 
 

@@ -8,6 +8,14 @@
 
 <head>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		
+	
+    <script src="/static/js/slickswitch/js/jquery.slickswitch.js" type="text/javascript"></script>
+    <link href="/static/js/slickswitch/css/slickswitch.css" rel="stylesheet" type="text/css" />   
+	
+	
+	
+		
 </head>
 
 
@@ -102,7 +110,21 @@
 	 						            <div>
 										  <input ng-checked={{f.enabled}} type="checkbox" ng-click='onEnableOrDisable(f)' ng-model="selection.ids[f.id]" name="group"  /> 
 										</div>
+										
+										<a class="switch">
+											<span class="ss-on" style=""></span>
+											<span class="ss-slider" style="left: 13px;">
+										</span>
+										</a>
+										
 						              </td>
+						              
+						              
+						              
+						              
+						             
+						              
+						              
 						              
 						      		<!-- ==========  Created Date  ========== --> 
 						      		 <td style="white-space:nowrap">
@@ -168,6 +190,54 @@
 	}); 
    
 </script>
+
+
+
+
+
+<script type="text/javascript">
+ /*   
+    $('.switch').slickswitch();
+
+    $(".switch").on("change", function (e) {
+        alert("clicked");
+        var id = $(this).attr("data-field-id");
+        var isChecked = $(this).is(":checked");
+   
+        var _this = $(this);
+
+        $.ajax({
+            type: "POST",
+            url: "#",
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ Flag: isChecked, FieldID: id}),
+            cache: false,
+            success: function (data) {
+                
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                
+                App.DialogError(xhr, textStatus, errorThrown);
+            }
+        });
+
+    });
+*/
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>
