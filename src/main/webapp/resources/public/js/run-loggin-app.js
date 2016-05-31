@@ -12,7 +12,10 @@ require.config({
         lodash: "../../bower_components/lodash/dist/lodash",
         editableTableWidgets: 'editable-table-widgets',
         common: 'common',
-        loginApp: 'login'
+        loginApp: 'login',
+        
+        angularuiswitch: '../../bower_components/angular-ui-switch/angular-ui-switch.min'
+        
     },
     shim: {
         angular: {
@@ -33,6 +36,15 @@ require.config({
         loginApp: {
             deps: [ 'common']
         }
+        
+        
+        ,
+        myApp: {
+        	deps: ['angularuiswitch']
+        }
+        
+        
+        
     }
 });
 

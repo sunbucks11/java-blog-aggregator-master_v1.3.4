@@ -20,8 +20,8 @@ public class Field {
 	
 	private String comment;
 	
-	//private boolean enabled;
-	private String enabled;
+	private boolean enabled;
+	//private String enabled;
 	
 	private Date createdDate;
 	
@@ -51,10 +51,10 @@ public class Field {
 		this.comment = comment;
 	}
 	
-	public String getEnabled() {
+	public boolean getEnabled() {
 		return enabled;
 	}
-	public void setEnabled(String enabled) {
+	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
 	

@@ -7,7 +7,7 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
           self.users=[];
        
           
-          window.selectedUser = {};
+          window.selectedUser = {id:{}};
           window.selectedRoleUserEmail= {};
           
           

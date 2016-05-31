@@ -80,28 +80,32 @@ public class InitDbService {
 			Field field1 = new Field();
 			field1.setName("name");
 			field1.setComment("This field is for first name");
-			field1.setEnabled("false");
+			//field1.setEnabled("false");
+			field1.setEnabled(false);
 			field1.setCreatedDate(new Date());
 			fieldRepository.save(field1);
 
 			Field field2 = new Field();
 			field2.setName("email");
 			field2.setComment("This field is for email address");
-			field2.setEnabled("false");
+			//field2.setEnabled("false");
+			field2.setEnabled(false);
 			field2.setCreatedDate(new Date());
 			fieldRepository.save(field2);
 			
 			Field field3 = new Field();
 			field3.setName("password");
 			field3.setComment("This field is for password");
-			field3.setEnabled("false");
+			//field3.setEnabled("false");
+			field3.setEnabled(false);
 			field3.setCreatedDate(new Date());
 			fieldRepository.save(field3);
 			
 			Field field4 = new Field();
 			field4.setName("confirmPassword");
 			field4.setComment("This field is for confirm password");
-			field4.setEnabled("false");
+			//field4.setEnabled("false");
+			field4.setEnabled(false);
 			field4.setCreatedDate(new Date());
 			fieldRepository.save(field4);
 

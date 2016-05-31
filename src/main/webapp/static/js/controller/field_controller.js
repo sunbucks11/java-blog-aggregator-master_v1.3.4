@@ -12,17 +12,53 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
           self.field={id:'',name:'' ,comment:'',enabled:'' ,createdDate:'' ,modifiedDate:''};
           self.fields=[];
 
-  
+          
+          
+          
+          
+          var index;
+          var a = ["a", "b", "c"];
+          for (index = 0; index < a.length; ++index) {
+              console.log(a[index]);
+          }
+          
+          
+          
+          
+          
+          
+          
+
+             
+          /*
+          $scope.enabled = true;
+          $scope.onOff = true;
+          $scope.yesNo = true;
+          $scope.disabled = true;
+
+
+          $scope.changeCallback = function() {
+            console.log('This is the state of my model ' + $scope.enabled);
+          };
+          */
+          
+          window.selectedCheckBoxes = {};
+          
+          
+     
           // Checkbox selection
           $scope.selection = {
               ids: {}
           
           };
+
+          
  
           // Enable or disable field/s
           $scope.onEnableOrDisable = function(f) { 
         	  
-	              console.log("Enabled : " + $scope.selection.ids[f.id]);
+        	      console.log("Enabled : " + f.enabled);
+	              //console.log("Enabled : " + $scope.selection.ids[f.id]);
         	      console.log("Field Id: " + f.id); 
 	              console.log("Field name: " + f.name); 
 	              console.log("Field comment: " + f.comment); 
@@ -32,6 +68,7 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
         	      self.field.enabled = $scope.selection.ids[f.id];
         	      self.field.name = f.name;
         	      self.field.comment = f.comment;
+        	      selectedCheckBoxes = $scope.selection.ids; 
 	              
 	              self.updateField(self.field, f.id);        
           };

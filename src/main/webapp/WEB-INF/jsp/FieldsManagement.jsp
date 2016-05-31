@@ -6,8 +6,15 @@
 
 <html>
 
+
 <head>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		
+		<link rel="stylesheet" href="./resources/bower_components/angular-ui-switch/angular-ui-switch.min.css"/>
+		
+<!-- 		 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.3/angular.min.js"></script> -->
+		
+	
 </head>
 
 
@@ -99,9 +106,34 @@
 						              <td style="white-space:nowrap">
 	 						            <!-- <input  id="audit-event-select-10246" class="audit-event-select" data-audit-event-id="10246" type="checkbox" /> -->	
  	 						           <!-- <pre ng-bind="selection.ids | json"></pre> -->
+	 						            
+	 						         
 	 						            <div>
 										  <input ng-checked={{f.enabled}} type="checkbox" ng-click='onEnableOrDisable(f)' ng-model="selection.ids[f.id]" name="group"  /> 
 										</div>
+									   
+
+  				  								
+  									<!-- 	    
+  										     <switch ng-model="selection.ids[f.id]"  ng-change="onEnableOrDisable(f)"></switch>
+											    <p>
+											        selection.ids: {{selection.ids[f.id]}} <br>
+											        f.enabled: {{f.enabled}}
+											    </p>
+									-->
+					
+  										    <switch ng-model="selection.ids[f.id]"  ng-change="onEnableOrDisable(f)"></switch>
+  										    <p>
+  										   	        selection.ids: {{selection.ids[f.id]}} <br>
+											        f.enabled: {{f.enabled}}
+  										   </p>
+  										   
+  										   
+		 
+  										 
+  										 
+  										 
+										
 						              </td>
 						              
 						      		<!-- ==========  Created Date  ========== --> 
@@ -130,6 +162,8 @@
 									  <br> <br> <br>
 					   				</div> <!-- /RoleController -->
 							    </div>	
+							    
+							    
 					</div>
 
 						<!-- ======== Bottom table status bar  ======== -->
@@ -151,11 +185,25 @@
 		<%@ include file="./admin/fragment/field-remove-model.jsp"%> 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script>
-        <script src="<c:url value='/static/js/app.js' />"> </script>
+<!--         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script> -->
+         <script src="<c:url value='/static/js/app.js' />"> </script>
         <script src="<c:url value='/static/js/service/field_service.js' />"></script>
         <script src="<c:url value='/static/js/controller/field_controller.js' />"></script> 
+        <script src="../resources/bower_components/angular-ui-switch/angular-ui-switch.js"></script>
 
 
 <script type="text/javascript">
@@ -166,6 +214,7 @@
    $('#removeFieldModel').on('hidden.bs.modal', function () {
 	 window.location.reload();
 	}); 
+   
    
 </script>
 

@@ -1,6 +1,14 @@
 'use strict';
 
-var App = angular.module('myApp', []);
+var App = angular.module('myApp', ['uiSwitch']);
+
+
+
+
+
+
+
+
 
 var directiveId = 'ngMatch';
 App.directive(directiveId, [ '$parse', function($parse) {
