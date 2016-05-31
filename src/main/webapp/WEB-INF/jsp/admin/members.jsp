@@ -112,7 +112,7 @@
 						               
 
 						               <div style="display: inline" class="member-add-role-inline">
-						                  <a ng-click='onAddRoleSaveUser(u)' class="member-add-role-inline-link btn-xs btn btn-default" data-toggle="modal" data-target="#addRoleModel"  data-member-id="1" data-member-name="Admin" href="#">Add Roles</a>
+						                  <a ng-click='onAddRoleSaveUser(u)' class="member-add-role-inline-link btn-xs btn btn-default" style="background-color: #4F5454; color:white;" data-toggle="modal" data-target="#addRoleModel"  data-member-id="1" data-member-name="Admin" href="#">Add Roles</a>
 <!-- 						                   <input ng-checked={{r.enabled}} type="checkbox" ng-click='onAddOrRemoveRole(r, u)' ng-model="selection.ids[r.id]" name="group"  />  -->
 						               </div>
 						               

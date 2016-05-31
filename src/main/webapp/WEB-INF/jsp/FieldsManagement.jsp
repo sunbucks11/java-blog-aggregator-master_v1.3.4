@@ -12,10 +12,11 @@
 	
     <script src="/static/js/slickswitch/js/jquery.slickswitch.js" type="text/javascript"></script>
     <link href="/static/js/slickswitch/css/slickswitch.css" rel="stylesheet" type="text/css" />   
+    
+    <link rel="stylesheet" type="text/css" href="/static/jquerycheckbox/css/styles.css" />
+	<link rel="stylesheet" type="text/css" href="/static/jquerycheckbox/jquery.tzCheckbox/jquery.tzCheckbox.css" />
 	
 	
-	
-		
 </head>
 
 
@@ -59,6 +60,7 @@
 		
 				<div ng-controller="FieldController as ctrl">
 
+
 					   <div style="float: right"> 
 							<a  ng-click="ctrl.fetchAllFields()" class="btn btn-default btn-info  btn-sm" id="refresh-member">
 					          <i class="glyphicon glyphicon-refresh icon-white"></i>&nbsp;Refresh&nbsp;                      
@@ -81,6 +83,12 @@
 						    </thead>
 						    <tbody>
 						          <tr ng-repeat="f in ctrl.fields track by f.id">
+		 
+		 				       
+						          	    <div>
+				    						<input type="checkbox" id="field" name="ch_location" checked />
+										</div>
+			        
 						               <td style="text-align:center" class="table-first-column" style="width:2%">
 						              </td>
 						              
@@ -105,27 +113,23 @@
 						              
 						              <!-- ==========  Enabled  ========== --> 
 						              <td style="white-space:nowrap">
-	 						            <!-- <input  id="audit-event-select-10246" class="audit-event-select" data-audit-event-id="10246" type="checkbox" /> -->	
+	 						           <!-- <input  id="audit-event-select-10246" class="audit-event-select" data-audit-event-id="10246" type="checkbox" />  -->
  	 						           <!-- <pre ng-bind="selection.ids | json"></pre> -->
 	 						            <div>
 										  <input ng-checked={{f.enabled}} type="checkbox" ng-click='onEnableOrDisable(f)' ng-model="selection.ids[f.id]" name="group"  /> 
-										</div>
+										</div> 
 										
-										<a class="switch">
+									 <!-- <a class="switch">
 											<span class="ss-on" style=""></span>
 											<span class="ss-slider" style="left: 13px;">
 										</span>
-										</a>
+										</a> -->
+										
+
 										
 						              </td>
 						              
-						              
-						              
-						              
-						             
-						              
-						              
-						              
+	
 						      		<!-- ==========  Created Date  ========== --> 
 						      		 <td style="white-space:nowrap">
 						               <div class="table-date-full">{{ f.createdDate}}</div>
@@ -165,6 +169,25 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		<!-- Add Role Model -->
 	 	<%@ include file="./admin/fragment/field-model.jsp"%> 
 		
@@ -178,6 +201,13 @@
         <script src="<c:url value='/static/js/app.js' />"> </script>
         <script src="<c:url value='/static/js/service/field_service.js' />"></script>
         <script src="<c:url value='/static/js/controller/field_controller.js' />"></script> 
+        
+
+       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	   <script src="./static/jquerycheckbox/jquery.tzCheckbox/jquery.tzCheckbox.js"></script>
+	   <script src="/static/jquerycheckbox/js/script.js"></script>
+        
+        
 
 
 <script type="text/javascript">
@@ -189,6 +219,7 @@
 	 window.location.reload();
 	}); 
    
+   
 </script>
 
 
@@ -198,14 +229,12 @@
 <script type="text/javascript">
  /*   
     $('.switch').slickswitch();
-
     $(".switch").on("change", function (e) {
         alert("clicked");
         var id = $(this).attr("data-field-id");
         var isChecked = $(this).is(":checked");
    
         var _this = $(this);
-
         $.ajax({
             type: "POST",
             url: "#",
@@ -221,7 +250,6 @@
                 App.DialogError(xhr, textStatus, errorThrown);
             }
         });
-
     });
 */
 </script>
@@ -241,4 +269,3 @@
 
 </body>
 </html>
-

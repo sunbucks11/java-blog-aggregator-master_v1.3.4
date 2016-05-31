@@ -13,6 +13,8 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
           self.fields=[];
 
   
+   
+          
           // Checkbox selection
           $scope.selection = {
               ids: {}
