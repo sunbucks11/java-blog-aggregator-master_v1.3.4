@@ -134,25 +134,36 @@ public class MemberRestController {
         
         
         // Find a user with the above role
-          User user = userService.findOne("admin");
+          User user = userService.findByEmail(emailAddress);
         
 
         // Remove the role from the user
         List<Role> userRoles = user.getRoles();
+        boolean roleFound = false;
+        int indexToRemove = -1;
         
         for (Role userRole : userRoles) {
 			if(userRole.getId() == role.getId()){
 				
+				roleFound = true;
+				indexToRemove = userRoles.indexOf(userRole);
 				// Remove the role
 				//userRoles.remove(userRole);
 			}
 		}
+        
+        
+        if(roleFound && indexToRemove > -1 ){
+        	userRoles.remove(indexToRemove);
+        }
+        
+        
 
         user.setRoles(userRoles);
 		userService.save(user);
         
         //userService.delete(id);;
-        return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<String>(getAllUsers().toString(),HttpStatus.NO_CONTENT);
     }
 	
 	

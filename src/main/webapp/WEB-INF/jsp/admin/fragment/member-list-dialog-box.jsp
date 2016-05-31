@@ -27,7 +27,9 @@
                                     <td>
                                        <div style="display: inline;" ng-repeat="r in u.roles">
                                           <!--  <span class={{r}} ng-bind="r"></span>	 -->
-                                          <span class={{r}}>{{r | limitTo : 5 : 5}}</span>
+                                          <!-- <span class={{r}}>{{r | limitTo : 5 : 5}}</span> -->
+                                          <!-- <span class={{r}}>{{r.roleName}}</span> -->
+                                          <span class="label member-role-label" ng-style={background:'{{r.roleBackColor}}'}>{{r.roleName}}</span>
                                        </div>
                                     </td>
                                     <td><span ng-bind="u.email"></span></td>

@@ -41,7 +41,7 @@
 									<!-- ======= Settings ======= -->
 									<div class="form-group">
 										<label for="role-settings">Settings</label>
-										<textarea class="input-xlarge form-control" id="role-settings" data-ng-model="ctrl.role.settings" rows="3" style="color: black" maxlength="4000"></textarea>
+										<textarea  placeholder="Enter role description" class="input-xlarge form-control" id="role-settings" data-ng-model="ctrl.role.settings" rows="3" style="color: black" maxlength="4000"></textarea>
 									</div>
 									<br>
 									<br>
@@ -54,21 +54,6 @@
 							  	{{ctrl.role.backColor}}  
 							 </div> 
 	
-							  	
-							 <!--   	
-							  <div class="colorpicker">
-								<input onchange="myFunction()" type="text" id="color2" />
-								 <br>	
-								 <br>
-								 <div id="colorpicker2"></div>
-							 </div>	 
-							 <p id="demo"></p>
-							 -->	
-							 
-						<!-- <input type="submit" value="Add" class="btn btn-primary btn-sm" ng-disabled="!roleForm.$valid"> -->
-
-					
-					      	 
 							
 							 <br> <br> <br>
 							 

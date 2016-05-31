@@ -12,6 +12,7 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
           self.field={id:'',name:'' ,comment:'',enabled:'' ,createdDate:'' ,modifiedDate:''};
           self.fields=[];
 
+<<<<<<< HEAD
           
           
           
@@ -46,6 +47,11 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
           
           
      
+=======
+  
+   
+          
+>>>>>>> f77e90a50448580449de711a497ce3cbf5a60ee6
           // Checkbox selection
           $scope.selection = {
               ids: {}

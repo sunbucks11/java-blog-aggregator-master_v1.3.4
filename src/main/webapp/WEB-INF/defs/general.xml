@@ -132,4 +132,13 @@
 		<put-attribute name="current" value="profile" />
 	</definition>
 	
+
+	<definition name="403" extends="common">
+		<put-attribute name="title" value="Admin Tool" />
+		<put-attribute name="body" value="/WEB-INF/jsp/403.jsp" />
+		<put-attribute name="current" value="403" />
+	</definition>
+	
+	
+	
 </tiles-definitions>

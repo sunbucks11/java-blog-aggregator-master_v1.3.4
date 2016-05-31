@@ -135,7 +135,7 @@ App.controller('RoleController', ['$scope', 'RoleService', function($scope, Role
           
           self.reset = function(){
         	  self.role={id:null ,name:'' ,email:'', isBuiltIn:'' , backColor:'' ,foreColor:'' ,settings:'' ,created:'' ,modified:''};
-              $scope.myForm.$setPristine(); //reset Form
+             // $scope.myForm.$setPristine(); //reset Form
           };
           
 

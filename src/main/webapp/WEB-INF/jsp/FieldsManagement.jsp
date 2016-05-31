@@ -9,12 +9,9 @@
 
 <head>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-		
+
 		<link rel="stylesheet" href="./resources/bower_components/angular-ui-switch/angular-ui-switch.min.css"/>
-		
-<!-- 		 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.3/angular.min.js"></script> -->
-		
-	
+
 </head>
 
 
@@ -58,6 +55,7 @@
 		
 				<div ng-controller="FieldController as ctrl">
 
+
 					   <div style="float: right"> 
 							<a  ng-click="ctrl.fetchAllFields()" class="btn btn-default btn-info  btn-sm" id="refresh-member">
 					          <i class="glyphicon glyphicon-refresh icon-white"></i>&nbsp;Refresh&nbsp;                      
@@ -80,6 +78,12 @@
 						    </thead>
 						    <tbody>
 						          <tr ng-repeat="f in ctrl.fields track by f.id">
+		 
+		 				       
+						          	    <div>
+				    						<input type="checkbox" id="field" name="ch_location" checked />
+										</div>
+			        
 						               <td style="text-align:center" class="table-first-column" style="width:2%">
 						              </td>
 						              
@@ -104,12 +108,13 @@
 						              
 						              <!-- ==========  Enabled  ========== --> 
 						              <td style="white-space:nowrap">
-	 						            <!-- <input  id="audit-event-select-10246" class="audit-event-select" data-audit-event-id="10246" type="checkbox" /> -->	
+	 						           <!-- <input  id="audit-event-select-10246" class="audit-event-select" data-audit-event-id="10246" type="checkbox" />  -->
  	 						           <!-- <pre ng-bind="selection.ids | json"></pre> -->
 	 						            
 	 						         
 	 						            <div>
 										  <input ng-checked={{f.enabled}} type="checkbox" ng-click='onEnableOrDisable(f)' ng-model="selection.ids[f.id]" name="group"  /> 
+ 
 										</div>
 									   
 
@@ -128,14 +133,11 @@
 											        f.enabled: {{f.enabled}}
   										   </p>
   										   
-  										   
-		 
-  										 
-  										 
-  										 
+
 										
 						              </td>
 						              
+	
 						      		<!-- ==========  Created Date  ========== --> 
 						      		 <td style="white-space:nowrap">
 						               <div class="table-date-full">{{ f.createdDate}}</div>
@@ -177,6 +179,25 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		<!-- Add Role Model -->
 	 	<%@ include file="./admin/fragment/field-model.jsp"%> 
 		
@@ -203,7 +224,9 @@
          <script src="<c:url value='/static/js/app.js' />"> </script>
         <script src="<c:url value='/static/js/service/field_service.js' />"></script>
         <script src="<c:url value='/static/js/controller/field_controller.js' />"></script> 
+
         <script src="../resources/bower_components/angular-ui-switch/angular-ui-switch.js"></script>
+
 
 
 <script type="text/javascript">
@@ -218,6 +241,50 @@
    
 </script>
 
+
+
+
+
+<script type="text/javascript">
+ /*   
+    $('.switch').slickswitch();
+    $(".switch").on("change", function (e) {
+        alert("clicked");
+        var id = $(this).attr("data-field-id");
+        var isChecked = $(this).is(":checked");
+   
+        var _this = $(this);
+        $.ajax({
+            type: "POST",
+            url: "#",
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ Flag: isChecked, FieldID: id}),
+            cache: false,
+            success: function (data) {
+                
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                
+                App.DialogError(xhr, textStatus, errorThrown);
+            }
+        });
+    });
+*/
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
-

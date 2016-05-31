@@ -22,8 +22,12 @@
 
 	<spring:url value="/resources/public/css/plugins/farbtastic/gradient.css" var="gradientCSS" /> 
 	<link href="${gradientCSS}" rel="stylesheet" /> 
+	
+
 
 <!-- 
+    <spring:url value="/resources/js/plugins/slickswitch/css/slickswitch.css" var="slickswitchCSS" /> 
+	<link href="${slickswitchCSS}" rel="stylesheet" /> 
 	<spring:url value="/resources/js/plugins/slickswitch/css/slickswitch.css" var="slickswitchCSS" /> 
 	<link href="${slickswitchCSS}" rel="stylesheet" /> 
 	<link href="../js/plugins/facebookwall/jquery.neosmart.fb.wall.css" rel="stylesheet" type="text/css" />
