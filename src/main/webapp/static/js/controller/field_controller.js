@@ -12,10 +12,7 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
           self.field={id:'',name:'' ,comment:'',enabled:'' ,createdDate:'' ,modifiedDate:''};
           self.fields=[];
 
-<<<<<<< HEAD
-          
-          
-          
+
           
           var index;
           var a = ["a", "b", "c"];
@@ -23,13 +20,8 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
               console.log(a[index]);
           }
           
-          
-          
-          
-          
-          
-          
 
+          window.selectedCheckBoxes = {};
              
           /*
           $scope.enabled = true;
@@ -43,15 +35,17 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
           };
           */
           
-          window.selectedCheckBoxes = {};
+          /*
+          var selectedCheckBoxes = [];
+          
+          for (index = 0; index <  selectedCheckBoxes.length; ++index) {
+              console.log(selectedCheckBoxes[index]);
+          }
+          
+          */
           
           
-     
-=======
-  
-   
-          
->>>>>>> f77e90a50448580449de711a497ce3cbf5a60ee6
+
           // Checkbox selection
           $scope.selection = {
               ids: {}
@@ -59,6 +53,9 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
           };
 
           
+          
+          
+
  
           // Enable or disable field/s
           $scope.onEnableOrDisable = function(f) { 
@@ -74,7 +71,19 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
         	      self.field.enabled = $scope.selection.ids[f.id];
         	      self.field.name = f.name;
         	      self.field.comment = f.comment;
-        	      selectedCheckBoxes = $scope.selection.ids; 
+        	      selectedCheckBoxes = self.fields; 
+        	      
+        	  
+                  for (index = 0; index <  selectedCheckBoxes.length; ++index) {
+                      console.log(selectedCheckBoxes[index]);
+                  }
+                 
+        	      
+        	      
+        	      
+        	      
+        	      
+        	      
 	              
 	              self.updateField(self.field, f.id);        
           };

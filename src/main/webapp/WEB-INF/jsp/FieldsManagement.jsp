@@ -17,7 +17,7 @@
 
 <body ng-app="myApp"  class="ng-cloak" data-spy="scroll" data-target=".subnav" data-offset="50">
  
- <div class="wrapper">
+ <div class="wrapper" ng-controller="FieldController as ctrl">
         <div class="container">
 			<h2>Fields</h2>
 			<div id="general-message"></div>
@@ -53,7 +53,9 @@
 						<!-- ======================================== -->
 
 		
-				<div ng-controller="FieldController as ctrl">
+<!-- 				<div ng-controller="FieldController as ctrl"> -->
+                    <div>
+
 
 
 					   <div style="float: right"> 
@@ -127,7 +129,7 @@
 											    </p>
 									-->
 					
-  										    <switch ng-model="selection.ids[f.id]"  ng-change="onEnableOrDisable(f)"></switch>
+  										    <switch ng-model="$parent.f.enabled[f.id]"  ng-change="onEnableOrDisable(f)"></switch>
   										    <p>
   										   	        selection.ids: {{selection.ids[f.id]}} <br>
 											        f.enabled: {{f.enabled}}
@@ -159,11 +161,14 @@
 							
 
 								<!-- =============  Body ==============-->
+								<!-- 
 								<div class="modal-body" ng-controller="FieldController as ctrl" style="overflow-y: auto;">
 									<div class="bootstrap-dialog-body">
 									  <br> <br> <br>
-					   				</div> <!-- /RoleController -->
+					   				</div> 
 							    </div>	
+							    -->
+							    
 							    
 							    
 					</div>
@@ -174,7 +179,6 @@
 						</div>	
 				</div>	<!-- /div-roles-list-0 -->
     	</div><!--/.fluid-container-->
-  	</div>
 
 
 
@@ -211,7 +215,7 @@
 
 
 
-
+</div>
 
 
 
