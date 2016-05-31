@@ -9,7 +9,7 @@ App.controller('MainCtrl', function($scope) {
 
 App.controller('FieldController', ['$scope', 'FieldService', function($scope, FieldService) {
           var self = this;
-          self.field={id:'',name:'' ,comment:'',enabled:'' ,createdDate:'' ,modifiedDate:''};
+          self.field={id:'',name:'' ,comment:'' ,enabled:'' ,createdDate:'' ,modifiedDate:''};
           self.fields=[];
 
 
@@ -43,6 +43,7 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
           }
           
           */
+          window.selectedEnabled = {};
           
           
 
@@ -53,9 +54,6 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
           };
 
           
-          
-          
-
  
           // Enable or disable field/s
           $scope.onEnableOrDisable = function(f) { 
@@ -71,21 +69,16 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
         	      self.field.enabled = $scope.selection.ids[f.id];
         	      self.field.name = f.name;
         	      self.field.comment = f.comment;
-        	      selectedCheckBoxes = self.fields; 
-        	      
-        	  
-                  for (index = 0; index <  selectedCheckBoxes.length; ++index) {
-                      console.log(selectedCheckBoxes[index]);
-                  }
-                 
+        	     
+        	      //selectedEnabled = f.enabled;
+        	      self.field.enabled = f.enabled;
         	      
         	      
-        	      
-        	      
-        	      
-        	      
+	              self.updateField(self.field, f.id, self.field.enabled);
+	              console.log("self.field.enabled : " + self.field.enabled);
 	              
-	              self.updateField(self.field, f.id);        
+	              //window.location.reload();
+	              
           };
    
 

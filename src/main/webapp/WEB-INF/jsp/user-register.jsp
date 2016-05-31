@@ -20,78 +20,14 @@
 			            <div class="alert alert-success login-label">Registration successfull!</div>
 			          </c:if>
 			  
-
-
-
-
 			   
 		 <c:forEach items="${fields}" var="field">
 		 
 		 	  <c:set var="theString" value="${field.name}"/>
 		 	 
- 		 	   <c:if test="${field.name eq 'confirmPassword'}"> 
-			            <c:if test="${field.enabled eq 'true'}"> 
-			            <div class="form-group">
-			              <label for="password" class="col-sm-2 control-label login-label">Confirm Password:</label>
-			              <div class="col-sm-10">
-			                <input type="password" name="password_again" id="password_again"
-			                  class="form-control" />
-			              </div>
-			            </div>
-			          </c:if> 
-			       </c:if> 
 		 	 
-	
-	 				<c:if test="${field.enabled eq 'true' and field.name ne 'confirmPassword' }">
-				            <div class="form-group">
-				              <label for="name" class="col-sm-2 control-label login-label">${fn:toUpperCase(fn:substring(theString, 0, 1))}${fn:toLowerCase(fn:substring(theString, 1,fn:length(theString)))}:</label>
-				              <div class="col-sm-10">
-				                <form:input path="${field.name}"
-				                  cssClass=" input-xlarge login-form-field form-control" />
-				                <form:errors path="${field.name}" />
-				                </div>
-				            </div>
-			  		</c:if>
-			  		   
-		 
-		 
-			
-			<!-- 
-			     <c:set var="theString" value="${field.name}"/>
-	 
-	 				<c:if test="${field.name eq 'name'}">
-	 					<c:if test="${field.enabled eq 'true'}"> 
-				            <div class="form-group">
-				              <label for="name" class="col-sm-2 control-label login-label">Name:</label>
-				              <div class="col-sm-10">
-				                <form:input path="name"
-				                  cssClass=" input-xlarge login-form-field form-control" />
-				                <form:errors path="name" />
-				                </div>
-				            </div>
-			  			</c:if>
-			  		</c:if>
-			
-			        
-			    &nbsp;
-			                  
-			
-			           <c:if test="${field.name eq 'email'}"> 
-			            <c:if test="${field.enabled eq 'true'}">
-			            <div class="form-group">
-			              <label for="email" class="col-sm-2 control-label login-label">Email:</label>
-			              <div class="col-sm-10">
-			                <form:input path="email" cssClass="form-control" />
-			                <form:errors path="email" />
-			              </div>
-			            </div>
-			          </c:if>
-			         </c:if>
-			        
-			    &nbsp;
-			        
-			        
-			        <c:if test="${field.name eq 'password'}">
+		 	 
+		 	    <c:if test="${field.name eq 'password'}">
 			          <c:if test="${field.enabled eq 'true'}">
 			            <div class="form-group">
 			              <label for="password" class="col-sm-2 control-label login-label">Password:</label>
@@ -100,12 +36,12 @@
 			                <form:errors path="password" />
 			              </div>
 			            </div>
+			             &nbsp;
 			          </c:if>
-			        </c:if> 
-			        
-			    &nbsp;   
-			          
-			          <c:if test="${field.name eq 'confirmPassword'}"> 
+			    </c:if> 
+		 	 
+		 	 
+ 		 	    <c:if test="${field.name eq 'confirmPassword'}"> 
 			            <c:if test="${field.enabled eq 'true'}"> 
 			            <div class="form-group">
 			              <label for="password" class="col-sm-2 control-label login-label">Confirm Password:</label>
@@ -114,11 +50,25 @@
 			                  class="form-control" />
 			              </div>
 			            </div>
+			             &nbsp;
 			          </c:if> 
 			       </c:if> 
-	-->    
-			       
-			        			       
+		 	 
+	
+	 				<c:if test="${field.enabled eq 'true' and field.name ne 'confirmPassword' and field.name ne 'password'}">
+	 				 	<c:if test="${field.enabled eq 'true'}"> 
+				            <div class="form-group">
+				              <label for="name" class="col-sm-2 control-label login-label">${fn:toUpperCase(fn:substring(theString, 0, 1))}${fn:toLowerCase(fn:substring(theString, 1,fn:length(theString)))}:</label>
+				              <div class="col-sm-10">
+				                <form:input path="${field.name}"
+				                  cssClass=" input-xlarge login-form-field form-control" />
+				                <form:errors path="${field.name}" />
+				                </div>
+				            </div>
+				             &nbsp;  
+			  			</c:if>
+			  		</c:if>
+		        			       
  </c:forEach>
 
 

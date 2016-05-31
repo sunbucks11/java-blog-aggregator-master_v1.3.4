@@ -16,7 +16,8 @@
 				</div>
 			</div>
 			<!-- =============  Body ==============-->
-		 <div class="modal-body" ng-controller="RoleController as ctrl" style="overflow-y: auto;">
+		 <!-- <div class="modal-body" ng-controller="RoleController as ctrl" style="overflow-y: auto;"> -->
+		 <div class="modal-body" style="overflow-y: auto;">
 			<div class="bootstrap-dialog-body">
 					<div class="bootstrap-dialog-message">
 						<div id="notify-message"></div>
@@ -59,7 +60,7 @@
 							 
 													 
 	 		  
-				   		</div> <!-- /RoleController -->
+				   		</div> 
 	
 					<!-- ====== Footer =====-->
 					<div class="modal-footer">

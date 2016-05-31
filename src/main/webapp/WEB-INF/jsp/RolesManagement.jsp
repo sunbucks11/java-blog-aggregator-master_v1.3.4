@@ -8,23 +8,6 @@
 
 <head>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-     <!--  
-     	<script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> 		
-		<script type="text/javascript" charset="utf-8" src="/resources/js/farbtastic.js"></script>
-		
-		<script type="text/javascript" charset="utf-8">
-		 $(function () {
-		   $('#colorpicker2').farbtastic({ callback: '#color2', width: 150 });
-		 });
-		</script>
-		<style type="text/css" media="screen">
-		 .colorpicker {
-		   float: left;
-		   margin: 1em;
-		 }
-		</style> 
-		-->
 </head>
 
 
@@ -32,7 +15,7 @@
 
 <body ng-app="myApp"  class="ng-cloak" data-spy="scroll" data-target=".subnav" data-offset="50">
  
- <div class="wrapper">
+ <div class="wrapper" ng-controller="RoleController as ctrl">
         <div class="container">
 			<h2>Roles</h2>
 			<div id="general-message"></div>
@@ -67,8 +50,8 @@
 						</div>
 						<!-- ======================================== -->
 				
-					<div ng-controller="RoleController as ctrl">
-					
+					<!-- <div ng-controller="RoleController as ctrl"> -->
+			<div>		
 					    <!-- ======== Refresh Button ======== -->
 					   <div style="float: right"> 
 							<a  ng-click="ctrl.fetchAllRoles()" class="btn btn-default btn-info  btn-sm" id="refresh-member">
@@ -144,10 +127,10 @@
 						<div class="div-table-info">
 						    <div class="div-table-info-fl">Showing <b>1</b> to <b>18</b> of <b>18</b> entries</div>    
 						</div>	
-				</div>	<!-- /div-roles-list-0 -->
+				</div>
 	
-    </div><!--/.fluid-container-->     
-  </div>
+
+
 
 
 
@@ -162,9 +145,9 @@
 		<%@ include file="./admin/fragment/role-remove-model.jsp"%> 
 
 
+</div>
 
-
-
+</div>
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>

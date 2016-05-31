@@ -11,6 +11,105 @@
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
 		<link rel="stylesheet" href="./resources/bower_components/angular-ui-switch/angular-ui-switch.min.css"/>
+		
+		
+<style type="text/css">
+ .switch {
+  /* background: #fff; */
+  background: #7B7072;
+  border: 1px solid #dfdfdf;
+  position: relative;
+  display: inline-block;
+  box-sizing: content-box;
+  overflow: visible;
+  /* width: 52px; */
+  width: 45px;
+  /* height: 30px; */
+  height: 15px;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset;
+  transition: 0.3s ease-out all;
+  -webkit-transition: 0.3s ease-out all;
+  top: -1px;
+}
+/*adding a wide width for larger switch text*/
+.switch.wide {
+  width:80px;
+}
+.switch small {
+  background: #fff;
+  border-radius: 100%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+/*   width: 30px;
+  height: 30px; */
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 0px;
+  left: -7px;
+  margin-left: 8px;
+  transition: 0.3s ease-out all;
+  -webkit-transition: 0.3s ease-out all;
+}
+.switch.checked {
+  background: rgb(100, 189, 99);
+  border-color: rgb(100, 189, 99);
+}
+.switch.checked small {
+  left: 22px;
+}
+/*wider switch text moves small further to the right*/
+.switch.wide.checked small {
+  left:52px;
+}
+/*styles for switch-text*/
+.switch .switch-text {
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:13px;
+}
+
+.switch .off {
+  display:block;
+  position: absolute;
+  right: 10%;
+  /* top: 25%; */
+  top: 0;
+  z-index: 0;
+  /* color:#A9A9A9; */
+  color: #fff;
+  
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.switch .on {
+  display:none;
+   z-index: 0;
+  /* color:#fff; */
+  color: #060202;
+  position: absolute;
+  /* top: 25%; */
+  top: 0;
+  left: 9%;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.switch.checked .off {
+  display:none;
+}
+
+.switch.checked .on {
+  display:block;
+
+}
+		
+		</style>
+		
+		
 
 </head>
 
@@ -69,24 +168,19 @@
 							
 						    <thead>
 						        <tr>
-						            <th style="width:3%;text-align:center"><input type="checkbox" class="role-select-all-chb"/></th>
-						            <th class="role-sort-column" style="width:50px;">ID<span class="css_right ui-icon ui-icon-triangle-1-n"/></th>
-						            <th class="role-sort-column" style="width:200px;">Field Name<span class="css_right ui-icon ui-icon-carat-2-n-s"/></th>                        
-									<th class="role-sort-column" style="width:200px;" >Description<span class="css_right ui-icon ui-icon-carat-2-n-s"/></th>
-						            <th class="role-sort-column">Enabled<span class="css_right ui-icon ui-icon-carat-2-n-s"/></th>
-									<th class="role-sort-column table-date-td-width">Created<span class="css_right ui-icon ui-icon-carat-2-n-s"/></th>
-						            <th class="role-sort-column table-date-td-width">Modified<span class="css_right ui-icon ui-icon-carat-2-n-s"/></th>
+						            <th align="center" style="width:3%;text-align:center"><input type="checkbox" class="role-select-all-chb"/></th>
+						            <th align="center" class="role-sort-column" style="width:50px;">ID<span class="css_right ui-icon ui-icon-triangle-1-n"/></th>
+						            <th align="center" class="role-sort-column" style="width:200px;">Field Name<span class="css_right ui-icon ui-icon-carat-2-n-s"/></th>                        
+									<th align="center" class="role-sort-column" style="width:200px;" >Description<span class="css_right ui-icon ui-icon-carat-2-n-s"/></th>
+						            <th align="center" class="role-sort-column">Enabled<span class="css_right ui-icon ui-icon-carat-2-n-s"/></th>
+									<th align="center" class="role-sort-column table-date-td-width">Created<span class="css_right ui-icon ui-icon-carat-2-n-s"/></th>
+						            <th align="center" class="role-sort-column table-date-td-width">Modified<span class="css_right ui-icon ui-icon-carat-2-n-s"/></th>
 						        </tr>
 						    </thead>
 						    <tbody>
 						          <tr ng-repeat="f in ctrl.fields track by f.id">
-		 
-		 				       
-						          	    <div>
-				    						<input type="checkbox" id="field" name="ch_location" checked />
-										</div>
-			        
 						               <td style="text-align:center" class="table-first-column" style="width:2%">
+						               <input type="checkbox" class="role-select-all-chb"/>
 						              </td>
 						              
 						              <!-- ==========  Field ID ========== -->
@@ -109,34 +203,24 @@
 						              <td><div class="expander">{{ f.comment}}</div></td>
 						              
 						              <!-- ==========  Enabled  ========== --> 
-						              <td style="white-space:nowrap">
+						              <td  align="center"  style="width: 10%">
 	 						           <!-- <input  id="audit-event-select-10246" class="audit-event-select" data-audit-event-id="10246" type="checkbox" />  -->
  	 						           <!-- <pre ng-bind="selection.ids | json"></pre> -->
 	 						            
-	 						         
-	 						            <div>
+	 						           <!--
+	 						           <div>
 										  <input ng-checked={{f.enabled}} type="checkbox" ng-click='onEnableOrDisable(f)' ng-model="selection.ids[f.id]" name="group"  /> 
  
 										</div>
-									   
+										-->
 
-  				  								
-  									<!-- 	    
-  										     <switch ng-model="selection.ids[f.id]"  ng-change="onEnableOrDisable(f)"></switch>
-											    <p>
-											        selection.ids: {{selection.ids[f.id]}} <br>
-											        f.enabled: {{f.enabled}}
-											    </p>
-									-->
-					
-  										    <switch ng-model="$parent.f.enabled[f.id]"  ng-change="onEnableOrDisable(f)"></switch>
-  										    <p>
-  										   	        selection.ids: {{selection.ids[f.id]}} <br>
-											        f.enabled: {{f.enabled}}
+  										<switch ng-checked={{f.enabled}} type="checkbox" ng-model="f.enabled" on="Yes" off="No" ng-change="onEnableOrDisable(f)"></switch>
+  											<!-- 
+  											<p>
+  										   		selection.ids: {{selection.ids[f.id]}} <br>
+												f.enabled: {{f.enabled}}
   										   </p>
-  										   
-
-										
+  										   -->
 						              </td>
 						              
 	
@@ -183,37 +267,12 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		<!-- Add Role Model -->
 	 	<%@ include file="./admin/fragment/field-model.jsp"%> 
 		
 		
 		<!-- Add Remove Role Model -->
 		<%@ include file="./admin/fragment/field-remove-model.jsp"%> 
-
-
-
-
-
-
 
 </div>
 
@@ -224,8 +283,7 @@
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
-<!--         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script> -->
-         <script src="<c:url value='/static/js/app.js' />"> </script>
+        <script src="<c:url value='/static/js/app.js' />"> </script>
         <script src="<c:url value='/static/js/service/field_service.js' />"></script>
         <script src="<c:url value='/static/js/controller/field_controller.js' />"></script> 
 
@@ -244,39 +302,6 @@
    
    
 </script>
-
-
-
-
-
-<script type="text/javascript">
- /*   
-    $('.switch').slickswitch();
-    $(".switch").on("change", function (e) {
-        alert("clicked");
-        var id = $(this).attr("data-field-id");
-        var isChecked = $(this).is(":checked");
-   
-        var _this = $(this);
-        $.ajax({
-            type: "POST",
-            url: "#",
-            dataType: "json",
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify({ Flag: isChecked, FieldID: id}),
-            cache: false,
-            success: function (data) {
-                
-            },
-            error: function (xhr, textStatus, errorThrown) {
-                
-                App.DialogError(xhr, textStatus, errorThrown);
-            }
-        });
-    });
-*/
-</script>
-
 
 
 

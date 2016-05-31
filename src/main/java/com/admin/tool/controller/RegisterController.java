@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -72,6 +73,11 @@ public class RegisterController {
 			auditService.update(new Date(), "App", "localhost", "", message, "exclamation-red");
 			return "user-register";
 		}
+		
+		//user.setEnabled(true);
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		user.setPassword(encoder.encode(user.getPassword()));
+		
 		userService.save(user);
 		message = "User " +  "has been created: " + user.getName() ;
 		auditService.update(new Date(), "App", "localhost", user.getEmail(), message, "tick-circle");

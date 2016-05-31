@@ -128,7 +128,7 @@ public class FieldRestController {
 
 	//-------------------Update a Field--------------------------------------------------------
 	@RequestMapping(value = "/field/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<String> updateUser(@PathVariable("id") int id, @RequestBody Field field) {
+	public ResponseEntity<String> updateUser(@PathVariable("id") int id, @RequestBody Field field, String enabled) {
 
 		// Find field by Id
 		Field updateField = fieldService.findOne(field.getName());
@@ -158,13 +158,7 @@ public class FieldRestController {
         	System.out.println("Current Field Value is: " + updateField.getEnabled());
         }
         
-        
-        
-        
-        
-        
-        
-        
+
         updateField.setModifiedDate(new Date());
         
         message = "Successfully update field : " + field.getName();
@@ -196,7 +190,7 @@ public class FieldRestController {
 	
 	
 	
-    //------------------- Delete a User --------------------------------------------------------
+    //------------------- Delete a Field --------------------------------------------------------
     
     @RequestMapping(value = "/field/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Role> deleteRole(@PathVariable("id") int id) {

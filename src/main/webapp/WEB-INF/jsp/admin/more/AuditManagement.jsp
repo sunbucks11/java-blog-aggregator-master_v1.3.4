@@ -112,10 +112,17 @@
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script>
+      <!--   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script> -->
         <script src="<c:url value='/static/js/app.js' />"> </script>
         <script src="<c:url value='/static/js/service/audit_service.js' />"></script>
         <script src="<c:url value='/static/js/controller/audit_controller.js' />"></script> 
+
+        <!-- ==== I NEED TO ADD THIS IN ORDER TO PREVENT  
+        	 ==== Error: [$injector:nomod] Module 'uiSwitch' is not available!
+        	 ===== EXCEPTION, BUT I NEED TO FIND A WAY TO INJECT THE DEPENDENCY
+        	 ===== ONLY TO FieldsManagement.jsp file
+        	 ===== As angular-ui-switch.js IS SUPPOSED BY BE USED BY THAT FILE -->
+        <script src="../resources/bower_components/angular-ui-switch/angular-ui-switch.js"></script>
 
 
 

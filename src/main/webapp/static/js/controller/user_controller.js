@@ -26,7 +26,8 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
               console.log("Fole settings: " + role.settings); 
               console.log("Role Created: " + role.createdDate); 
               
-              UserService.updateUserRole(selectedUser.id, role)
+              UserService.updateUserRole(selectedUser.id, role);
+              window.location.reload();
               
       };
           
@@ -52,6 +53,7 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
     	  selectedRoleUserEmail = emailAddress;
     	  //UserService.deleteUserRole(roleId, user);
     	  UserService.deleteUserRole(roleId, selectedRoleUserEmail);
+    	  window.location.reload();
       }
       
       

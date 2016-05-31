@@ -1,3 +1,23 @@
+  <style>
+ 
+ .btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+/*     min-width: 50%; */
+/*     min-height: 5%; */
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+ 
+ </style>
+   
    
 <body data-spy="scroll" data-target=".subnav" data-offset="50">
      <div class="wrapper">
@@ -33,11 +53,16 @@
 
 <div id="avatar-notify-message"></div>
 <div class="row">
-    <div style="display:inline-block;width:110px;vertical-align:text-top" class="col-md-2">
+
+
+<!--     <div style="display:inline-block;width:110px;vertical-align:text-top" class="col-md-2">
                 <img class="img-circle" src="/Avatar/ozj15c6vx0smonb6n6mlgeve.jpg" id="member-avatar" style="width:100px;height:100px;" />
 
-    </div>
-    <div style="padding-top:0px;padding-bottom:5px;display:inline-block;vertical-align:text-top" id="avatar-control" class="col-md-8">
+    </div> -->
+    
+    
+    
+<!--  <div style="padding-top:0px;padding-bottom:5px;display:inline-block;vertical-align:text-top" id="avatar-control" class="col-md-8">
         <div style="display:inline-block;vertical-align:text-top"><b style="font-size:15px">Upload a Photo</b>&nbsp;</div>
         <div id="avatr-uploading-in-progess" class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="display:none;vertical-align:text-top"></div>
         <p style="margin-top:5px">You can upload a JPG, GIF or PNG file. File size limit is about 4 MB.</p>
@@ -45,9 +70,41 @@
         <div class="btn btn-default btn-danger btn-sm" id="reset-avatar" style="margin-top:2px">Reset Photo</div>
         <p class="muted"></p><input type="hidden" id="avatar-panel-warning-message" value="Only images are allowed." />
 
-    </div>
+    </div> -->
+  
+ 			        <div class="control-group">
+                       <!-- <label class="control-label">Instance Name</label> -->
+			          <img src="http://www.onlinetestpro.co.uk/images/Admin.png" alt="Admin" height="100" width="100">
+			        </div>
+    
+ 	<div style="float: left; margin-left: 150px; margin-top:-100px; display: inline-block;">
+		<b>Upload a Photo</b><br>
+		<p>You can upload a JPG, GIF or PNG file. File size limit is about 4MB.</p>
+		<span class="btn btn-info btn-file"> Upload Photo <input type="file"></span>
+		<span class="btn btn-danger btn-file"> Reset Photo <input type="file"></span>
+	</div>     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </div>
 
+<!-- 
 <script type="text/javascript">
   $(document).ready(function() {  
     App.InitAvatarUpload($('#upload-avatar'), '/', 'upload-avatar', '/Admin/Profile/UploadAvatarImage', '/Admin/Profile/ResizeAvatarDialog',1);
@@ -58,7 +115,10 @@
         }
     });
 });
-</script>              
+</script>    
+-->
+
+          
 <p/>
 <div class="form-group">
     <label class="control-label" for="member-time-zone">Your Time Zone</label>
@@ -881,38 +941,9 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    
-    <script src="/bundles/plugins?v=dGx7fBlXqFo41g2apYhzjO0xEUmM46wL-s4j2d7mazQ1"></script>
-
-    <script src="/bundles/admin?v=GUY2qrG7o2gKg0_jqGXf5FmwhWEI1Onx3HAkHrjKH_w1"></script>
 
 
-    <script type="text/javascript">
-    $(function () {
-        App.BaseURL("");
-    });
-    </script>
 
-    
-    <style type="text/css">
-        .subnav {
-                width: 100%;
-                background-color: #eeeeee !important;
-                background-repeat: repeat-x;
-                background-image: none !important;                
-                border: 1px solid #e5e5e5 !important;
-                -webkit-border-radius: 4px;
-                -moz-border-radius: 4px;
-                border-radius: 4px;
-        }
-    </style>
-
-<!-- Visual Studio Browser Link -->
-<script type="application/json" id="__browserLink_initializationData">
-    {"appName":"Chrome","requestId":"5ffad08eeb84492aa8640a92d6c033b8"}
-</script>
-<script type="text/javascript" src="http://localhost:12274/42b2f3012486436e8947fd10d6cd3e2b/browserLink" async="async"></script>
-<!-- End Browser Link -->
 
 </body>
 </html>

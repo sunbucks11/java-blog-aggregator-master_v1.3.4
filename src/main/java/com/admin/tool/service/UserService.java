@@ -58,11 +58,6 @@ public class UserService {
 	}
 
 	public void save(User user) {
-		/*
-		user.setEnabled(true);
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		user.setPassword(encoder.encode(user.getPassword()));
-		*/
 		userRepository.save(user);
 	}
 
