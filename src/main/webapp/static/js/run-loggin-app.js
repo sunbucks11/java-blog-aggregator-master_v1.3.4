@@ -13,6 +13,13 @@ require.config({
         editableTableWidgets: 'editable-table-widgets',
         common: 'common',
         loginApp: 'login'
+        /*	
+        ,
+        uiSwitch: '../../bower_components/angular-ui-switch/angular-ui-switch.min'
+        ,
+        myApp:'app'
+        */	
+        	
     },
     shim: {
         angular: {
@@ -33,6 +40,13 @@ require.config({
         loginApp: {
             deps: [ 'common']
         }
+        
+        
+        /*,
+        myApp: {
+        	deps: ['uiSwitch']
+        }*/
+        
     }
 });
 

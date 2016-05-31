@@ -16,7 +16,9 @@
 				</div>
 			</div>
 			<!-- =============  Body ==============-->
-		 <div class="modal-body" ng-controller="FieldController as ctrl" style="overflow-y: auto;">
+<!-- 		 <div class="modal-body" ng-controller="FieldController as ctrl" style="overflow-y: auto;"> -->
+
+		<div class="modal-body">
 			<div class="bootstrap-dialog-body">
 					<div class="bootstrap-dialog-message">
 						<div id="notify-message"></div>
@@ -45,7 +47,6 @@
 									</div>
 									<br>
 									<br>
-
 							
 							 <br> <br> <br>
 							 
@@ -74,7 +75,6 @@
 		
 		
 		
-
 		</div>
 	</div>
 	</div>

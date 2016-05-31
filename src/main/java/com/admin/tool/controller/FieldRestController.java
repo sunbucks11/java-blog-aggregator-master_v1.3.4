@@ -112,7 +112,8 @@ public class FieldRestController {
         
         Field newField = new Field();
         newField.setName(field.getName());
-        newField.setEnabled("true");
+       // newField.setEnabled("true");
+        newField.setEnabled(true);
         newField.setComment(field.getComment());
         newField.setCreatedDate(new Date());
         fieldService.save(newField);
@@ -140,9 +141,30 @@ public class FieldRestController {
             System.out.println(message);
             return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
         }
-		
+        
+        
 
-        updateField.setEnabled(field.getEnabled());
+        /*
+        if(!field.getEnabled().isEmpty() || field.getEnabled()!= null ){
+        	updateField.setEnabled(field.getEnabled());
+        }
+        */
+        
+        try{
+        	updateField.setEnabled(field.getEnabled());
+        }
+        catch(Exception ex){
+        	System.out.println("Exception is: " + ex.getMessage());
+        	System.out.println("Current Field Value is: " + updateField.getEnabled());
+        }
+        
+        
+        
+        
+        
+        
+        
+        
         updateField.setModifiedDate(new Date());
         
         message = "Successfully update field : " + field.getName();

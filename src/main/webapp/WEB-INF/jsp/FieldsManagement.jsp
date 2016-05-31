@@ -6,23 +6,18 @@
 
 <html>
 
+
 <head>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-		
-	
-    <script src="/static/js/slickswitch/js/jquery.slickswitch.js" type="text/javascript"></script>
-    <link href="/static/js/slickswitch/css/slickswitch.css" rel="stylesheet" type="text/css" />   
-    
-    <link rel="stylesheet" type="text/css" href="/static/jquerycheckbox/css/styles.css" />
-	<link rel="stylesheet" type="text/css" href="/static/jquerycheckbox/jquery.tzCheckbox/jquery.tzCheckbox.css" />
-	
-	
+
+		<link rel="stylesheet" href="./resources/bower_components/angular-ui-switch/angular-ui-switch.min.css"/>
+
 </head>
 
 
 <body ng-app="myApp"  class="ng-cloak" data-spy="scroll" data-target=".subnav" data-offset="50">
  
- <div class="wrapper">
+ <div class="wrapper" ng-controller="FieldController as ctrl">
         <div class="container">
 			<h2>Fields</h2>
 			<div id="general-message"></div>
@@ -58,7 +53,9 @@
 						<!-- ======================================== -->
 
 		
-				<div ng-controller="FieldController as ctrl">
+<!-- 				<div ng-controller="FieldController as ctrl"> -->
+                    <div>
+
 
 
 					   <div style="float: right"> 
@@ -115,16 +112,29 @@
 						              <td style="white-space:nowrap">
 	 						           <!-- <input  id="audit-event-select-10246" class="audit-event-select" data-audit-event-id="10246" type="checkbox" />  -->
  	 						           <!-- <pre ng-bind="selection.ids | json"></pre> -->
+	 						            
+	 						         
 	 						            <div>
 										  <input ng-checked={{f.enabled}} type="checkbox" ng-click='onEnableOrDisable(f)' ng-model="selection.ids[f.id]" name="group"  /> 
-										</div> 
-										
-									 <!-- <a class="switch">
-											<span class="ss-on" style=""></span>
-											<span class="ss-slider" style="left: 13px;">
-										</span>
-										</a> -->
-										
+ 
+										</div>
+									   
+
+  				  								
+  									<!-- 	    
+  										     <switch ng-model="selection.ids[f.id]"  ng-change="onEnableOrDisable(f)"></switch>
+											    <p>
+											        selection.ids: {{selection.ids[f.id]}} <br>
+											        f.enabled: {{f.enabled}}
+											    </p>
+									-->
+					
+  										    <switch ng-model="$parent.f.enabled[f.id]"  ng-change="onEnableOrDisable(f)"></switch>
+  										    <p>
+  										   	        selection.ids: {{selection.ids[f.id]}} <br>
+											        f.enabled: {{f.enabled}}
+  										   </p>
+  										   
 
 										
 						              </td>
@@ -151,11 +161,16 @@
 							
 
 								<!-- =============  Body ==============-->
+								<!-- 
 								<div class="modal-body" ng-controller="FieldController as ctrl" style="overflow-y: auto;">
 									<div class="bootstrap-dialog-body">
 									  <br> <br> <br>
-					   				</div> <!-- /RoleController -->
+					   				</div> 
 							    </div>	
+							    -->
+							    
+							    
+							    
 					</div>
 
 						<!-- ======== Bottom table status bar  ======== -->
@@ -164,7 +179,6 @@
 						</div>	
 				</div>	<!-- /div-roles-list-0 -->
     	</div><!--/.fluid-container-->
-  	</div>
 
 
 
@@ -196,18 +210,27 @@
 		<%@ include file="./admin/fragment/field-remove-model.jsp"%> 
 
 
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script>
-        <script src="<c:url value='/static/js/app.js' />"> </script>
+<!--         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script> -->
+         <script src="<c:url value='/static/js/app.js' />"> </script>
         <script src="<c:url value='/static/js/service/field_service.js' />"></script>
         <script src="<c:url value='/static/js/controller/field_controller.js' />"></script> 
-        
 
-       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-	   <script src="./static/jquerycheckbox/jquery.tzCheckbox/jquery.tzCheckbox.js"></script>
-	   <script src="/static/jquerycheckbox/js/script.js"></script>
-        
-        
+        <script src="../resources/bower_components/angular-ui-switch/angular-ui-switch.js"></script>
+
 
 
 <script type="text/javascript">
