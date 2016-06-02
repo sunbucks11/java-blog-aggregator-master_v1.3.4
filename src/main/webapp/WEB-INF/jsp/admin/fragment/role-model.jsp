@@ -72,17 +72,10 @@
 							<!-- </div> -->
 						</div>
 					</div>
-				</div> <!-- /body -->
+				</div> <!-- /footer -->
 		
 		
 		    </form>
-		
-		
-		
-		
-		
-		
-		
 
 		</div>
 	</div>

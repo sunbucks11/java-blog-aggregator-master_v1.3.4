@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class LoginController {
+	
+	public static final String TWO_FACTOR_AUTHENTICATION_SUCCESS = "TWO_FACTOR_AUTHENTICATION";
 
 	@RequestMapping("/login")
 	public String login() {
 		return "login";
 	}
-	
 	
 	@RequestMapping("/logout")
 	public String logoutPage (HttpServletRequest request, HttpServletResponse response) {

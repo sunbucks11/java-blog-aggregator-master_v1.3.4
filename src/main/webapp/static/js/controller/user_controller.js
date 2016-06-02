@@ -37,13 +37,7 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
     	  selectedUser = u;
     	  //console.log("Selected user id " + selectedUser.id); 
       };
-      
 
-      
-      
-      
-      
-      
       
       // Remove a Role from a user
       $scope.onRemoveUserRole = function (roleId, emailAddress){
@@ -55,15 +49,7 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
     	  UserService.deleteUserRole(roleId, selectedRoleUserEmail);
     	  window.location.reload();
       }
-      
-      
-      
-      
-      
-      
-          
-          
-          
+
           
           self.fetchAllUsers = function(){
               UserService.fetchAllUsers()
@@ -80,7 +66,8 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
           self.createUser = function(user){
               UserService.createUser(user)
 		              .then(
-                      self.fetchAllUsers, 
+                              self.fetchAllUsers,
+                              //window.location.reload(),
 				              function(errResponse){
 					               console.error('Error while creating User.');
 				              }	
@@ -96,12 +83,6 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
 				              }	
                   );
           };
-          
-          
-          
-          
-          
-          
           
           
           

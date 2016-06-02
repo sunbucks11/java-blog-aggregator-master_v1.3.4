@@ -51,7 +51,6 @@
 			   </div>
 			   <br>
 			   <input type="submit" value="Add" class="btn btn-primary btn-sm" ng-disabled="!myForm.$valid">
-			   
 			   <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">ResetForm</button> 
 			</form>
 			
@@ -62,8 +61,10 @@
 			      <button class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
 			   </div>
 			</div>
-		</div>
 		
+		
+		</form>
+		</div> <!-- /body -->
 		
 	</div>
 	

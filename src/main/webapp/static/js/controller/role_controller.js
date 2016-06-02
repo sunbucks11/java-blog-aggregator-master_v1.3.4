@@ -43,7 +43,7 @@ App.controller('RoleController', ['$scope', 'RoleService', function($scope, Role
           self.createRole = function(role){
               RoleService.createRole(role)
 		              .then(
-                      self.fetchAllRoles, 
+                              self.fetchAllRoles, 
 				              function(errResponse){
 					               console.error('Error while creating Role.');
 				              }	

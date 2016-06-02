@@ -34,7 +34,7 @@ public class FieldService {
 		fieldRepository.save(field);
 	}
 
-	public boolean isRoleExist(Field field) {
+	public boolean isFieldExist(Field field) {
 		return findOne(field.getName())!=null;
 
 	}

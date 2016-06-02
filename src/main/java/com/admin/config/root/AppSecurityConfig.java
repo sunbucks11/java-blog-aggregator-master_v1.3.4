@@ -105,6 +105,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         .logoutSuccessUrl("/logout")
         .and()
 		.exceptionHandling().accessDeniedPage("/403");
+        //.addFilter(new AdminFilter());
         //.permitAll();
   }
 }

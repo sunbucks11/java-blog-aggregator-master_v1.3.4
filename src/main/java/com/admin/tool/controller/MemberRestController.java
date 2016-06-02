@@ -201,12 +201,7 @@ public class MemberRestController {
 
       List<Role> userRoles = currentUser.getRoles();
       List<Role> newUserRoles = new ArrayList<Role>();
-      
-/*      @SuppressWarnings("unchecked")
-	  Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>)    
-        		 SecurityContextHolder.getContext().getAuthentication().getAuthorities();*/
-      
-      
+
      boolean roleDoesNotExist = true;
       
    
@@ -232,21 +227,14 @@ public class MemberRestController {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-    	//return new ResponseEntity<String>(resultJson.toString(), headers, HttpStatus.OK);
-        //return new ResponseEntity<String>(getAllUsers().toString(), headers, HttpStatus.OK);
         return new ResponseEntity<String>(headers, HttpStatus.OK);
 
  }
-	
-	
-	
-	
 
     //------------------- Update a User --------------------------------------------------------
      
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<String> updateUser(@PathVariable("id") int id, @RequestBody User user) {
-   // public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User user) {
         System.out.println("Updating User " + id);
          
         User currentUser = userService.findOne(id); 
@@ -254,7 +242,6 @@ public class MemberRestController {
         if (currentUser==null) {
             System.out.println("User with id " + id + " not found");
             return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
-            //return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
         }
        
         List<String> roles = new ArrayList<String>();
@@ -278,16 +265,11 @@ public class MemberRestController {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		
 		user.setPassword(encoder.encode(user.getPassword())); 
-		//user.setPassword(encoder.encode("admin")); 	
-		//user.setRoles(roleService.getRoles());
 		user.setEnabled(true);
         userRepository.save(user);
-           
-       
+
         JSONArray resultJson = new JSONArray();
         JSONObject userJSON = new JSONObject(); 
-        
-        
         
         try {
     		userJSON.put("id",user.getId());
@@ -298,8 +280,6 @@ public class MemberRestController {
             e.printStackTrace();
         }
     	resultJson.put(userJSON);
-        
-       // return new ResponseEntity<User>(user, HttpStatus.OK);
     	
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -337,13 +317,7 @@ public class MemberRestController {
  
  */
     
-    
-    
-    
-    
-    
-    
-    
+
     
 	// getAllUsers
 	private JSONArray getAllUsers(){	
@@ -359,42 +333,12 @@ public class MemberRestController {
     	for(User user :users){
 
     		JSONArray roleResultJson = new JSONArray();
-    		
     		User currentUser = userService.findOne(user.getId()); 
-    		
-    		  List<Role> userRoles = currentUser.getRoles();
-    	      //List<Role>  allUserRoles = new ArrayList<Role>();
+    		List<Role> userRoles = currentUser.getRoles();
     	      
-    	      JSONObject userJSON = new JSONObject();
-    	      JSONObject roleJSON = new JSONObject(); 
+    		JSONObject userJSON = new JSONObject();
+    		JSONObject roleJSON = new JSONObject(); 
 
-    	      /*
-    	      for (Role role : userRoles) {
-    	    	  allUserRoles.add(role);
-    		  } 
-    	      */
-    	      
-    	     /* 
-    	      for (Role roleInUser: allUserRoles){
-    	    	  roleJSON = new JSONObject(); 
-    	    	  try {
-    	    	     roleJSON.put("roleId",roleInUser.getId());
-    	    	     roleJSON.put("roleName",roleInUser.getName());
-    	    	     roleJSON.put("roleBackColor",roleInUser.getBackColor());
-    	    	     
-    	    	     //userJSON.put("roles",roleJSON); 
-    	    	     
-    	    	  } catch (JSONException e) {
-    	                e.printStackTrace();
-    	            }
-    	    	  
-    	    	  roleResultJson.put(roleJSON);
-    	      }
-    	      */
-    	      
-    	      
-    	      
-    		//roles = roleService.findRolesById(user.getId());
     		 userJSON = new JSONObject();   	
         	try {
         		userJSON.put("id",user.getId());
@@ -413,8 +357,7 @@ public class MemberRestController {
         			date = user.getLastLoginDate();
         			userJSON.put("lastLoginDate",dateFormat.format(date)); 
         		}
-        		
-        		
+
         		/////////// Add Roles to Json ///////
 	      	      for (Role roleInUser: userRoles){
 	      	    	 // roleResultJson = new JSONArray();
@@ -426,33 +369,15 @@ public class MemberRestController {
 	    	    	     roleResultJson.put(roleJSON);
 	    	      }
 	      	      /////////////////////////////////////////
-	      	      
         		  userJSON.put("roles",roleResultJson); 
-        		
-        		
-        		
-        		
-        		
-        		
-   
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         	resultJson.put(userJSON);
-        	
-        	
-        	
-        	
-        	
-        	
-        	
     	}
     	
     	return resultJson;
 	}
     
-    
-    
-    
- 
 }

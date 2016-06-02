@@ -381,6 +381,12 @@
 		</dependency>
 
 
+		<!-- =========== Two Factor Authentication ============= -->
+		<dependency>
+			<groupId>com.warrenstrange</groupId>
+			<artifactId>googleauth</artifactId>
+			<version>0.5.0</version>
+		</dependency>
 
 
 

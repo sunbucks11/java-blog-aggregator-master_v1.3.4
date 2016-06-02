@@ -92,7 +92,7 @@ public class FieldRestController {
     public ResponseEntity<Void> createUser(@RequestBody Field field,    UriComponentsBuilder ucBuilder) {
         System.out.println("Creating Field " + field.getName());
  
-        if (fieldService.isRoleExist(field)) {
+        if (fieldService.isFieldExist(field)) {
             System.out.println("A Field with name " + field.getName() + " already exist");
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }

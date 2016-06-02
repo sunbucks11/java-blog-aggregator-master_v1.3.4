@@ -50,13 +50,26 @@ public class User {
 	@OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
 	private List<Blog> blogs;
 
-	//@DateTimeFormat(pattern = "dd-MM-yyyy")
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="EEE, dd MMM yyyy HH:mm:ss zzz")
 	private Date createdDate;
 		
-	//@DateTimeFormat(pattern = "dd-MM-yyyy")
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="EEE, dd MMM yyyy HH:mm:ss zzz")
 	private Date lastLoginDate;
+	
+	
+	private String secretKey;
+	
+	private Boolean twoFactorAuthInitialised;
+	
+	private boolean isAuthenticated; 
+
+	private boolean isVerified; 
+	
+	private boolean isVerifiedError; 
+	
+	private boolean isResetTwoFactorAuth;
+	
+	
 	
 	public User(){
 		
@@ -134,5 +147,56 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
+	
+	
+	
+	public String getSecretKey() {
+		return secretKey;
+	}
 
+	public void setSecretKey(String secretKey) {
+		this.secretKey = secretKey;
+	}
+
+	public Boolean getTwoFactorAuthInitialised() {
+		return twoFactorAuthInitialised;
+	}
+
+	public void setTwoFactorAuthInitialised(Boolean twoFactorAuthInitialised) {
+		this.twoFactorAuthInitialised = twoFactorAuthInitialised;
+	}
+
+	public boolean isAuthenticated() {
+		return isAuthenticated;
+	}
+
+	public void setAuthenticated(boolean isAuthenticated) {
+		this.isAuthenticated = isAuthenticated;
+	}
+
+	public boolean isVerified() {
+		return isVerified;
+	}
+
+	public void setVerified(boolean isVerified) {
+		this.isVerified = isVerified;
+	}
+
+	public boolean isVerifiedError() {
+		return isVerifiedError;
+	}
+
+	public void setVerifiedError(boolean isVerifiedError) {
+		this.isVerifiedError = isVerifiedError;
+	}
+
+	public boolean isResetTwoFactorAuth() {
+		return isResetTwoFactorAuth;
+	}
+
+	public void setResetTwoFactorAuth(boolean isResetTwoFactorAuth) {
+		this.isResetTwoFactorAuth = isResetTwoFactorAuth;
+	}
 }

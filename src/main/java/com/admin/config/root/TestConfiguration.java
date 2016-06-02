@@ -16,7 +16,8 @@ import com.admin.tool.init.TestDataInitializer;
 
 
 @Configuration
-@Profile("test")
+//@Profile("test")
+@Profile("dev")
 @EnableTransactionManagement
 public class TestConfiguration {
 

@@ -1,12 +1,5 @@
 'use strict';
 
-/*
-App.controller('MainCtrl', function($scope) {
-      $scope.newObject = {};
-	  $scope.items = [{name:'Enable'}];
-});
-*/
-
 App.controller('FieldController', ['$scope', 'FieldService', function($scope, FieldService) {
           var self = this;
           self.field={id:'',name:'' ,comment:'' ,enabled:'' ,createdDate:'' ,modifiedDate:''};
@@ -21,45 +14,16 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
           }
           
 
-          window.selectedCheckBoxes = {};
-             
-          /*
-          $scope.enabled = true;
-          $scope.onOff = true;
-          $scope.yesNo = true;
-          $scope.disabled = true;
-
-
-          $scope.changeCallback = function() {
-            console.log('This is the state of my model ' + $scope.enabled);
-          };
-          */
-          
-          /*
-          var selectedCheckBoxes = [];
-          
-          for (index = 0; index <  selectedCheckBoxes.length; ++index) {
-              console.log(selectedCheckBoxes[index]);
-          }
-          
-          */
-          window.selectedEnabled = {};
-          
-          
-
           // Checkbox selection
           $scope.selection = {
               ids: {}
           
           };
 
-          
- 
           // Enable or disable field/s
           $scope.onEnableOrDisable = function(f) { 
         	  
         	      console.log("Enabled : " + f.enabled);
-	              //console.log("Enabled : " + $scope.selection.ids[f.id]);
         	      console.log("Field Id: " + f.id); 
 	              console.log("Field name: " + f.name); 
 	              console.log("Field comment: " + f.comment); 
@@ -69,22 +33,14 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
         	      self.field.enabled = $scope.selection.ids[f.id];
         	      self.field.name = f.name;
         	      self.field.comment = f.comment;
-        	     
-        	      //selectedEnabled = f.enabled;
         	      self.field.enabled = f.enabled;
-        	      
         	      
 	              self.updateField(self.field, f.id, self.field.enabled);
 	              console.log("self.field.enabled : " + self.field.enabled);
-	              
-	              //window.location.reload();
-	              
+    
           };
    
 
-       
-       
-       
           self.fetchAllFields = function(){
               FieldService.fetchAllFields()
                   .then(
@@ -191,7 +147,7 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
           
 
           
-          
+          /*
           self.guid = function(){
         	  function s4() {
         		    return Math.floor((1 + Math.random()) * 0x10000)
@@ -201,23 +157,8 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
         		  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
         		    s4() + '-' + s4() + s4() + s4();
           };
-          
-          
-          
-          /*
-          $scope.stateChanged = function (qId) {
-          	   if($scope.answers[qId]){ //If it is checked
-          	       alert('test');
-          	   }
-          	}
-        
-          
-          self.stateChanged = function (qId) {
-         	   if($scope.newObject[qId]){ //If it is checked
-         	       alert('test');
-         	   }
-         	}
-            */
+          */
+
 
 
       }]);

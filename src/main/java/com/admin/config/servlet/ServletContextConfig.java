@@ -19,6 +19,9 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 
+import com.admin.config.root.AdminFilter;
+
+
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.admin.tool.controller")
@@ -77,5 +80,10 @@ public class ServletContextConfig extends WebMvcConfigurerAdapter {
 		messageSource.setBasename("/i18n/messages");
 		messageSource.setDefaultEncoding("UTF-8");
 		return messageSource;
+	}
+	
+	@Bean
+	public AdminFilter adminFilter() {
+		return new AdminFilter();
 	}
 }

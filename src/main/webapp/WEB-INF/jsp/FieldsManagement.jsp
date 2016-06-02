@@ -168,13 +168,15 @@
 							
 						    <thead>
 						        <tr>
-						            <th align="center" style="width:3%;text-align:center"><input type="checkbox" class="role-select-all-chb"/></th>
-						            <th align="center" class="role-sort-column" style="width:50px;">ID<span class="css_right ui-icon ui-icon-triangle-1-n"/></th>
-						            <th align="center" class="role-sort-column" style="width:200px;">Field Name<span class="css_right ui-icon ui-icon-carat-2-n-s"/></th>                        
-									<th align="center" class="role-sort-column" style="width:200px;" >Description<span class="css_right ui-icon ui-icon-carat-2-n-s"/></th>
-						            <th align="center" class="role-sort-column">Enabled<span class="css_right ui-icon ui-icon-carat-2-n-s"/></th>
-									<th align="center" class="role-sort-column table-date-td-width">Created<span class="css_right ui-icon ui-icon-carat-2-n-s"/></th>
-						            <th align="center" class="role-sort-column table-date-td-width">Modified<span class="css_right ui-icon ui-icon-carat-2-n-s"/></th>
+						            <th align="center" style="width:3%;text-align:center">
+						            	<input type="checkbox" class="role-select-all-chb"/>
+						            </th>
+						            <th class="role-sort-column" style="width:50px;text-align:center;">ID<span class="css_right ui-icon ui-icon-triangle-1-n"/></th>
+						            <th class="role-sort-column" style="width:200px;text-align:center;">Field Name<span class="css_right ui-icon ui-icon-carat-2-n-s"/></th>                        
+									<th class="role-sort-column" style="width:200px;text-align: center;" >Description<span class="css_right ui-icon ui-icon-carat-2-n-s"/></th>
+						            <th class="role-sort-column" style="text-align: center;">Enabled<span class="css_right ui-icon ui-icon-carat-2-n-s"/></th>
+									<th class="role-sort-column table-date-td-width" style="text-align: center;">Created<span class="css_right ui-icon ui-icon-carat-2-n-s"/></th>
+						            <th class="role-sort-column table-date-td-width"style="text-align: center;">Modified<span class="css_right ui-icon ui-icon-carat-2-n-s"/></th>
 						        </tr>
 						    </thead>
 						    <tbody>
@@ -241,19 +243,7 @@
 						              </td>  
 						          </tr>
 						        </tbody>
-							</table>
-							
-
-								<!-- =============  Body ==============-->
-								<!-- 
-								<div class="modal-body" ng-controller="FieldController as ctrl" style="overflow-y: auto;">
-									<div class="bootstrap-dialog-body">
-									  <br> <br> <br>
-					   				</div> 
-							    </div>	
-							    -->
-							    
-							    
+							</table> 
 							    
 					</div>
 
@@ -276,12 +266,6 @@
 
 </div>
 
-
-
-
-
-
-
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
         <script src="<c:url value='/static/js/app.js' />"> </script>
         <script src="<c:url value='/static/js/service/field_service.js' />"></script>
@@ -302,18 +286,6 @@
    
    
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>
