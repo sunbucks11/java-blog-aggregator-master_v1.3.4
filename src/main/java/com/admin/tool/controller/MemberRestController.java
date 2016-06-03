@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+import org.apache.log4j.Logger;
 import org.apache.taglibs.standard.tag.common.core.ForEachSupport;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,9 +30,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.admin.tool.entity.Field;
 import com.admin.tool.entity.Role;
 import com.admin.tool.entity.User;
 import com.admin.tool.repository.UserRepository;
+import com.admin.tool.service.AuditService;
 import com.admin.tool.service.RoleService;
 import com.admin.tool.service.UserService;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -51,6 +54,13 @@ public class MemberRestController {
 	
 	@Autowired
 	private RoleService roleService;
+	
+	@Autowired
+	private AuditService auditService;
+	
+	private String message = "";
+	
+	private static final Logger LOGGER = Logger.getLogger(FieldRestController.class);
 	
 	
     //-------------------Retrieve All Users--------------------------------------------------------
@@ -79,7 +89,59 @@ public class MemberRestController {
     }
  */
      
-     
+	
+	
+	
+	
+	
+	
+	
+	
+	//-------------------Update a Two Factor Authentication--------------------------------------------------------
+	@RequestMapping(value = "/twoAuth/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> updateTwoFactorAuth(@PathVariable("id") int id, @RequestBody User user, String enabled) {
+
+		// Find field by Id
+		User updateUser = userService.findOne(user.getName());
+		
+		
+        if (updateUser==null) {
+        	
+			message = "User with id " + id  + " not found";
+			auditService.update(new Date(), "App", "localhost", "", message, "exclamation-red");
+			LOGGER.info(message);
+            System.out.println(message);
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        }
+        
+   
+        ////////// THE RESET FOR THIS TO BE ON USER BASES //////////
+        ////////// CURRENTLY THE RESET APPLIES TO ALL USERS ///////
+        if(updateUser.isEnabled() == false){
+      	  TwoFactorAuthController.isResetTwoFactorAuth = true; 
+    	  //TwoFactorAuthController.isVerificationRequired = true; 
+    	  
+    	  updateUser.setTwoFactorAuthInitialised(false);
+    	  
+    	  //TwoFactorAuthController.TWO_FACTOR_AUTHENTICATION_INT = false; 	
+        }
+        
+        
+        updateUser.setEnabled(user.isEnabled());
+        userService.save(updateUser);
+
+		
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        
+    	//return new ResponseEntity<String>(resultJson.toString(), headers, HttpStatus.OK);
+		return new ResponseEntity<Void>(headers, HttpStatus.OK);
+    }
+	
+	
+	
+	
+	
     //-------------------Create a User--------------------------------------------------------
      
 	@RequestMapping(value = "/user/", method = RequestMethod.POST)
@@ -106,7 +168,13 @@ public class MemberRestController {
 		addRole = roleService.findOne("ROLE_USER");
 		roles.add(addRole);
 		user.setRoles(roles);
-		user.setEnabled(true);
+		
+		user.setEnabled(false);
+		user.setTwoFactorAuthInitialised(false);
+		user.setResetTwoFactorAuth(false);
+		user.setVerified(false);
+		user.setVerifiedError(false);
+		
 		user.setCreatedDate(new Date());
 		userService.save(user);
 		///////////////////////////////
@@ -344,6 +412,7 @@ public class MemberRestController {
         		userJSON.put("id",user.getId());
         		userJSON.put("name",user.getName());
         		userJSON.put("email",user.getEmail());
+        		userJSON.put("enabled",user.isEnabled());
 
         		Date date = user.getCreatedDate();
         		

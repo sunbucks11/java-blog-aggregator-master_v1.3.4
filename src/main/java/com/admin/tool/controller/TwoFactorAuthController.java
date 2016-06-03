@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.admin.tool.entity.User;
 import com.admin.tool.service.UserService;
 import com.warrenstrange.googleauth.GoogleAuthenticator;
 import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
@@ -28,9 +29,9 @@ public class TwoFactorAuthController {
 	public static final String TWO_FACTOR_AUTHENTICATION_SUCCESS = "TWO_FACTOR_AUTHENTICATION";
 
 	public static boolean isResetTwoFactorAuth = false;
-	public static boolean isVerificationRequired = true;
+	//public static boolean isVerificationRequired = true;
 
-	public static boolean TWO_FACTOR_AUTHENTICATION_INT = false;
+	//public static boolean TWO_FACTOR_AUTHENTICATION_INT = false;
 
 	public static GoogleAuthenticatorKey SecretKey;
 
@@ -52,15 +53,16 @@ public class TwoFactorAuthController {
 		if (sci != null) {
 			UserDetails cud = (UserDetails) sci.getAuthentication().getPrincipal();
 			username = cud.getUsername();
-			userService.findOne(username);
+			User user = userService.findOne(username);
 			//TwoFactorAuthForm twoFactorAuthForm = new TwoFactorAuthForm(userService.findOne(username));
 
 			System.out.println("Current User: " + userService.findOne(username).getName());
 
 			try {
 
-				if (userService.findOne(username).getTwoFactorAuthInitialised() == null
-						&& !TWO_FACTOR_AUTHENTICATION_INT) {
+				//if (userService.findOne(username).getTwoFactorAuthInitialised() == null && !TWO_FACTOR_AUTHENTICATION_INT)
+				if (user.getTwoFactorAuthInitialised() == false) 
+				{
 					GoogleAuthenticator googleAuthenticator = new GoogleAuthenticator();
 
 					final GoogleAuthenticatorKey key = googleAuthenticator.createCredentials();
@@ -78,8 +80,12 @@ public class TwoFactorAuthController {
 
 					userService.findOne(username).setSecretKey(secret);
 					this.SecretKey = key;
-					TWO_FACTOR_AUTHENTICATION_INT = true;
+					//TWO_FACTOR_AUTHENTICATION_INT = true;
 					TwoFactorAuthController.isResetTwoFactorAuth = false;
+					
+					user.setTwoFactorAuthInitialised(true);
+					userService.save(user);
+					
 				} else {
 					request.getRequestDispatcher("/verification.html").forward(request, response);
 

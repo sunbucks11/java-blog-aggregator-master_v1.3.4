@@ -2,7 +2,6 @@
 
 App.controller('UserController', ['$scope', 'UserService', function($scope, UserService) {
           var self = this;
-/*        self.user={id:'', username:'',roles:'',email:''};*/
           self.user={id:'',name:'' ,email:'' ,password:'' ,roles:[]};
           self.users=[];
        
@@ -35,17 +34,74 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
       // Save selected user through the checkbox globally
       $scope.onAddRoleSaveUser = function(u) { 
     	  selectedUser = u;
-    	  //console.log("Selected user id " + selectedUser.id); 
       };
 
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      // Enabled Checkbox selection
+      $scope.selectionEnabled = {
+          ids: {}
+      
+      };
+
+      // Enable or disable field/s
+      $scope.onTwoAuthEnableOrDisable = function(u) { 
+    	  
+    	      console.log("Enabled : " + u.enabled);
+    	      console.log("User Id: " + u.id); 
+              console.log("User name: " + u.name); 
+              //console.log("User comment: " + u.comment); 
+              console.log("User Created: " + u.createdDate); 
+              console.log("User Modified: " + u.modifiedDate); 
+
+    	      self.user.enabled = $scope.selectionEnabled.ids[u.id];
+    	      self.user.name = u.name;
+    	      //self.field.comment = u.comment;
+    	      self.user.enabled = u.enabled;
+    	      
+              self.updateTwoAuth(self.user, u.id, self.user.enabled);
+              console.log("self.user.enabled : " + self.user.enabled);
+
+      };
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       
       // Remove a Role from a user
       $scope.onRemoveUserRole = function (roleId, emailAddress){
     	  console.log("Role Id to be deleted: " + roleId);
-    	  //console.log("selectedRoleUserEmail: " + emailAddress);
-    	 // selectedRoleUserId = userId;
     	  selectedRoleUserEmail = emailAddress;
-    	  //UserService.deleteUserRole(roleId, user);
     	  UserService.deleteUserRole(roleId, selectedRoleUserEmail);
     	  window.location.reload();
       }
@@ -92,7 +148,7 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
 		              .then(
 				              self.fetchAllUsers, 
 				              function(errResponse){
-					               console.error('Error while updating User fole.');
+					               console.error('Error while updating User role.');
 				              }	
                   );
           };
@@ -101,6 +157,23 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
           
           
           
+          
+          
+          
+          
+          
+          
+          
+          
+          self.updateTwoAuth = function(user, id){
+        	  UserService.updateTwoAuth(user, id)
+		              .then(
+				              self.fetchAllUserss, 
+				              function(errResponse){
+					               console.error('Error while updating Two Factor Auth..');
+				              }	
+                  );
+          };
           
           
           

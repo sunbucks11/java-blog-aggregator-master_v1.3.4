@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.admin.tool.entity.User;
 import com.admin.tool.service.UserService;
 import com.warrenstrange.googleauth.GoogleAuthenticator;
 import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
@@ -83,15 +84,21 @@ public class VerificationController {
 				request.getSession().setAttribute("isVerified", true);
 				request.getSession().setAttribute("isAuthenticated", true);
 				
-				userService.findOne(username).setAuthenticated(true);
-				userService.findOne(username).setVerified(true);
-				userService.findOne(username).setVerifiedError(false);
-				TwoFactorAuthController.isVerificationRequired = false; 
-				return "redirect:/index.html";
+				User user = userService.findOne(username);
+				
+				user.setAuthenticated(true);
+				user.setVerified(true);
+				user.setVerifiedError(false);
+				userService.save(user);
+				
+				//userService.findOne(username).setVerified(true);
+				//TwoFactorAuthController.isVerificationRequired = false; 
+				//return "redirect:/index.html";
+				return "redirect:/home.html";
 			} else {
 				
 				request.logout();
-				request.getSession().setAttribute("isVerifiedError", false);
+				request.getSession().setAttribute("isVerifiedError", true);
 				userService.findOne(username).setVerified(false);
 				userService.findOne(username).setVerifiedError(true);
 			}

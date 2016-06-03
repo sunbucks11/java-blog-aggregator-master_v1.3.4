@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.admin.tool.security.AjaxAuthenticationSuccessHandler;
@@ -106,6 +107,9 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
 		.exceptionHandling().accessDeniedPage("/403");
         //.addFilter(new AdminFilter());
+       http.addFilterBefore(new AdminFilter(),
+            UsernamePasswordAuthenticationFilter.class);
+    
         //.permitAll();
   }
 }

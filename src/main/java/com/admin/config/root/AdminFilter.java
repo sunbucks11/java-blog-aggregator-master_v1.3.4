@@ -2,6 +2,7 @@ package com.admin.config.root;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.Filter;
@@ -17,21 +18,31 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.admin.tool.controller.TwoFactorAuthController;
 import com.admin.tool.entity.Role;
+import com.admin.tool.entity.User;
+import com.admin.tool.repository.UserRepository;
 import com.admin.tool.service.UserService;
 
 
 @Component
 public class AdminFilter implements Filter {
 
-	@Autowired
+	@Autowired(required = true)
 	private UserService userService;
+	
+	//@Autowired(required = true)
+	//private UserRepository userRepository;
 
 	private static Logger log = LoggerFactory.getLogger(AdminFilter.class);
 
@@ -46,6 +57,10 @@ public class AdminFilter implements Filter {
 //	@Override
 	public void doFilter(ServletRequest req, ServletResponse res,
 			FilterChain chain) throws IOException, ServletException {
+		
+		// http://stackoverflow.com/questions/32494398/unable-to-autowire-the-service-inside-my-authentication-filter-in-spring
+		 SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+		
 		log.info("adminFilter.doFilter executed");
 
 		HttpServletRequest request = (HttpServletRequest) req;
@@ -77,10 +92,15 @@ public class AdminFilter implements Filter {
 			return;
 		}
 		*/
+	
 		
+		if (requestedUri.contains("/403.html")) {
+			chain.doFilter(request, response);
+			return;
+		}
 		
 		if (requestedUri.contains("/logout")) {
-			TwoFactorAuthController.isVerificationRequired = true;
+			//TwoFactorAuthController.isVerificationRequired = true;
 			chain.doFilter(request, response);
 			return;
 		}
@@ -118,22 +138,30 @@ public class AdminFilter implements Filter {
 			UserDetails cud = (UserDetails) sci.getAuthentication()
 					.getPrincipal();
 			username = cud.getUsername();
+			User user = userService.findOne(username);
 
+		if(user.isEnabled())
+		{
 			if (request.getSession().getAttribute("isVerifiedError") != null
 					&& (boolean) request.getSession().getAttribute(
 							"isVerifiedError") == true) {
 
 				if (TwoFactorAuthController.isResetTwoFactorAuth) {
 					twoFactorAuthenticationEnabled = true;
-					TwoFactorAuthController.TWO_FACTOR_AUTHENTICATION_INT = false;
-					session.invalidate();
+					//TwoFactorAuthController.TWO_FACTOR_AUTHENTICATION_INT = false;
+					
+					user.setResetTwoFactorAuth(true);
+					user.setTwoFactorAuthInitialised(false);
+					
+					//session.invalidate();
 					chain.doFilter(request, response);
 					return;
 				}
 			}
 
-			boolean loggedinUserHasAdminRole = isLoggedinUserHasAdminRole(username);
+			//boolean loggedinUserHasAdminRole = isLoggedinUserHasAdminRole(username, cud.getAuthorities() );
 
+/*
 			if (loggedinUserHasAdminRole && twoFactorAuthenticationEnabled
 					&& someoneIsLoggedIn(session)
 					&& !isUserAlreadyAuthenticatedWithTwoFactorAuth(session)
@@ -142,11 +170,25 @@ public class AdminFilter implements Filter {
 						.forward(request, response);
 				return;
 			}
-
+*/
+			
+			if (twoFactorAuthenticationEnabled
+					&& !user.getTwoFactorAuthInitialised()
+					&& someoneIsLoggedIn(session)
+					//&& !isUserAlreadyAuthenticatedWithTwoFactorAuth(session)
+					/*&& !TwoFactorAuthController.TWO_FACTOR_AUTHENTICATION_INT*/
+					) {
+				request.getRequestDispatcher("/TwoFactorAuthController")
+						.forward(request, response);
+				return;
+			}
+			
+			
+			
 			System.out.println("isVerificationRequired: "
 					+ request.getSession().getAttribute(
 							"isVerificationRequired"));
-
+/*
 			if (loggedinUserHasAdminRole
 					&& TwoFactorAuthController.TWO_FACTOR_AUTHENTICATION_INT
 					&& TwoFactorAuthController.isVerificationRequired) {
@@ -156,12 +198,29 @@ public class AdminFilter implements Filter {
 						false);
 				return;
 			}
+*/			
+			
+			if (user.getTwoFactorAuthInitialised() && !user.isVerified()) {
+				request.getRequestDispatcher("/verification.html").forward(
+						request, response);
+				request.getSession().setAttribute("isVerificationRequired",false);
+				return;
+			}
+			
+			
+			
 		}
 
 		log.info("adminFilter.doFilter skipping to next filter");
 		chain.doFilter(req, res);
+		return;
+	 }
 	}
 
+	
+	
+	
+	
 	private boolean someoneIsLoggedIn(HttpSession session) {
 		try {
 			SecurityContextImpl sci = (SecurityContextImpl) session
@@ -200,15 +259,15 @@ public class AdminFilter implements Filter {
 		return false;
 	}
 
-	private boolean isLoggedinUserHasAdminRole(String username) {
-		List<Role> roles = new ArrayList<Role>();
-		roles = userService.findOneWithBlogs(username).getRoles();
-		for (Role role : roles) {
-			if (role.getName().contains("ROLE_ADMIN")) {
+/*
+	private boolean isLoggedinUserHasAdminRole(String username, Collection<? extends GrantedAuthority> authorities) {
+		for (GrantedAuthority grantedAuthority : authorities) {
+			if(grantedAuthority.toString().equals("ROLE_ADMIN")){
 				return true;
 			}
 		}
 		return false;
 	}
+	*/
 
 }

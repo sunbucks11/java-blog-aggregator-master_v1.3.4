@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+
+
+<%@ page import="javax.servlet.http.HttpServlet" %>  
+<%@ page import="java.security.Principal" %>  
+<%@ page import="javax.servlet.http.HttpServletResponse" %>  
+<%@ page import="javax.servlet.http.HttpServletRequest" %> 
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,9 +60,40 @@
 		              <security:authorize access="isAuthenticated()  && !hasRole('ROLE_ADMIN')">
 		                <li class="${current == 'register' ? 'active' : ''}"><a href="<spring:url value="/account.html" />"><span class="glyphicon glyphicon glyphicon-edit" aria-hidden="true"></span> <spring:message code="btn.account" text="Account" /></a></li>
 		              </security:authorize>
+
+<%--		              
+						 <jsp:useBean id="user" class="com.admin.tool.entity.User" scope="session">  
+						 </jsp:useBean>
 		              
-		              <security:authorize access="hasRole('ROLE_ADMIN')">	
+		              
+ 		              <%
+		              
+						 Principal user1 = request.getUserPrincipal();  
+						 String name = user1.getName(); 
+						 System.out.println("name: " + name);  
+		              
+		                // String name =  request.getUserPrincipal().getName();
+
+		                System.out.println("name: " + name);  
+		              
+		                boolean isEnabled = user.isEnabled();
+		                boolean isVerified = user.isVerified();
+
+						System.out.println("isEnabled: " + isEnabled);
+						System.out.println("isVerified: " + user.isVerified()); 
+						System.out.println("isVerifiedError: " + user.isVerifiedError()); 
+						System.out.println("getTwoFactorAuthInitialised: " + user.getTwoFactorAuthInitialised()); 
+						System.out.println("isAuthenticated: " + user.isAuthenticated()); 
+						System.out.println("isResetTwoFactorAuth: " + user.isResetTwoFactorAuth()); 
+						
+
+						if(isEnabled == false){
+						 %>
+						 
+						<security:authorize access="hasRole('ROLE_ADMIN')">	
 						<li class="${current == 'home' ? 'active' : ''}"> <a href="<spring:url value="/index.html" />"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <spring:message code="btn.index" text="Index" /></a></li>
+						
+						<li class="${current == 'home' ? 'active' : ''}"> <a href="<spring:url value="/index.html" />"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> ${pageContext.request.remoteUser}</a></li>
 						
 						<li class="${current == 'RolesManagement' ? 'active' : ''}"> <a href="<spring:url value="/RolesManagement.html" />"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> <spring:message code="btn.roles" text="Roles" /></a></li>
 	                    <li class="${current == 'UserManagement' ? 'active' : ''}"><a href="<spring:url value="/UserManagement.html" />"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <spring:message code="btn.members" text="Members" /></a></li>
@@ -76,7 +116,72 @@
 							</ul>
 						</li>
 						</security:authorize>
+						 
+						<% } 
+
+						if(isEnabled == true && isVerified == true){
+							 %>
+							 
+							<security:authorize access="hasRole('ROLE_ADMIN')">	
+							<li class="${current == 'home' ? 'active' : ''}"> <a href="<spring:url value="/index.html" />"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <spring:message code="btn.index" text="Index" /></a></li>
+							
+							<li class="${current == 'home' ? 'active' : ''}"> <a href="<spring:url value="/index.html" />"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> ${pageContext.request.remoteUser}</a></li>
+							
+							<li class="${current == 'RolesManagement' ? 'active' : ''}"> <a href="<spring:url value="/RolesManagement.html" />"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> <spring:message code="btn.roles" text="Roles" /></a></li>
+		                    <li class="${current == 'UserManagement' ? 'active' : ''}"><a href="<spring:url value="/UserManagement.html" />"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <spring:message code="btn.members" text="Members" /></a></li>
+		                    
+		                    
+		                    <li class="${current == 'FieldsManagement' ? 'active' : ''}"><a href="<spring:url value="/FieldsManagement.html" />"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <spring:message code="btn.fields" text="Fields" /></a></li>
+		                    
+		                    <li class="${current == 'DomainsManagement' ? 'active' : ''}"><a href="<spring:url value="/DomainsManagement.html" />"> <span class="glyphicon glyphicon-th" aria-hidden="true"></span> <spring:message code="btn.domains" text="Domains" /> </a></li>
+
+							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span></span> <spring:message code="btn.more" text="More" /> <span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="<spring:url value="/AuditManagement.html" />"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="margin-right: 10px;"></span><spring:message code="btn.audit" text="Audit" /></a></li>
+									<li class="divider"></li>
+									<li><a href="<spring:url value="/tools.html" />"><span class="glyphicon glyphicon-briefcase" aria-hidden="true" style="margin-right: 10px;"></span><spring:message code="btn.tools" text="Tools" /></a></li>
+									<li><a href="<spring:url value="/settings.html" />"><span class="glyphicon glyphicon-cog" aria-hidden="true" style="margin-right: 10px;"></span><spring:message code="btn.settings" text="Settings" /></a></li>
+									<li class="divider"></li>
+									<li><a href="<spring:url value="/api.html" />"><span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="margin-right: 10px;"></span><spring:message code="btn.api" text="API" /></a></li>
+									<li><a href="<spring:url value="/help.html" />"><span class="glyphicon glyphicon-book" aria-hidden="true" style="margin-right: 10px;"></span> </span><spring:message code="btn.help" text="Help" /></a></li>
+									<li><a href="<spring:url value="/faq.html" />"><span class="glyphicon glyphicon-question-sign" aria-hidden="true" style="margin-right: 10px;"></span></span><spring:message code="btn.faq" text="FAQ" /></a></li>
+								</ul>
+							</li>
+							</security:authorize>
+							 
+							<% } 
+				%> --%>
+						
+						
+
+		              <security:authorize access="hasRole('ROLE_ADMIN')">	
+						<li class="${current == 'home' ? 'active' : ''}"> <a href="<spring:url value="/index.html" />"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <spring:message code="btn.index" text="Index" /></a></li>
+						
+<%-- 						<li class="${current == 'home' ? 'active' : ''}"> <a href="<spring:url value="/index.html" />"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> ${pageContext.request.remoteUser}</a></li> --%>
+						
+						<li class="${current == 'RolesManagement' ? 'active' : ''}"> <a href="<spring:url value="/RolesManagement.html" />"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> <spring:message code="btn.roles" text="Roles" /></a></li>
+	                    <li class="${current == 'UserManagement' ? 'active' : ''}"><a href="<spring:url value="/UserManagement.html" />"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <spring:message code="btn.members" text="Members" /></a></li>
+	                    
+	                    
+	                    <li class="${current == 'FieldsManagement' ? 'active' : ''}"><a href="<spring:url value="/FieldsManagement.html" />"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <spring:message code="btn.fields" text="Fields" /></a></li>
+	                    
+	                    <li class="${current == 'DomainsManagement' ? 'active' : ''}"><a href="<spring:url value="/DomainsManagement.html" />"> <span class="glyphicon glyphicon-th" aria-hidden="true"></span> <spring:message code="btn.domains" text="Domains" /> </a></li>
+
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span></span> <spring:message code="btn.more" text="More" /> <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="<spring:url value="/AuditManagement.html" />"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="margin-right: 10px;"></span><spring:message code="btn.audit" text="Audit" /></a></li>
+								<li class="divider"></li>
+								<li><a href="<spring:url value="/tools.html" />"><span class="glyphicon glyphicon-briefcase" aria-hidden="true" style="margin-right: 10px;"></span><spring:message code="btn.tools" text="Tools" /></a></li>
+								<li><a href="<spring:url value="/settings.html" />"><span class="glyphicon glyphicon-cog" aria-hidden="true" style="margin-right: 10px;"></span><spring:message code="btn.settings" text="Settings" /></a></li>
+								<li class="divider"></li>
+								<li><a href="<spring:url value="/api.html" />"><span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="margin-right: 10px;"></span><spring:message code="btn.api" text="API" /></a></li>
+								<li><a href="<spring:url value="/help.html" />"><span class="glyphicon glyphicon-book" aria-hidden="true" style="margin-right: 10px;"></span> </span><spring:message code="btn.help" text="Help" /></a></li>
+								<li><a href="<spring:url value="/faq.html" />"><span class="glyphicon glyphicon-question-sign" aria-hidden="true" style="margin-right: 10px;"></span></span><spring:message code="btn.faq" text="FAQ" /></a></li>
+							</ul>
+						</li>
+						</security:authorize> 
 					</ul>
+					
 					
 					 <span style="float: right!important;; margin-top: 15px; margin-left:20px; color: white"><spring:message code="app.language.lbl" text="" /> : 
 					   <a style="color: white;" href="?language=en"><spring:message code="app.language.name.english" text="" /></a> 

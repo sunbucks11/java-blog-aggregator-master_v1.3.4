@@ -13,6 +13,8 @@
 		<meta name="author" content="">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
+<link rel="stylesheet" href="./resources/bower_components/angular-ui-switch/angular-ui-switch.min.css"/>
+
 		<style type="text/css">
 		
 		.btn-file {
@@ -34,7 +36,146 @@
 		    cursor: inherit;
 		    display: block;
 			}
-		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.switch {
+  /* background: #fff; */
+  background: #7B7072;
+  border: 1px solid #dfdfdf;
+  position: relative;
+  display: inline-block;
+  box-sizing: content-box;
+  overflow: visible;
+  /* width: 52px; */
+  width: 45px;
+  /* height: 30px; */
+  height: 15px;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset;
+  transition: 0.3s ease-out all;
+  -webkit-transition: 0.3s ease-out all;
+  top: -1px;
+}
+/*adding a wide width for larger switch text*/
+.switch.wide {
+  width:80px;
+}
+.switch small {
+  background: #fff;
+  border-radius: 100%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+/*   width: 30px;
+  height: 30px; */
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 0px;
+  left: -7px;
+  margin-left: 8px;
+  transition: 0.3s ease-out all;
+  -webkit-transition: 0.3s ease-out all;
+}
+.switch.checked {
+  background: rgb(100, 189, 99);
+  border-color: rgb(100, 189, 99);
+}
+.switch.checked small {
+  left: 22px;
+}
+/*wider switch text moves small further to the right*/
+.switch.wide.checked small {
+  left:52px;
+}
+/*styles for switch-text*/
+.switch .switch-text {
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:13px;
+}
+
+.switch .off {
+  display:block;
+  position: absolute;
+  right: 10%;
+  /* top: 25%; */
+  top: 0;
+  z-index: 0;
+  /* color:#A9A9A9; */
+  color: #fff;
+  
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.switch .on {
+  display:none;
+   z-index: 0;
+  /* color:#fff; */
+  color: #060202;
+  position: absolute;
+  /* top: 25%; */
+  top: 0;
+  left: 9%;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.switch.checked .off {
+  display:none;
+}
+
+.switch.checked .on {
+  display:block;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		</style>
 
 </head>
@@ -78,6 +219,7 @@
 						            <th class="role-sort-column " style="width: 5%">ID<span class="css_right ui-icon ui-icon-triangle-1-n"></span></th>
 						            <th class="role-sort-column" style="width: 25%">Name <span class="css_right ui-icon ui-icon-carat-2-n-s"></span></th>
 						            <th style="width: 35%">Role</th>
+						            <th class="role-sort-column">2F Auth <span class="css_right ui-icon ui-icon-carat-2-n-s"></span></th>
 						            <th class="role-sort-column">Email <span class="css_right ui-icon ui-icon-carat-2-n-s"></span></th>
 						            <th class="role-sort-column table-date-td-width">Last Login <span class="css_right ui-icon ui-icon-carat-2-n-s" /></th>
 						            <th class="role-sort-column table-date-td-width">Created <span class="css_right ui-icon ui-icon-carat-2-n-s" /></th>
@@ -133,6 +275,28 @@
 
 						               </div>
 						            </td>
+						            
+						            
+						            <!-- ================= Two Factor Auth ================-->
+						            
+						             <td  align="center"  style="width: 10%">
+  										<switch ng-checked={{u.enabled}} type="checkbox" ng-model="u.enabled" on="Yes" off="No" ng-change="onTwoAuthEnableOrDisable(u)"></switch>
+						              </td>						            
+						            
+						            
+						            
+						            
+						            
+						            
+						            
+						            
+						            
+						            
+						            
+						            
+						            
+						            
+						            
 						            <!-- ================= Email ================-->
 						            <td>
 						               <span ng-bind="u.email">

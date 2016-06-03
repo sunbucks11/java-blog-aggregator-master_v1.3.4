@@ -96,6 +96,51 @@ App.factory('UserService', ['$http', '$q', function($http, $q){
 			
 			
 			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+    updateTwoAuth: function(user,id, enabled){
+		/*return $http.put('http://localhost:8080/admin-tool/field/'+id, field)*/
+		 return $http.put('http://localhost:8080/twoAuth/'+id, user, "true")
+				.then(
+						function(response){
+							return response.data;
+						}, 
+						function(errResponse){
+							console.error('Enabled: ' + self.user.enabled);
+							console.error('Error while updating field');
+							return $q.reject(errResponse);
+						}
+				);
+    	},
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 			
 			
 			

@@ -69,7 +69,7 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
 		              .then(
 				              self.fetchAllFields, 
 				              function(errResponse){
-					               console.error('Error while updating Fole.');
+					               console.error('Error while updating field.');
 				              }	
                   );
           };
