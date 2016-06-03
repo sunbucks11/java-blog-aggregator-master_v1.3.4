@@ -43,15 +43,13 @@ public class LoginController {
 	    user.setVerified(false);
 	    userService.save(user);
 	    
-	    return "redirect:/login?logout";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
+	    //return "redirect:/login?logout";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
+	    return "redirect:/login";
 	}
-	
 	
 	@RequestMapping(value="/loginError", method = RequestMethod.GET)
 	public String loginError(ModelMap model) {
 	model.addAttribute("error", "true");
-	//return "login_page";
-	//return "login";
 	return "redirect:/login.html?error=true";
 	}
 }

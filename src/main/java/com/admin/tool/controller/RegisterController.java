@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.admin.tool.entity.User;
-import com.admin.tool.security.SecurityUserDetailsService;
 import com.admin.tool.service.AuditService;
 import com.admin.tool.service.FieldService;
 import com.admin.tool.service.UserService;
@@ -73,8 +72,7 @@ public class RegisterController {
 			auditService.update(new Date(), "App", "localhost", "", message, "exclamation-red");
 			return "user-register";
 		}
-		
-		//user.setEnabled(true);
+
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		user.setPassword(encoder.encode(user.getPassword()));
 		

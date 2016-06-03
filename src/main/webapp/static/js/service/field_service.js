@@ -2,11 +2,13 @@
 
 App.factory('FieldService', ['$http', '$q', function($http, $q){
 
+	var ipAddress = 'localhost';
+	var portNum = 8080;
+
 	return {
 		
 			fetchAllFields: function() {
-				      /*return $http.get('http://localhost:8080/admin-tool/field/')*/
-						return $http.get('http://localhost:8080/field/')
+						return $http.get('http://' + ipAddress + ':' + portNum + '/field/')
 							.then(
 									function(response){
 										return response.data;
@@ -19,8 +21,7 @@ App.factory('FieldService', ['$http', '$q', function($http, $q){
 			},
 		    
 		    createField: function(field){
-					/*return $http.post('http://localhost:8080/admin-tool/field/', field)*/
-					return $http.post('http://localhost:8080/field/', field)
+					return $http.post('http://' + ipAddress + ':' + portNum + '/field/', field)
 							.then(
 									function(response){
 										return response.data;
@@ -33,8 +34,7 @@ App.factory('FieldService', ['$http', '$q', function($http, $q){
 		    },
 		    
 		    updateField: function(field,id, enabled){
-					/*return $http.put('http://localhost:8080/admin-tool/field/'+id, field)*/
-		    		 return $http.put('http://localhost:8080/field/'+id, field, "true")
+		    		 return $http.put('http://' + ipAddress + ':' + portNum + '/field/'+id, field, "true")
 							.then(
 									function(response){
 										return response.data;
@@ -48,8 +48,7 @@ App.factory('FieldService', ['$http', '$q', function($http, $q){
 			},
 		    
 			deleteField: function(id){
-					/*return $http.delete('http://localhost:8080/admin-tool/field/'+id)*/
-					 return $http.delete('http://localhost:8080/field/'+id)
+					 return $http.delete('http://' + ipAddress + ':' + portNum + '/field/'+id)
 							.then(
 									function(response){
 										return response.data;

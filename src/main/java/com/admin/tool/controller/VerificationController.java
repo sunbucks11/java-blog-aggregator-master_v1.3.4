@@ -36,7 +36,6 @@ public class VerificationController {
 	{
 		
 		String exitVerificationBtn = request.getParameter("exit-verification");
-		//String saveVerificationBtn = request.getParameter("save-verification");
 		String verificationCodeTxtBox = request.getParameter("code");
 				
 		HttpSession session = request.getSession(true);
@@ -85,15 +84,11 @@ public class VerificationController {
 				request.getSession().setAttribute("isAuthenticated", true);
 				
 				User user = userService.findOne(username);
-				
 				user.setAuthenticated(true);
 				user.setVerified(true);
 				user.setVerifiedError(false);
 				userService.save(user);
 				
-				//userService.findOne(username).setVerified(true);
-				//TwoFactorAuthController.isVerificationRequired = false; 
-				//return "redirect:/index.html";
 				return "redirect:/home.html";
 			} else {
 				

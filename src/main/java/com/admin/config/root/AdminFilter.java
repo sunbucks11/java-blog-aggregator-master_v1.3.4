@@ -41,20 +41,15 @@ public class AdminFilter implements Filter {
 	@Autowired(required = true)
 	private UserService userService;
 	
-	//@Autowired(required = true)
-	//private UserRepository userRepository;
-
 	private static Logger log = LoggerFactory.getLogger(AdminFilter.class);
 
 	private boolean twoFactorAuthenticationEnabled = true; // XXX will this be
 															// configurable?
-
 	public void init(FilterConfig filterConfig) throws ServletException {
 
 	}
 
 	@Transactional
-//	@Override
 	public void doFilter(ServletRequest req, ServletResponse res,
 			FilterChain chain) throws IOException, ServletException {
 		
@@ -69,7 +64,7 @@ public class AdminFilter implements Filter {
 
 		System.out.println("REQUESTED URL: " + requestedUri);
 
-		// allow all resources to tget passed this filter
+		// allow all resources to pass through this filter
 		log.info("requestedUri is:" + requestedUri);
 		if (requestedUri.matches(".*[css|jpg|png|gif|js]")
 				|| requestedUri.contains("admin/auth")) {
@@ -80,56 +75,26 @@ public class AdminFilter implements Filter {
 		HttpSession session = request.getSession(true);
 
 		if (requestedUri.contains("/ErrorController/Reset")) {
-			request.getRequestDispatcher("/ResetController").forward(request,
-					response);
+			request.getRequestDispatcher("/ResetController").forward(request, response);
 			return;
 		}
 
-		/*
-		if (requestedUri.contains("/ResetController/backToLogin")) {
-			request.getRequestDispatcher("/LoginController").forward(request,
-					response);
-			return;
-		}
-		*/
 	
+		if (requestedUri.contains("/verification") 
+			|| requestedUri.contains("/403.html")
+			|| requestedUri.contains("/logout")
+			|| requestedUri.contains("/register.html")
+			|| requestedUri.contains("/j_spring_security_check")
+			|| requestedUri.contains("/login.html")
+			|| requestedUri.contains("/error.html")
+			|| requestedUri.contains("/reset.html")
+			|| requestedUri.contains("/loginError.html")
+			) {
+			chain.doFilter(request, response);
+			return;
+		}
+
 		
-		if (requestedUri.contains("/403.html")) {
-			chain.doFilter(request, response);
-			return;
-		}
-		
-		if (requestedUri.contains("/logout")) {
-			//TwoFactorAuthController.isVerificationRequired = true;
-			chain.doFilter(request, response);
-			return;
-		}
-
-		if (requestedUri.contains("/register.html")) {
-			chain.doFilter(request, response);
-			return;
-		}
-
-		if (requestedUri.contains("/j_spring_security_check")) {
-			chain.doFilter(request, response);
-			return;
-		}
-
-		if (requestedUri.contains("/login.html")) {
-			chain.doFilter(request, response);
-			return;
-		}
-
-		if (requestedUri.contains("/error.html")) {
-			chain.doFilter(request, response);
-			return;
-		}
-		
-		if (requestedUri.contains("/reset.html")) {
-			chain.doFilter(request, response);
-			return;
-		}
-
 		SecurityContextImpl sci = (SecurityContextImpl) session
 				.getAttribute("SPRING_SECURITY_CONTEXT");
 		String username = null;
@@ -150,65 +115,30 @@ public class AdminFilter implements Filter {
 					twoFactorAuthenticationEnabled = true;
 					//TwoFactorAuthController.TWO_FACTOR_AUTHENTICATION_INT = false;
 					
-					user.setResetTwoFactorAuth(true);
-					user.setTwoFactorAuthInitialised(false);
+					//user.setResetTwoFactorAuth(true);
+					//user.setTwoFactorAuthInitialised(false);
 					
 					//session.invalidate();
 					chain.doFilter(request, response);
 					return;
 				}
 			}
-
-			//boolean loggedinUserHasAdminRole = isLoggedinUserHasAdminRole(username, cud.getAuthorities() );
-
-/*
-			if (loggedinUserHasAdminRole && twoFactorAuthenticationEnabled
-					&& someoneIsLoggedIn(session)
-					&& !isUserAlreadyAuthenticatedWithTwoFactorAuth(session)
-					&& !TwoFactorAuthController.TWO_FACTOR_AUTHENTICATION_INT) {
-				request.getRequestDispatcher("/TwoFactorAuthController")
-						.forward(request, response);
-				return;
-			}
-*/
-			
+	
 			if (twoFactorAuthenticationEnabled
 					&& !user.getTwoFactorAuthInitialised()
-					&& someoneIsLoggedIn(session)
-					//&& !isUserAlreadyAuthenticatedWithTwoFactorAuth(session)
-					/*&& !TwoFactorAuthController.TWO_FACTOR_AUTHENTICATION_INT*/
-					) {
-				request.getRequestDispatcher("/TwoFactorAuthController")
-						.forward(request, response);
+					&& someoneIsLoggedIn(session)) {
+				request.getRequestDispatcher("/TwoFactorAuthController").forward(request, response);
 				return;
 			}
 			
-			
-			
-			System.out.println("isVerificationRequired: "
-					+ request.getSession().getAttribute(
-							"isVerificationRequired"));
-/*
-			if (loggedinUserHasAdminRole
-					&& TwoFactorAuthController.TWO_FACTOR_AUTHENTICATION_INT
-					&& TwoFactorAuthController.isVerificationRequired) {
-				request.getRequestDispatcher("/verification.html").forward(
-						request, response);
-				request.getSession().setAttribute("isVerificationRequired",
-						false);
-				return;
-			}
-*/			
-			
+			//System.out.println("isVerificationRequired: " + request.getSession().getAttribute("isVerificationRequired"));
+
 			if (user.getTwoFactorAuthInitialised() && !user.isVerified()) {
 				request.getRequestDispatcher("/verification.html").forward(
 						request, response);
 				request.getSession().setAttribute("isVerificationRequired",false);
 				return;
 			}
-			
-			
-			
 		}
 
 		log.info("adminFilter.doFilter skipping to next filter");

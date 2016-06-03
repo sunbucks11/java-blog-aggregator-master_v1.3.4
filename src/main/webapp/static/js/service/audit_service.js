@@ -2,11 +2,13 @@
 
 App.factory('AuditService', ['$http', '$q', function($http, $q){
 
+	var ipAddress = 'localhost';
+	var portNum = 8080;
+	
 	return {
 		
 			fetchAllAudits: function() {
-				      /*return $http.get('http://localhost:8080/admin-tool/audit/')*/
-						return $http.get('http://localhost:8080/audit/')
+						return $http.get('http://' + ipAddress + ':' + portNum + '/audit/')
 							.then(
 									function(response){
 										return response.data;
@@ -20,7 +22,7 @@ App.factory('AuditService', ['$http', '$q', function($http, $q){
 		    
 		    createAudit: function(audit){
 					/*return $http.post('http://localhost:8080/admin-tool/audit/', audit)*/
-					return $http.post('http://localhost:8080/audit/', audit)
+					return $http.post('http://' + ipAddress + ':' + portNum + '/audit/', audit)
 							.then(
 									function(response){
 										return response.data;
@@ -34,7 +36,7 @@ App.factory('AuditService', ['$http', '$q', function($http, $q){
 		    
 		    updateAudit: function(audit, id){
 					/*return $http.put('http://localhost:8080/admin-tool/audit/'+id, audit)*/
-		    		 return $http.put('http://localhost:8080/audit/'+id, audit)
+		    		 return $http.put('http://' + ipAddress + ':' + portNum + '/audit/'+id, audit)
 							.then(
 									function(response){
 										return response.data;
@@ -48,7 +50,7 @@ App.factory('AuditService', ['$http', '$q', function($http, $q){
 		    
 			deleteAudit: function(id){
 					/*return $http.delete('http://localhost:8080/admin-tool/audit/'+id)*/
-					 return $http.delete('http://localhost:8080/audit/'+id)
+					 return $http.delete('http://' + ipAddress + ':' + portNum + '/audit/'+id)
 							.then(
 									function(response){
 										return response.data;
