@@ -49,13 +49,15 @@ public class User {
 
 	@OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
 	private List<Blog> blogs;
-
+		
+	@OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
+	private List<UploadedFile> uploadedFiles;
+	
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="EEE, dd MMM yyyy HH:mm:ss zzz")
 	private Date createdDate;
 		
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="EEE, dd MMM yyyy HH:mm:ss zzz")
 	private Date lastLoginDate;
-	
 	
 	private String secretKey;
 	
@@ -68,8 +70,6 @@ public class User {
 	private boolean isVerifiedError; 
 	
 	private boolean isResetTwoFactorAuth;
-	
-	
 	
 	public User(){
 		
@@ -86,7 +86,6 @@ public class User {
 	public Date getLastLoginDate() {
 		return lastLoginDate;
 	}
-
 
 	public void setLastLoginDate(Date lastLoginDate) {
 		this.lastLoginDate = lastLoginDate;
@@ -147,11 +146,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-	
-	
-	
+
 	public String getSecretKey() {
 		return secretKey;
 	}
@@ -198,5 +193,13 @@ public class User {
 
 	public void setResetTwoFactorAuth(boolean isResetTwoFactorAuth) {
 		this.isResetTwoFactorAuth = isResetTwoFactorAuth;
+	}
+	
+	public List<UploadedFile> getUploadedFile() {
+		return uploadedFiles;
+	}
+
+	public void setUploadedFile(List<UploadedFile> uploadedFiles) {
+		this.uploadedFiles = uploadedFiles;
 	}
 }

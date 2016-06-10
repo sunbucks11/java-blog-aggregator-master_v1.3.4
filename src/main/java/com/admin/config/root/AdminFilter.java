@@ -89,6 +89,7 @@ public class AdminFilter implements Filter {
 			|| requestedUri.contains("/error.html")
 			|| requestedUri.contains("/reset.html")
 			|| requestedUri.contains("/loginError.html")
+			|| requestedUri.contains("/home.html")
 			) {
 			chain.doFilter(request, response);
 			return;

@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
@@ -30,9 +32,10 @@ public class ServletContextConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+		//registry.addResourceHandler("/web-resources/**").addResourceLocations("/resources/");
 		registry.addResourceHandler("/static/**").addResourceLocations("/static/");
 	}
-
+	
 	@Bean
 	public UrlBasedViewResolver viewResolver() {
 		UrlBasedViewResolver viewResolver = new UrlBasedViewResolver();
@@ -86,4 +89,28 @@ public class ServletContextConfig extends WebMvcConfigurerAdapter {
 	public AdminFilter adminFilter() {
 		return new AdminFilter();
 	}
+	
+	
+	
+	
+	
+	
+	
+	@Bean
+	public CommonsMultipartResolver multipartResolver() {
+	    CommonsMultipartResolver resolver=new CommonsMultipartResolver();
+	    resolver.setDefaultEncoding("utf-8");
+	    return resolver;
+	}
+	
+/*
+    @Bean
+    public RequestMappingHandlerMapping requestMappingHandlerMapping() {
+        RequestMappingHandlerMapping hm = super.requestMappingHandlerMapping();
+        hm.setUseSuffixPatternMatch(false);
+        return hm;
+    }
+*/
+	
+	
 }

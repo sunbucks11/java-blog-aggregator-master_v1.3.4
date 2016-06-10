@@ -40,7 +40,7 @@
 						class="icon-bar"></span>
 				</button>
 				<%-- <a class="navbar-brand" href="<spring:url value="/" />"> <b>Role &amp; Member</b></a> --%>
-				<a class="navbar-brand" href="<spring:url value="/home" />"> <b>Admin Tool</b></a>
+				<a class="navbar-brand" href="<spring:url value="/home.html" />"> <b>Admin Tool</b></a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

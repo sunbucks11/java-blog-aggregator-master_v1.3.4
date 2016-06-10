@@ -57,3 +57,56 @@ public class TestConfiguration {
         return entityManagerFactoryBean;
     }
 }
+    
+    
+    
+    
+    /*
+	@Bean
+	public FileUploadDao fileUploadDao() {
+		return new FileUploadDaoImpl();
+	}
+    */
+    
+    
+    
+    /* 
+    @Bean
+    public AnnotationSessionFactoryBean sessionFactory() {
+       AnnotationSessionFactoryBean sessionFactory = new AnnotationSessionFactoryBean();
+       sessionFactory.setDataSource(dataSource());
+       sessionFactory.setPackagesToScan(new String[] { "com.admin.tool.entity" });
+       sessionFactory.setHibernateProperties(hibernateProperties());
+  
+       return sessionFactory;
+    }
+    
+    @Bean
+    public DataSource restDataSource() {
+       BasicDataSource dataSource = new BasicDataSource();
+       dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
+       dataSource.setUrl(env.getProperty("jdbc.url"));
+       dataSource.setUsername(env.getProperty("jdbc.user"));
+       dataSource.setPassword(env.getProperty("jdbc.pass"));
+  
+       return dataSource;
+    }
+  
+    @Bean
+    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
+       return new PersistenceExceptionTranslationPostProcessor();
+    }
+  
+    Properties hibernateProperties() {
+       return new Properties() {
+		private static final long serialVersionUID = 1L;
+
+		{
+             setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+             setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
+          }
+       };
+    }
+    */
+    
+    

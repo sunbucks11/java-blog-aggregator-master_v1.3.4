@@ -162,4 +162,20 @@
 		<put-attribute name="current" value="reset" />
 	</definition>
 	
+	
+	<definition name="fileUploader" extends="common">
+		<put-attribute name="title" value="fileUploader" />
+		<put-attribute name="body" value="/WEB-INF/jsp/fileUploader.jsp" />
+		<put-attribute name="current" value="fileUploader" />
+	</definition>
+	
+	
+    <definition name="listFiles" extends="common">
+		<put-attribute name="title" value="listFiles" />
+		<put-attribute name="body" value="/WEB-INF/jsp/listFiles.jsp" />
+		<put-attribute name="current" value="listFiles" />
+	</definition>
+	
+	
+	
 </tiles-definitions>
