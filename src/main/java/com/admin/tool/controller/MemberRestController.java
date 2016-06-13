@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +24,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,9 +36,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.admin.tool.entity.Field;
 import com.admin.tool.entity.Role;
+import com.admin.tool.entity.UploadedFile;
 import com.admin.tool.entity.User;
 import com.admin.tool.repository.UserRepository;
 import com.admin.tool.service.AuditService;
+import com.admin.tool.service.FileUploadService;
 import com.admin.tool.service.RoleService;
 import com.admin.tool.service.UserService;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -43,9 +49,13 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
  
-@RestController
+//@RestController
+@Controller
 public class MemberRestController {
  
+	@Autowired
+	private FileUploadService uploadService;
+	
 	@Autowired
 	private UserRepository userRepository;
 	
@@ -66,11 +76,23 @@ public class MemberRestController {
     //-------------------Retrieve All Users--------------------------------------------------------
    
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
-    public ResponseEntity<String> listAllUsers(Principal principal) {
+    public ResponseEntity<String> listAllUsers(Principal principal, ModelMap model, UploadedFile uploadedFile, BindingResult result) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         
-        return new ResponseEntity<String>(getAllUsers().toString(), headers, HttpStatus.OK);
+  	  UploadedFile dataFile = uploadService.getFile(1);
+  	  byte[] encodeBase64 = Base64.getEncoder().encode(dataFile.getImg_data());
+  	  
+  	  try{
+	  	  String base64Encoded = new String(encodeBase64, "UTF-8");
+	  	  model.put("image", base64Encoded);
+  	  }
+  	  catch(Exception ex){
+        System.out.println("Exception: " + ex.getMessage());
+  	  }
+  	  
+  
+       return new ResponseEntity<String>(getAllUsers().toString(), headers, HttpStatus.OK);
     }
 
  

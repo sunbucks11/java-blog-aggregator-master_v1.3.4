@@ -2,20 +2,30 @@
 	pageEncoding="ISO-8859-1"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+	
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+	
+	
 <html>
 
 
 
-	<head>
+<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-<link rel="stylesheet" href="./resources/bower_components/angular-ui-switch/angular-ui-switch.min.css"/>
+		<link rel="stylesheet" href="./resources/bower_components/angular-ui-switch/angular-ui-switch.min.css"/>
+		
+		<link rel="stylesheet" type="text/css" href='<c:url value="./resources/libs/bootstrap-3.1.1/css/bootstrap.min.css"/>'>
+		<link rel="stylesheet" type="text/css" href='<c:url value="./resources/libs/bootstrap-dialog/css/bootstrap-dialog.min.css"/>'>
+		<link rel="stylesheet" type="text/css" href='<c:url value="./resources/css/style.css"/>'>
+		
 
-		<style type="text/css">
+
+	<style type="text/css">
 		
 		.btn-file {
 		    position: relative;
@@ -37,147 +47,99 @@
 		    display: block;
 			}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-.switch {
-  /* background: #fff; */
-  background: #7B7072;
-  border: 1px solid #dfdfdf;
-  position: relative;
-  display: inline-block;
-  box-sizing: content-box;
-  overflow: visible;
-  /* width: 52px; */
-  width: 45px;
-  /* height: 30px; */
-  height: 15px;
-  padding: 0px;
-  margin: 0px;
-  border-radius: 20px;
-  cursor: pointer;
-  box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset;
-  transition: 0.3s ease-out all;
-  -webkit-transition: 0.3s ease-out all;
-  top: -1px;
-}
-/*adding a wide width for larger switch text*/
-.switch.wide {
-  width:80px;
-}
-.switch small {
-  background: #fff;
-  border-radius: 100%;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
-/*   width: 30px;
-  height: 30px; */
-  width: 15px;
-  height: 15px;
-  position: absolute;
-  top: 0px;
-  left: -7px;
-  margin-left: 8px;
-  transition: 0.3s ease-out all;
-  -webkit-transition: 0.3s ease-out all;
-}
-.switch.checked {
-  background: rgb(100, 189, 99);
-  border-color: rgb(100, 189, 99);
-}
-.switch.checked small {
-  left: 22px;
-}
-/*wider switch text moves small further to the right*/
-.switch.wide.checked small {
-  left:52px;
-}
-/*styles for switch-text*/
-.switch .switch-text {
-  font-family:Arial, Helvetica, sans-serif;
-  font-size:13px;
-}
-
-.switch .off {
-  display:block;
-  position: absolute;
-  right: 10%;
-  /* top: 25%; */
-  top: 0;
-  z-index: 0;
-  /* color:#A9A9A9; */
-  color: #fff;
-  
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.switch .on {
-  display:none;
-   z-index: 0;
-  /* color:#fff; */
-  color: #060202;
-  position: absolute;
-  /* top: 25%; */
-  top: 0;
-  left: 9%;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.switch.checked .off {
-  display:none;
-}
-
-.switch.checked .on {
-  display:block;
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		</style>
-
+		.switch {
+		  /* background: #fff; */
+		  background: #7B7072;
+		  border: 1px solid #dfdfdf;
+		  position: relative;
+		  display: inline-block;
+		  box-sizing: content-box;
+		  overflow: visible;
+		  /* width: 52px; */
+		  width: 45px;
+		  /* height: 30px; */
+		  height: 15px;
+		  padding: 0px;
+		  margin: 0px;
+		  border-radius: 20px;
+		  cursor: pointer;
+		  box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset;
+		  transition: 0.3s ease-out all;
+		  -webkit-transition: 0.3s ease-out all;
+		  top: -1px;
+		}
+		/*adding a wide width for larger switch text*/
+		.switch.wide {
+		  width:80px;
+		}
+		.switch small {
+		  background: #fff;
+		  border-radius: 100%;
+		  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+		/*   width: 30px;
+		  height: 30px; */
+		  width: 15px;
+		  height: 15px;
+		  position: absolute;
+		  top: 0px;
+		  left: -7px;
+		  margin-left: 8px;
+		  transition: 0.3s ease-out all;
+		  -webkit-transition: 0.3s ease-out all;
+		}
+		.switch.checked {
+		  background: rgb(100, 189, 99);
+		  border-color: rgb(100, 189, 99);
+		}
+		.switch.checked small {
+		  left: 22px;
+		}
+		/*wider switch text moves small further to the right*/
+		.switch.wide.checked small {
+		  left:52px;
+		}
+		/*styles for switch-text*/
+		.switch .switch-text {
+		  font-family:Arial, Helvetica, sans-serif;
+		  font-size:13px;
+		}
+		
+		.switch .off {
+		  display:block;
+		  position: absolute;
+		  right: 10%;
+		  /* top: 25%; */
+		  top: 0;
+		  z-index: 0;
+		  /* color:#A9A9A9; */
+		  color: #fff;
+		  
+		  font-size: 12px;
+		  font-weight: bold;
+		}
+		
+		.switch .on {
+		  display:none;
+		   z-index: 0;
+		  /* color:#fff; */
+		  color: #060202;
+		  position: absolute;
+		  /* top: 25%; */
+		  top: 0;
+		  left: 9%;
+		  font-size: 12px;
+		  font-weight: bold;
+		}
+		
+		.switch.checked .off {
+		  display:none;
+		}
+		
+		.switch.checked .on {
+		  display:block;
+		
+		}
+	</style>
 </head>
 
 
@@ -241,10 +203,9 @@
 						               <a rel="popover"
 						                  data-content="&lt;img class=&#39;img-circle&#39; width=&quot;55px&quot; height=&quot;55px&quot; src=&quot;/avatar/ozj15c6vx0smonb6n6mlgeve.jpg&quot;/&gt;&amp;nbsp;&amp;nbsp;&lt;b&gt;E-mail:&lt;/b&gt;&amp;nbsp;&lt;a&gt;admin@demo.com&lt;/a&gt;"
 						                  data-original-title="Admin">
-						               <img class="img-circle"
-						                  width="22px" height="22px"
-						                  src="http://www.onlinetestpro.co.uk/images/Admin.png"
-						                  style="width: 22px; height: 22px" />
+<!-- 						               <img class="img-circle" width="22px" height="22px" src="http://www.onlinetestpro.co.uk/images/Admin.png" style="width: 22px; height: 22px" /> -->
+						               <img class="img-circle" width="22px" height="22px" src="data:image/jpeg;base64,${image}" style="width: 22px; height: 22px"/>	
+						               
 						               </a>&nbsp; 
 						               <!-- ================= Name ================-->
 						               <!-- <a href="#" class="member-edit" style="white-space:nowrap !important;" data-member-id="1">Admin</a> -->
@@ -284,19 +245,6 @@
 						              </td>						            
 						            
 						            
-						            
-						            
-						            
-						            
-						            
-						            
-						            
-						            
-						            
-						            
-						            
-						            
-						            
 						            <!-- ================= Email ================-->
 						            <td>
 						               <span ng-bind="u.email">
@@ -316,7 +264,24 @@
 						   
 	
 						</div>
-     
+						
+						
+					
+						
+						
+						
+		
+						
+						
+<%-- 				<img src="data:image/jpeg;base64,${image}" height="100" width="100"/>		 --%>
+					
+				
+				
+				
+				
+				
+							
+
                        <!-- ====== Bottom table status bar -->
                         <%@ include file="../admin/fragment/bottom-table-status-bar.jsp"%> 
                     </div>
@@ -330,8 +295,15 @@
             </div>
             
             
-    
-    
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
     
     
                 
@@ -370,6 +342,18 @@
         	 ===== ONLY TO FieldsManagement.jsp file
         	 ===== As angular-ui-switch.js IS SUPPOSED BY BE USED BY THAT FILE -->
             <script src="../resources/bower_components/angular-ui-switch/angular-ui-switch.js"></script>
+
+
+        <!-- Upload Image -->
+		<script type="text/javascript" src='<c:url value="./resources/libs/jquery/jquery-2.1.1.js"/>'></script>
+		<script type="text/javascript" src='<c:url value="./resources/libs/bootstrap-3.1.1/js/bootstrap.js"/>'></script>
+		<script type="text/javascript" src='<c:url value="./resources/libs/bootstrap-dialog/js/bootstrap-dialog.min.js"/>'></script>
+		<script type="text/javascript" src='<c:url value="./resources/libs/dropzone.js"/>'></script>
+		<script type="text/javascript" src='<c:url value="./resources/js/app.js"/>'></script>
+
+
+
+
 
 
 <script type="text/javascript">
@@ -424,6 +408,27 @@
   });
   */
 </script>
+ 
+ 
+ 
+ 
+ 
+ 
+ <script type="text/javascript">
+  function ajaxLink(url, params, displayComponentId) {
+              $.post(url, params, function(data) {
+                  document.getElementById('fieldId').value =data.name;
+              });
+          }
+  function onClickMethod(val){
+      ajaxLink('/getTags', {'tagName': val}, 'viewDiv');
+  }
+</script>
+ 
+ 
+ 
+ 
+ 
  
  
  

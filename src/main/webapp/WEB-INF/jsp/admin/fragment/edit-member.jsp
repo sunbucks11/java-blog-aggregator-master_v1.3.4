@@ -1,3 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+	
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<head>
+		
+		<link rel="stylesheet" type="text/css" href='<c:url value="./resources/libs/bootstrap-3.1.1/css/bootstrap.min.css"/>'>
+		<link rel="stylesheet" type="text/css" href='<c:url value="./resources/libs/bootstrap-dialog/css/bootstrap-dialog.min.css"/>'>
+		<link rel="stylesheet" type="text/css" href='<c:url value="./resources/css/style.css"/>'>
+</head>
+
+
 <div class="modal fade" id="editMemberModal" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
@@ -32,17 +47,94 @@
                     <!-- General Tab Page -->
                     <div class="tab-pane active" id="details">
                         <div class="control-group">
-                            <!-- <label class="control-label">Instance Name</label> -->
-                            <img src="http://www.onlinetestpro.co.uk/images/Admin.png" alt="Admin" height="100" width="100">
+                          <img src="data:image/jpeg;base64,${image}" height="100" width="100"/>
+                          <div id="previewImage" class="dropzone-previews"></div>
+                            
+								<c:if test="${empty image}">
+								    Display difault image.
+								</c:if>
+								<c:if test="${not empty image}">
+								    image is NOT empty or null.
+								</c:if>
+								
+								<c:if test="${empty imageChanged}">
+								    imageChanged is empty or null.
+								</c:if>
+                            
+                            
+                            
+   <!--                          
+                            
+                            <script type="text/javascript">
+                            if(!$('#previewImage').is(':visible'))
+                            {
+                            	<div id="previewImage" class="dropzone-previews"></div>
+                            }
+                            else
+                            	{
+                            	 <img src="data:image/jpeg;base64,${image}" height="100" width="100"/>	
+                            	}
+                            </script>
+   -->                          
+                            
+                            
                         </div>
 
                         <div style="float: left; margin-left: 150px; margin-top:-100px; display: inline-block;">
                             <b>Upload a Photo</b>
                             <br>
                             <p>You can upload a JPG, GIF or PNG file. File size limit is about 4MB.</p>
-                            <span class="btn btn-info btn-file"> Upload Photo <input type="file"></span>
+                            
+                   	                            
+						   <span enctype="multipart/form-data" id="dropzone-form" class="btn btn-info btn-file dropzone"> Choose Photo</span>
+							  
+                 
+                            
+                                   
                             <span class="btn btn-danger btn-file"> Reset Photo <input type="file"></span>
+                            
+                            <button id="upload-button" class="btn btn-primary"> <span class="glyphicon glyphicon-upload"></span> Upload </button>
+                            
                         </div>
+
+
+
+
+
+
+
+
+
+
+<!--			    	
+    		<div class="panel-body">
+				<div>
+					<form id="dropzone-form" class="dropzone" enctype="multipart/form-data">
+
+						<div
+							class="dz-default dz-message file-dropzone text-center well col-sm-12"> 
+
+ 							<span class="glyphicon glyphicon-paperclip"></span> <span> 
+								To attach files, drag and drop here</span><br> <span>OR</span><br> 
+ 							<span>Just Click</span> 
+						</div> 
+
+						<div class="dropzone-previews"></div>
+					</form>
+					<hr>
+					<button id="upload-button" class="btn btn-primary">
+ 						<span class="glyphicon glyphicon-upload"></span> Upload
+ 					</button>
+					<a class="btn btn-primary pull-right" href="list">
+						<span class="glyphicon glyphicon-eye-open"></span> View All Uploads
+					</a>
+				</div>
+			</div>	
+-->	
+
+
+
+
 
 
                         <br>
@@ -104,13 +196,23 @@
                 </div>
 
                 <!-- ====== Footer =====-->
-                <div class="modal-footer ">
-                    <div>
-                        <button class="btn btn-info btn-sm " data-dismiss="modal ">Save</button>
-                        <button class="btn btn-default btn-sm " data-dismiss="modal ">Cancel</button>
+                <div class="modal-footer">
+                	<div class="bootstrap-dialog-footer">
+                   		<div class="bootstrap-dialog-footer-buttons">
+                        	<div class="row">
+                            	<div class="form-actions floatRight">
+                                 	<button class="btn btn-info btn-sm " data-dismiss="modal ">Save</button>
+                                    <button class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                                </div>
+                             </div>
+                        </div>
                     </div>
-                </div>
+          		</div>
+ 
             </div>
         </div>
     </div>
 </div>
+
+
+

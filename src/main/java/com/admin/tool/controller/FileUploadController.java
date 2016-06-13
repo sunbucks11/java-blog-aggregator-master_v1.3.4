@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -49,9 +50,10 @@ public class FileUploadController {
     return "fileUploader";
   }
 
+  //@RequestMapping(value = "/upload", method = RequestMethod.POST)
+  //public @ResponseBody List<UploadedFile> upload(MultipartHttpServletRequest request, HttpServletResponse response) throws IOException {
   @RequestMapping(value = "/upload", method = RequestMethod.POST)
-  public @ResponseBody List<UploadedFile> upload(MultipartHttpServletRequest request,
-      HttpServletResponse response) throws IOException {
+  public ModelAndView upload(MultipartHttpServletRequest request, HttpServletResponse response, ModelMap model) throws IOException {
 
     // Getting uploaded files from the request object
     Map<String, MultipartFile> fileMap = request.getFileMap();
@@ -74,7 +76,11 @@ public class FileUploadController {
       uploadedFiles.add(fileInfo);
     }
 
-    return uploadedFiles;
+    
+    
+   // return uploadedFiles;
+    return new ModelAndView("redirect:" + "/list");
+
   }
 
 
@@ -101,22 +107,23 @@ public class FileUploadController {
   
   
   
-  @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "image/jpg")
-  public String userRegister(@ModelAttribute("user") @Valid UploadedFile uploadedFile, BindingResult result, ModelMap model) throws Exception {
- // public String listBooks(Map<String, Object> map, HttpServletResponse response,HttpServletRequest request) throws IOException {
-  //public @ResponseBody byte[] getFile()  {
+  @RequestMapping(value = "/list", method = RequestMethod.GET)
+  public String ListImages(UploadedFile uploadedFile, BindingResult result, ModelMap model, Principal principal) throws Exception {
+  //public String ListImages(UploadedFile uploadedFile, BindingResult result, ModelMap model, Principal principal) throws Exception {
 	  UploadedFile dataFile = uploadService.getFile(1);
 	  byte[] encodeBase64 = Base64.getEncoder().encode(dataFile.getImg_data());
 	  String base64Encoded = new String(encodeBase64, "UTF-8");
-	  
-	  //model.addObject("galleria", usersService.getAllFoto());
-	  
 	  model.put("image", base64Encoded);
 	  
-	  //return dataFile.getImg_data();
-	  return "listFiles";
+	  
+	  
+	  
+	  //return "listFiles";
+	   return "edit-member";
+	  
+	  //return modelAndView;
+	  //return "redirect:/UserManagement.jsp";  
   }
-  
   
   
   
@@ -135,15 +142,6 @@ public class FileUploadController {
       }
   }
  */ 
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   /*
   @RequestMapping(value = {"/list"})
