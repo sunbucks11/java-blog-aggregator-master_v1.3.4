@@ -275,6 +275,23 @@
 
 
 
+      <!-- Upload Image -->
+	  <script type="text/javascript" src='<c:url value="./resources/libs/bootstrap-3.1.1/js/bootstrap.js"/>'></script>
+	  <script type="text/javascript" src='<c:url value="./resources/libs/bootstrap-dialog/js/bootstrap-dialog.min.js"/>'></script>
+	  <script type="text/javascript" src='<c:url value="./resources/libs/dropzone.js"/>'></script>
+	  
+	  <!-- ==== I NEED TO ADD THOSE BELOW IN ORDER TO PREVENT  
+           ==== Error: [$injector:nomod] Module 'uiSwitch' is not available!
+           ===== EXCEPTION, BUT I NEED TO FIND A WAY TO INJECT THE DEPENDENCY
+           ===== ONLY TO FieldsManagement.jsp file
+           ===== As angular-ui-switch.js IS SUPPOSED TO BE USED BY THAT FILE -->
+	  <script type="text/javascript" src='<c:url value="./resources/bower_components/ng-img-crop/compile/minified/ng-img-crop.js"/>'></script>
+	  <script type="text/javascript" src='<c:url value="./resources/bower_components/ng-file-upload/ng-file-upload.min.js"/>'></script>
+
+
+
+
+
 <script type="text/javascript">
  $('#fieldModel').on('hidden.bs.modal', function () {
  	 window.location.reload();

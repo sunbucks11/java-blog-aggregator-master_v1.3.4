@@ -7,12 +7,9 @@
 	content="width=device-width, initial-scale=1">
 <title>Spring MVC + Dropzone.js Example</title>
 
-<link rel="stylesheet" type="text/css"
-	href='<c:url value="./resources/libs/bootstrap-3.1.1/css/bootstrap.min.css"/>'>
-<link rel="stylesheet" type="text/css"
-	href='<c:url value="./resources/libs/bootstrap-dialog/css/bootstrap-dialog.min.css"/>'>
-<link rel="stylesheet" type="text/css"
-	href='<c:url value="./resources/css/style.css"/>'>
+<link rel="stylesheet" type="text/css" href='<c:url value="./resources/libs/bootstrap-3.1.1/css/bootstrap.min.css"/>'>
+<link rel="stylesheet" type="text/css" href='<c:url value="./resources/libs/bootstrap-dialog/css/bootstrap-dialog.min.css"/>'>
+<link rel="stylesheet" type="text/css" href='<c:url value="./resources/css/style.css"/>'>
 
 </head>
 <body>
@@ -52,15 +49,10 @@
 	
 	<img alt="Kangoo_image" src="data:image/jpeg;base64,${image}" />
 
-	<script type="text/javascript"
-		src='<c:url value="./resources/libs/jquery/jquery-2.1.1.js"/>'></script>
-	<script type="text/javascript"
-		src='<c:url value="./resources/libs/bootstrap-3.1.1/js/bootstrap.js"/>'></script>
-	<script type="text/javascript"
-		src='<c:url value="./resources/libs/bootstrap-dialog/js/bootstrap-dialog.min.js"/>'></script>
-	<script type="text/javascript"
-		src='<c:url value="./resources/libs/dropzone.js"/>'></script>
-	<script type="text/javascript"
-		src='<c:url value="./resources/js/app.js"/>'></script>
+	<script type="text/javascript" src='<c:url value="./resources/libs/jquery/jquery-2.1.1.js"/>'></script>
+	<script type="text/javascript" src='<c:url value="./resources/libs/bootstrap-3.1.1/js/bootstrap.js"/>'></script>
+	<script type="text/javascript" src='<c:url value="./resources/libs/bootstrap-dialog/js/bootstrap-dialog.min.js"/>'></script>
+	<script type="text/javascript" src='<c:url value="./resources/libs/dropzone.js"/>'></script>
+	<script type="text/javascript" src='<c:url value="./resources/js/app.js"/>'></script>
 </body>
 </html>

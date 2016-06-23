@@ -4,10 +4,13 @@ import java.io.IOException;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
+
+import javax.xml.bind.DatatypeConverter;
 
 import org.apache.log4j.Logger;
 import org.apache.taglibs.standard.tag.common.core.ForEachSupport;
@@ -23,6 +26,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,9 +38,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.admin.tool.entity.Field;
 import com.admin.tool.entity.Role;
+import com.admin.tool.entity.UploadedFile;
 import com.admin.tool.entity.User;
 import com.admin.tool.repository.UserRepository;
 import com.admin.tool.service.AuditService;
+import com.admin.tool.service.FileUploadService;
 import com.admin.tool.service.RoleService;
 import com.admin.tool.service.UserService;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -43,9 +51,13 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
  
-@RestController
+//@RestController
+@Controller
 public class MemberRestController {
  
+	@Autowired
+	private FileUploadService uploadService;
+	
 	@Autowired
 	private UserRepository userRepository;
 	
@@ -66,11 +78,24 @@ public class MemberRestController {
     //-------------------Retrieve All Users--------------------------------------------------------
    
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
-    public ResponseEntity<String> listAllUsers(Principal principal) {
+    public ResponseEntity<String> listAllUsers(Principal principal, ModelMap model, UploadedFile uploadedFile, BindingResult result) throws Exception {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        
-        return new ResponseEntity<String>(getAllUsers().toString(), headers, HttpStatus.OK);
+       
+     /*
+  	  UploadedFile dataFile = uploadService.getFile(1);
+  	  byte[] encodeBase64 = Base64.getEncoder().encode(dataFile.getImg_data());
+  	  
+  	  try{
+	  	  String base64Encoded = new String(encodeBase64, "UTF-8");
+	  	  model.put("image", base64Encoded);
+  	  }
+  	  catch(Exception ex){
+        System.out.println("Exception: " + ex.getMessage());
+  	  }
+  	  */
+  
+       return new ResponseEntity<String>(getAllUsers().toString(), headers, HttpStatus.OK);
     }
 
  
@@ -89,14 +114,6 @@ public class MemberRestController {
     }
  */
      
-	
-	
-	
-	
-	
-	
-	
-	
 	//-------------------Update a Two Factor Authentication--------------------------------------------------------
 	@RequestMapping(value = "/twoAuth/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> updateTwoFactorAuth(@PathVariable("id") int id, @RequestBody User user, String enabled) {
@@ -190,7 +207,7 @@ public class MemberRestController {
     //------------------- Delete a User Role --------------------------------------------------------
     @RequestMapping(value = "/delete-role/{id}", method = RequestMethod.PUT)
     // public ResponseEntity<String> deleteUserRole(@PathVariable("id") int id, @RequestBody User user) {
-    public ResponseEntity<String> deleteUserRole(@PathVariable("id") int roleId, @RequestBody String emailAddress) {
+    public ResponseEntity<String> deleteUserRole(@PathVariable("id") int roleId, @RequestBody String emailAddress) throws Exception {
         System.out.println("Fetching & Deleting Role with id " + roleId);
  
         // Find a the role to be deleted
@@ -388,7 +405,7 @@ public class MemberRestController {
 
     
 	// getAllUsers
-	private JSONArray getAllUsers(){	
+	private JSONArray getAllUsers() throws Exception{	
     	// Find all users
     	List<User> users = userService.findAll();
     	//List<String> roles = new ArrayList<String>();
@@ -413,6 +430,26 @@ public class MemberRestController {
         		userJSON.put("name",user.getName());
         		userJSON.put("email",user.getEmail());
         		userJSON.put("enabled",user.isEnabled());
+        		
+        		if(user.getUploadedFile() != null || !user.getUploadedFile().isEmpty()){
+        			
+        		    // Find the uploaded file for the current user searched by Id.
+        			 UploadedFile dataFile = uploadService.getFile(1);
+        			 //UploadedFile dataFile = uploadService.getFile(2);
+        			 
+        			 if(dataFile != null)
+        			 {
+        				 // TODO: if dataFile is null use default image 	
+	        			  //List <UploadedFile> dataFile2 = user.getUploadedFile();
+		        		  // byte[] encodeBase64 = Base64.getEncoder().encode(dataFile2.get(0).getImg_data());
+        				 byte[] encodeBase64 = Base64.getEncoder().encode(dataFile.getImg_data());
+		        		 String base64Encoded = new String(encodeBase64, "UTF-8");
+		        		 userJSON.put("profilePic",base64Encoded);
+        			 }
+ 
+        		}
+        		
+        		//userJSON.put("profilePic",user.getUploadedFile());
 
         		Date date = user.getCreatedDate();
         		

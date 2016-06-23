@@ -1,98 +1,223 @@
 package com.admin.tool.entity;
 
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.admin.tool.annotation.UniqueUsername;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "uploaded_file")
-public class UploadedFile {
+@Table(name = "user")
+public class User {
 
-  private Integer id;
-  private String name;
-  private String location;
-  private Long size;
-  private String type;
-  private User user;
+	@Id
+	@GeneratedValue
+	private Integer id;
 
-  
-  //@Column(columnDefinition = "LONGBLOB")
-  //@Lob(type = LobType.BLOB)
-  //@Lob
-  //@Column(name="IMAGE", nullable=false, columnDefinition="blob")
-  private byte[] img_data;
+	@Size(min = 3, message = "Name must be at least 3 characters!")
+	@Column(unique = true)
+	@UniqueUsername(message = "Such username already exists!")
+	private String name;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  public Integer getId() {
-    return id;
-  }
+	@Size(min = 1, message = "Invalid email address!")
+	@Email(message = "Invalid email address!")
+	private String email;
 
-  @Column(nullable = false)
-  public String getName() {
-    return name;
-  }
+	@Size(min = 5, message = "Name must be at least 5 characters!")
+	private String password;
 
-  @Column(nullable = false)
-  public String getLocation() {
-    return location;
-  }
+	private boolean enabled;
 
-  @Column()
-  public Long getSize() {
-    return size;
-  }
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable
+	private List<Role> roles; 
 
-  @Column(nullable = false)
-  public String getType() {
-    return type;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public void setLocation(String location) {
-    this.location = location;
-  }
-
-  public void setSize(Long size) {
-    this.size = size;
-  }
-
-  public void setType(String type) {
-    this.type = type;
-  }
-    
-  @Lob
-  @Column(name="IMAGE", nullable=false, columnDefinition="blob")
-  public byte[] getImg_data() {
-	return img_data;
-	}
-  
-  
-	public void setImg_data(byte[] img_data) {
-		this.img_data = img_data;
-	}
+	@OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
+	private List<Blog> blogs;
+		
+	@OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+	private List<UploadedFile> uploadedFiles;
+	
+	//@OneToOne
+	//private UploadedFile uploadedFiles;
 	
 	
-	@ManyToOne
-    @JoinColumn(name = "user_id")
-	public User getUser() {
-		return user;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="EEE, dd MMM yyyy HH:mm:ss zzz")
+	private Date createdDate;
+		
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="EEE, dd MMM yyyy HH:mm:ss zzz")
+	private Date lastLoginDate;
+	
+	private String secretKey;
+	
+	private Boolean twoFactorAuthInitialised;
+	
+	private boolean isAuthenticated; 
+
+	private boolean isVerified; 
+	
+	private boolean isVerifiedError; 
+	
+	private boolean isResetTwoFactorAuth;
+	
+	public User(){
+		
+	}
+	
+	public Date getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
+
+	public Date getLastLoginDate() {
+		return lastLoginDate;
+	}
+
+	public void setLastLoginDate(Date lastLoginDate) {
+		this.lastLoginDate = lastLoginDate;
+	}
+	
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public List<Blog> getBlogs() {
+		return blogs;
+	}
+
+	public void setBlogs(List<Blog> blogs) {
+		this.blogs = blogs;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getSecretKey() {
+		return secretKey;
+	}
+
+	public void setSecretKey(String secretKey) {
+		this.secretKey = secretKey;
+	}
+
+	public Boolean getTwoFactorAuthInitialised() {
+		return twoFactorAuthInitialised;
+	}
+
+	public void setTwoFactorAuthInitialised(Boolean twoFactorAuthInitialised) {
+		this.twoFactorAuthInitialised = twoFactorAuthInitialised;
+	}
+
+	public boolean isAuthenticated() {
+		return isAuthenticated;
+	}
+
+	public void setAuthenticated(boolean isAuthenticated) {
+		this.isAuthenticated = isAuthenticated;
+	}
+
+	public boolean isVerified() {
+		return isVerified;
+	}
+
+	public void setVerified(boolean isVerified) {
+		this.isVerified = isVerified;
+	}
+
+	public boolean isVerifiedError() {
+		return isVerifiedError;
+	}
+
+	public void setVerifiedError(boolean isVerifiedError) {
+		this.isVerifiedError = isVerifiedError;
+	}
+
+	public boolean isResetTwoFactorAuth() {
+		return isResetTwoFactorAuth;
+	}
+
+	public void setResetTwoFactorAuth(boolean isResetTwoFactorAuth) {
+		this.isResetTwoFactorAuth = isResetTwoFactorAuth;
+	}
+	
+
+	public List<UploadedFile> getUploadedFile() {
+		return uploadedFiles;
+	}
+	
+	public void setUploadedFile(List<UploadedFile> uploadedFiles) {
+		this.uploadedFiles = uploadedFiles;
+	}
+
+
+	/*
+	public UploadedFile getUploadedFile() {
+		return uploadedFiles;
+	}
+	
+	public void setUploadedFile(UploadedFile uploadedFiles) {
+		this.uploadedFiles = uploadedFiles;
+	}
+	*/
+	
 }

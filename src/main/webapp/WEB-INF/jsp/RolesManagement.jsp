@@ -163,8 +163,16 @@
         	 ===== EXCEPTION, BUT I NEED TO FIND A WAY TO INJECT THE DEPENDENCY
         	 ===== ONLY TO FieldsManagement.jsp file
         	 ===== As angular-ui-switch.js IS SUPPOSED BY BE USED BY THAT FILE -->
-        <script src="../resources/bower_components/angular-ui-switch/angular-ui-switch.js"></script>
+       <script src="../resources/bower_components/angular-ui-switch/angular-ui-switch.js"></script>
 
+
+        <!-- Upload Image -->
+	    <script type="text/javascript" src='<c:url value="./resources/libs/bootstrap-3.1.1/js/bootstrap.js"/>'></script>
+	    <script type="text/javascript" src='<c:url value="./resources/libs/bootstrap-dialog/js/bootstrap-dialog.min.js"/>'></script>
+	    <script type="text/javascript" src='<c:url value="./resources/libs/dropzone.js"/>'></script>
+	  <script type="text/javascript" src='<c:url value="./resources/bower_components/ng-img-crop/compile/minified/ng-img-crop.js"/>'></script>
+	  <script type="text/javascript" src='<c:url value="./resources/bower_components/ng-file-upload/ng-file-upload.min.js"/>'></script>
+	  <script type="text/javascript" src='<c:url value="./resources/bower_components/ng-file-upload/ng-file-upload-shim.min.js"/>'></script>
 
 
 

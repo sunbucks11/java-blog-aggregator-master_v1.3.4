@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -50,9 +51,15 @@ public class User {
 	@OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
 	private List<Blog> blogs;
 		
-	@OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	private List<UploadedFile> uploadedFiles;
 	
+<<<<<<< HEAD
+=======
+	//@OneToOne
+	//private UploadedFile uploadedFiles;
+	
+>>>>>>> 4ccf865ffcbb5abf41994842d3ead10b02cf83ba
 	
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="EEE, dd MMM yyyy HH:mm:ss zzz")
 	private Date createdDate;
@@ -196,11 +203,24 @@ public class User {
 		this.isResetTwoFactorAuth = isResetTwoFactorAuth;
 	}
 	
+
 	public List<UploadedFile> getUploadedFile() {
 		return uploadedFiles;
 	}
-
+	
 	public void setUploadedFile(List<UploadedFile> uploadedFiles) {
 		this.uploadedFiles = uploadedFiles;
 	}
+
+
+	/*
+	public UploadedFile getUploadedFile() {
+		return uploadedFiles;
+	}
+	
+	public void setUploadedFile(UploadedFile uploadedFiles) {
+		this.uploadedFiles = uploadedFiles;
+	}
+	*/
+	
 }
