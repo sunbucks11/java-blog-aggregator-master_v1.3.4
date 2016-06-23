@@ -53,6 +53,7 @@ public class User {
 	@OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
 	private List<UploadedFile> uploadedFiles;
 	
+	
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="EEE, dd MMM yyyy HH:mm:ss zzz")
 	private Date createdDate;
 		

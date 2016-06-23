@@ -49,9 +49,9 @@ public class FileUploadController {
     return "fileUploader";
   }
 
-  @RequestMapping(value = "/upload", method = RequestMethod.POST)
+  @RequestMapping(value = "/upload", method = RequestMethod.POST, produces = "image/jpg")
   public @ResponseBody List<UploadedFile> upload(MultipartHttpServletRequest request,
-      HttpServletResponse response) throws IOException {
+      HttpServletResponse response, ModelMap model) throws IOException {
 
     // Getting uploaded files from the request object
     Map<String, MultipartFile> fileMap = request.getFileMap();
@@ -73,6 +73,14 @@ public class FileUploadController {
       // adding the file info to the list
       uploadedFiles.add(fileInfo);
     }
+    
+	  UploadedFile dataFile = uploadService.getFile(1);
+	  byte[] encodeBase64 = Base64.getEncoder().encode(dataFile.getImg_data());
+	  String base64Encoded = new String(encodeBase64, "UTF-8");
+	  
+	  //model.addObject("galleria", usersService.getAllFoto());
+	  
+	  model.put("image", base64Encoded);
 
     return uploadedFiles;
   }
@@ -116,10 +124,7 @@ public class FileUploadController {
 	  //return dataFile.getImg_data();
 	  return "listFiles";
   }
-  
-  
-  
-  
+
   
   
  /* 
@@ -136,15 +141,7 @@ public class FileUploadController {
   }
  */ 
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
+    
   /*
   @RequestMapping(value = {"/list"})
   public String listBooks(Map<String, Object> map) {

@@ -33,7 +33,8 @@
                     <div class="tab-pane active" id="details">
                         <div class="control-group">
                             <!-- <label class="control-label">Instance Name</label> -->
-                            <img src="http://www.onlinetestpro.co.uk/images/Admin.png" alt="Admin" height="100" width="100">
+                          <!--   <img src="http://www.onlinetestpro.co.uk/images/Admin.png" alt="Admin" height="100" width="100"> -->
+                          <img src="data:image/jpeg;base64,${image}" height="100" width="100" />
                         </div>
 
                         <div style="float: left; margin-left: 150px; margin-top:-100px; display: inline-block;">
@@ -43,6 +44,42 @@
                             <span class="btn btn-info btn-file"> Upload Photo <input type="file"></span>
                             <span class="btn btn-danger btn-file"> Reset Photo <input type="file"></span>
                         </div>
+                        
+                        
+                        
+                        
+                        
+                        
+                   <div>
+					<form id="dropzone-form" class="dropzone"
+						enctype="multipart/form-data">
+
+						<div
+							class="dz-default dz-message file-dropzone text-center well col-sm-12">
+
+							<span class="glyphicon glyphicon-paperclip"></span> <span>
+								To attach files, drag and drop here</span><br> <span>OR</span><br>
+							<span>Just Click</span>
+						</div>
+
+						<!-- this is were the previews should be shown. -->
+						<div class="dropzone-previews"></div>
+					</form>
+					<hr>
+					<button id="upload-button" class="btn btn-primary">
+						<span class="glyphicon glyphicon-upload"></span> Upload
+					</button>
+					<a class="btn btn-primary pull-right" href="list">
+						<span class="glyphicon glyphicon-eye-open"></span> View All Uploads
+					</a>
+				</div> 
+                        
+                        
+                        
+                        
+                        
+                        
+                        
 
 
                         <br>

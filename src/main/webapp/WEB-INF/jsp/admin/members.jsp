@@ -13,7 +13,16 @@
 		<meta name="author" content="">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-<link rel="stylesheet" href="./resources/bower_components/angular-ui-switch/angular-ui-switch.min.css"/>
+		<link rel="stylesheet" href="./resources/bower_components/angular-ui-switch/angular-ui-switch.min.css"/>
+		
+		
+		
+		<link rel="stylesheet" type="text/css"	href='<c:url value="./resources/libs/bootstrap-3.1.1/css/bootstrap.min.css"/>'>
+		<link rel="stylesheet" type="text/css" href='<c:url value="./resources/libs/bootstrap-dialog/css/bootstrap-dialog.min.css"/>'>
+		<link rel="stylesheet" type="text/css" href='<c:url value="./resources/css/style.css"/>'>
+		
+		
+		
 
 		<style type="text/css">
 		
@@ -331,7 +340,7 @@
             
             
     
-    
+    <img alt="Kangoo_image" src="data:image/jpeg;base64,${image}" />
     
     
                 
@@ -370,6 +379,18 @@
         	 ===== ONLY TO FieldsManagement.jsp file
         	 ===== As angular-ui-switch.js IS SUPPOSED BY BE USED BY THAT FILE -->
             <script src="../resources/bower_components/angular-ui-switch/angular-ui-switch.js"></script>
+            
+       
+       
+       
+       	<script type="text/javascript" src='<c:url value="./resources/libs/jquery/jquery-2.1.1.js"/>'></script>
+       	<script type="text/javascript" src='<c:url value="./resources/libs/bootstrap-3.1.1/js/bootstrap.js"/>'></script>
+		<script type="text/javascript" src='<c:url value="./resources/libs/bootstrap-dialog/js/bootstrap-dialog.min.js"/>'></script>
+		<script type="text/javascript" src='<c:url value="./resources/libs/dropzone.js"/>'></script>
+		<script type="text/javascript" src='<c:url value="./resources/js/app.js"/>'></script>
+       
+       
+       
 
 
 <script type="text/javascript">

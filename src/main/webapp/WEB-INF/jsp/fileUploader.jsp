@@ -48,6 +48,9 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	<img alt="Kangoo_image" src="data:image/jpeg;base64,${image}" />
 
 	<script type="text/javascript"
 		src='<c:url value="./resources/libs/jquery/jquery-2.1.1.js"/>'></script>

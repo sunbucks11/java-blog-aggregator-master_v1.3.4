@@ -21,18 +21,13 @@ public class UploadedFile {
   private String type;
   private User user;
 
-  //@Lob
+  
   //@Column(columnDefinition = "LONGBLOB")
- // @Lob(type = LobType.BLOB)
   //@Lob(type = LobType.BLOB)
   //@Lob
   //@Column(name="IMAGE", nullable=false, columnDefinition="blob")
   private byte[] img_data;
 
-
-  
-  
-  
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   public Integer getId() {
@@ -78,10 +73,7 @@ public class UploadedFile {
   public void setType(String type) {
     this.type = type;
   }
-  
-  
-  
-  
+    
   @Lob
   @Column(name="IMAGE", nullable=false, columnDefinition="blob")
   public byte[] getImg_data() {
@@ -100,10 +92,7 @@ public class UploadedFile {
 		return user;
 	}
 
-	
-	
 	public void setUser(User user) {
 		this.user = user;
 	}
-  
 }

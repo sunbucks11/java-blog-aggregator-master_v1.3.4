@@ -91,10 +91,8 @@
 		
 	</div>
 
-	<script type="text/javascript"
-		src='<c:url value="./resources/libs/jquery/jquery-2.1.1.js"/>'></script>
-	<script type="text/javascript"
-		src='<c:url value="./resources/libs/bootstrap-3.1.1/js/bootstrap.js"/>'></script>
+	<script type="text/javascript" src='<c:url value="./resources/libs/jquery/jquery-2.1.1.js"/>'></script>
+	<script type="text/javascript" src='<c:url value="./resources/libs/bootstrap-3.1.1/js/bootstrap.js"/>'></script>
 </body>
 
 </html>
