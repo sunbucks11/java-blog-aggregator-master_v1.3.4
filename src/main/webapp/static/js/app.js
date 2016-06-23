@@ -1,10 +1,33 @@
 'use strict';
 
-var App = angular.module('myApp', ['uiSwitch']);
+var App = angular.module('myApp', ['uiSwitch','ngFileUpload' ,'ngImgCrop']);
 
 
 
-
+App.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
+    $scope.upload = function (dataUrl, name) {
+        Upload.upload({
+            //url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+        	url: 'http://localhost:8080/upload',
+            data: {
+                file: Upload.dataUrltoBlob(dataUrl, name)
+            },
+        }).then(function (response) {
+            $timeout(function () {
+                $scope.result = response.data;
+                //window.location.reload();
+                 location.href = "http://localhost:8080/UserManagement"
+                //location.href = "http://localhost:8080/user.html"
+                //location.href = "http://localhost:8080/edit-member"
+            });
+        }, function (response) {
+            if (response.status > 0) $scope.errorMsg = response.status 
+                + ': ' + response.data;
+        }, function (evt) {
+            $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
+        });
+    }
+}]);
 
 
 

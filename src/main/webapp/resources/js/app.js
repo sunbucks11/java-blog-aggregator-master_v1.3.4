@@ -15,7 +15,8 @@ $(document).ready(function() {
 	}
 
 	// "dropzoneForm" is the camel-case version of the form id "dropzone-form"
-	Dropzone.options.dropzoneForm = {
+	   Dropzone.options.dropzoneForm = {
+	 //Dropzone.options.fileInput = {
 
 		url : "upload",
 		autoProcessQueue : false,
@@ -49,7 +50,8 @@ $(document).ready(function() {
 			// displaying the uploaded files information in a Bootstrap dialog
 			this.on("successmultiple", function(files, serverResponse) {
 				//showInformationDialog(files, serverResponse);
-				location.href = "http://localhost:8080/edit-member"
+				//location.href = "http://localhost:8080/UserManagement"
+				//location.href = "http://localhost:8080/edit-member"
 			});
 		}
 	}

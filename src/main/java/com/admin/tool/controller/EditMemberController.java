@@ -27,7 +27,7 @@ public class EditMemberController {
 	  
 	  
  
-	 // @RequestMapping(value = "/displayProfileImage", method = RequestMethod.GET)
+	 // @RequestMa+pping(value = "/displayProfileImage", method = RequestMethod.GET)
 	  @RequestMapping(value = "/edit-member", method = RequestMethod.GET)
 	  @ResponseStatus(value = HttpStatus.OK)
 	  public String ListImages(UploadedFile uploadedFile, BindingResult result, ModelMap model, Principal principal) throws Exception {
@@ -36,8 +36,8 @@ public class EditMemberController {
 		  String base64Encoded = new String(encodeBase64, "UTF-8");
 		  model.put("image", base64Encoded);
 		  
-		  //return "edit-member";
-		  return "UserManagement";
+		  return "edit-member";
+		  //return "UserManagement";
 	  }
 	  
 

@@ -1,5 +1,9 @@
 package com.admin.tool.entity;
 
+import java.util.Date;
+
+//import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "uploaded_file")
@@ -20,6 +26,8 @@ public class UploadedFile {
   private Long size;
   private String type;
   private User user;
+  private Date lastModified;
+  
 
   //@Lob
   //@Column(columnDefinition = "LONGBLOB")
@@ -31,8 +39,7 @@ public class UploadedFile {
 
 
   
-  
-  
+    
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   public Integer getId() {
@@ -100,10 +107,20 @@ public class UploadedFile {
 		return user;
 	}
 
-	
-	
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	
+	  
+    @Column(name = "LAST_MODIFIED")
+	@Temporal(TemporalType.TIMESTAMP)
+    public Date getLastModified() {
+        return lastModified;
+    }
+
+    public void setLastModified(Date lastModified) {
+        this.lastModified = lastModified;
+    }
   
 }

@@ -47,50 +47,86 @@
                     <!-- General Tab Page -->
                     <div class="tab-pane active" id="details">
                         <div class="control-group">
-                          <img src="data:image/jpeg;base64,${image}" height="100" width="100"/>
+<%--                            <img src="data:image/jpeg;base64,${image}" height="100" width="100"/>  --%>
+ 							<img src="data:image/jpeg;base64,${profilePic}" height="100" width="100"/> 
+                          
+<!--                           <img ng-src="http://www.gravatar.com/avatar/{{profilePic}}" alt="Description" /> -->
+                          
                           <div id="previewImage" class="dropzone-previews"></div>
+              
                             
-								<c:if test="${empty image}">
-								    Display difault image.
-								</c:if>
-								<c:if test="${not empty image}">
-								    image is NOT empty or null.
-								</c:if>
-								
-								<c:if test="${empty imageChanged}">
-								    imageChanged is empty or null.
-								</c:if>
-                            
-                            
-                            
-   <!--                          
-                            
-                            <script type="text/javascript">
-                            if(!$('#previewImage').is(':visible'))
-                            {
-                            	<div id="previewImage" class="dropzone-previews"></div>
-                            }
-                            else
-                            	{
-                            	 <img src="data:image/jpeg;base64,${image}" height="100" width="100"/>	
-                            	}
-                            </script>
-   -->                          
-                            
-                            
-                        </div>
+                       </div>
+                        
+                        
+                        
+                        
+                    
+                    
+					                    
+					<div ng-app="fileUpload" ng-controller="MyCtrl">
+					
+					
+					    <form name="myForm">
+					        <div>Crop Image and Upload</div>
+					        <button ngf-select ng-model="picFile" accept="image/*">
+					            Select Picture</button>
+					        <div ngf-drop ng-model="picFile" ngf-pattern="image/*"
+					             class="cropArea">
+					            <img-crop image="picFile  | ngfDataUrl" result-image="croppedDataUrl" ng-init="croppedDataUrl=''">
+					            </img-crop>
+					        </div>
+					        <div>
+					            <img ng-src="{{croppedDataUrl}}" />
+					        </div>
+					        <button ng-click="upload(croppedDataUrl, picFile.name)">Submit</button> 
+					            
+					        <span class="progress" ng-show="progress >= 0">
+					          <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+					        </span>
+					        <span ng-show="result">Upload Successful</span>
+					        <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+					    </form>
+					</div>                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!-- 
+                            <div ng-controller="Ctrl">
+ 							  <div>Select an image file: <input enctype="multipart/form-data" class="btn btn-info btn-file dropzone" type="file" id="fileInput" /></div>
+							  <div class="cropArea">
+							    <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+							  </div>
+							  <div>Cropped Image:</div>
+							  <div><img ng-src="{{myCroppedImage}}" /></div>
+							</div>
+                        -->
+                        
 
                         <div style="float: left; margin-left: 150px; margin-top:-100px; display: inline-block;">
                             <b>Upload a Photo</b>
                             <br>
-                            <p>You can upload a JPG, GIF or PNG file. File size limit is about 4MB.</p>
-                            
-                   	                            
-						   <span enctype="multipart/form-data" id="dropzone-form" class="btn btn-info btn-file dropzone"> Choose Photo</span>
-							  
-                 
-                            
-                                   
+                            <p>You can upload a JPG, GIF or PNG file. File size limit is about 4MB.</p>                  
+   					        <span enctype="multipart/form-data" id="dropzone-form" class="btn btn-info btn-file dropzone"> Choose Photo</span>       
                             <span class="btn btn-danger btn-file"> Reset Photo <input type="file"></span>
                             
                             <button id="upload-button" class="btn btn-primary"> <span class="glyphicon glyphicon-upload"></span> Upload </button>

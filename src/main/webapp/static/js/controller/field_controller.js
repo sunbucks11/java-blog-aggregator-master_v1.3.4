@@ -5,8 +5,6 @@ App.controller('FieldController', ['$scope', 'FieldService', function($scope, Fi
           self.field={id:'',name:'' ,comment:'' ,enabled:'' ,createdDate:'' ,modifiedDate:''};
           self.fields=[];
 
-
-          
           var index;
           var a = ["a", "b", "c"];
           for (index = 0; index < a.length; ++index) {
